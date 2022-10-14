@@ -1,0 +1,259 @@
+var va = {
+	prepare : function() {
+		act.add([
+new act.Anim('ch5swap', '0',
+	{
+		'0'    : function(){act.clear(idents); vars.a=act.randInt(-5,9); vars.b=act.randInt(10,20); assign('A',vars.a); assign('B',vars.b); schedNext('1');},
+		'1'    : function(){noclass(); execute('1'); vars.swap=vars.a; schedNext('Swap');},
+		'2'    : function(){noclass(); execute('2'); vars.a=vars.b; schedNext('A');},
+		'3'    : function(){noclass(); execute('3'); vars.b=vars.swap; schedNext('B');},
+		'A'    : function(){assign('A',vars.a); schedNext('3');},
+		'B'    : function(){assign('B',vars.b); schedNext('End');},
+		'Swap' : function(){assign('Swap',vars.swap); schedNext('2');},
+		'End'  : function(){noclass(); reset();}
+	},
+	{
+		a : 0,
+		b : 0,
+		swap : 0
+	}),
+new act.Anim('ch5cToF', 'Input',
+	{
+		'1' : function(){noclass(); hide(); execute('1'); schedNext('2');},
+		'2' : function(){noclass(); execute('2'); schedNext('Text');},
+		'3' : function(){noclass(); execute('3'); vars.c=parseFloat(vars.text); schedNext('C');},
+		'4' : function(){noclass(); execute('4'); vars.f=Math.round((vars.c*9/5+32)*10)/10; schedNext('Cmult9');},
+		'5' : function(){noclass(); execute('5'); schedNext('Div');},
+		'6' : function(){noclass(); hide(); execute('6'); schedNext('End');},
+
+		'Text'    : function(){assign('Text',vars.text); schedNext('3');},
+		'C'       : function(){assign('C',vars.c); schedNext('4');},
+		'Cmult9'  : function(){assign('Cmult9',vars.c*9); schedNext('Div5');},
+		'Div5'    : function(){noclass(); assign('Div5',vars.c*9/5); schedNext('F');},
+		'F'       : function(){noclass(); assign('F',vars.f); schedNext('5');},
+
+		'Input'   : function(){act.clear(idents); hide(); vars.text=act.randInt(-45,50).toString(); enter('Input','Enter',vars.text); schedNext('Button');},
+		'Button'  : function(){noclass(); hide(); click('Button','Click'); schedNext('1');},
+		'Div'     : function(){noclass(); display('Div','Display',vars.f); schedNext('6');},
+		'Enter'   : null,
+		'Click'   : null,
+		'Display' : null,
+		'End'     : function(){noclass(); hide(); reset();}
+	},
+	{
+		text : '',
+		c : 0,
+		f : 0
+	}),
+new act.Anim('ch5fToC', 'Input',
+	{
+		'1' : function(){noclass(); hide(); execute('1'); schedNext('2');},
+		'2' : function(){noclass(); execute('2'); schedNext('Text');},
+		'3' : function(){noclass(); execute('3'); vars.f=parseFloat(vars.text); schedNext('F');},
+		'4' : function(){noclass(); execute('4'); vars.c=Math.round(5/9*(vars.f-32)*10)/10; schedNext('Fmin32');},
+		'5' : function(){noclass(); execute('5'); schedNext('Div');},
+		'6' : function(){noclass(); hide(); execute('6'); schedNext('End');},
+		'Text'    : function(){assign('Text',vars.text); schedNext('3');},
+		'F'       : function(){assign('F',vars.f); schedNext('4');},
+		'Fmin32'  : function(){assign('Fmin32',vars.f-32); schedNext('5div9');},
+		'5div9'   : function(){noclass(); assign('5div9',Math.round(5/9*1000)/1000); schedNext('C');},
+		'C'       : function(){noclass(); assign('C',vars.c); schedNext('5');},
+
+		'Input'   : function(){act.clear(idents); hide(); vars.text=act.randInt(-50,115).toString(); enter('Input','Enter',vars.text); schedNext('Button');},
+		'Button'  : function(){noclass(); hide(); click('Button','Click'); schedNext('1');},
+		'Div'     : function(){display('Div','Display',vars.c); schedNext('6');},
+		'Enter'   : null,
+		'Click'   : null,
+		'Display' : null,
+		'End'     : function(){noclass(); hide(); reset();}
+	},
+	{
+		text : '',
+		f : 0,
+		c : 0
+	}),
+/*
+new act.Anim('ch5pizza', '1',
+	{
+		'1' : function(){act.clear(idents); execute('1'); vars.pc=1; vars.price=10.95; schedNext('Price');},
+		'2' : function(){noclass(); execute('2'); vars.perTopping=1.45; schedNext('PerTopping');},
+		'3' : function(){noclass(); execute('3'); vars.toppings=3; schedNext('Toppings');},
+		'4' : function(){noclass(); execute('4'); vars.pc=4; vars.price+=vars.toppings*vars.perTopping; vars.price=parseFloat(vars.price.toFixed(2)); schedNext('Price');},
+		'Price' : function(){assign('Price',vars.price); schedNext(vars.pc==1?'2':'End');},
+		'PerTopping' : function(){assign('PerTopping',vars.perTopping); schedNext('3');},
+		'Toppings' : function(){assign('Toppings',vars.toppings); schedNext('4');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		pc : 0,
+		price : 0,
+		perTopping : 0,
+		toppings : 0
+	}),
+*/
+new act.Anim('ch5taxA', '1',
+	{
+		'1'   : function(){act.clear(idents); execute('1'); vars.sub=175; schedNext('Sub');},
+		'2'   : function(){noclass(); execute('2'); vars.tax=vars.sub*0.06; schedNext('Tax');},
+		'3'   : function(){noclass(); execute('3'); vars.tot=vars.sub+vars.tax; schedNext('Tot');},
+		'Sub' : function(){assign('Sub',vars.sub); schedNext('2');},
+		'Tax' : function(){assign('Tax',vars.tax); schedNext('3');},
+		'Tot' : function(){assign('Tot',vars.tot); schedNext('End');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		sub : 0,
+		tax : 0,
+		tot : 0
+	}),
+new act.Anim('ch5taxB', '1',
+	{
+		'1'   : function(){act.clear(idents); execute('1'); vars.pc=1; vars.tot=175; schedNext('Tot');},
+		'2'   : function(){noclass(); execute('2'); vars.pc++; vars.tax=vars.tot*0.06; schedNext('Tax');},
+		'3'   : function(){noclass(); execute('3'); vars.pc++; vars.tot+=vars.tax; schedNext('Tot');},
+		'Tax' : function(){assign('Tax',vars.tax); schedNext('3');},
+		'Tot' : function(){assign('Tot',vars.tot); schedNext(vars.pc==1?'2':'End');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		pc : 0,
+		tot : 0,
+		tax : 0
+	}),
+new act.Anim('ch5taxC', '1',
+	{
+		'1'   : function(){act.clear(idents); execute('1'); vars.pc=1; vars.tot=175; schedNext('Tot');},
+		'2'   : function(){noclass(); execute('2'); vars.pc++; vars.tot*=1.06; schedNext('Tot');},
+		'Tot' : function(){assign('Tot',vars.tot); schedNext(vars.pc==1?'2':'End');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		pc : 0,
+		tot : 0
+	}),
+new act.Anim('ch5ex20', '1',
+	{
+		'1'   : function(){act.clear(idents); execute('1'); vars.pc=1; vars.x=3; schedNext('X');},
+		'2a'  : function(){noclass(); execute('2a'); vars.pc++; vars.x++; schedNext('X');},
+		'2'   : function(){noclass(); execute('2'); vars.y=vars.x*2+5; schedNext('Y');},
+		'X'   : function(){assign('X',vars.x); schedNext(vars.pc==1?'2a':'2');},
+		'Y'   : function(){assign('Y',vars.y); schedNext('End');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		pc : 0,
+		x : 0,
+		y : 0
+	}),
+new act.Anim('ch5ex21', '1',
+	{
+		'1'   : function(){act.clear(idents); execute('1'); vars.pc=1; vars.x=3; schedNext('X');},
+		'2'   : function(){noclass(); execute('2'); vars.pc++; vars.y=vars.x*2+5; schedNext('Y');},
+		'2a'  : function(){noclass(); execute('2a'); vars.x++; schedNext('X');},
+		'X'   : function(){assign('X',vars.x); schedNext(vars.pc==1?'2':'End');},
+		'Y'   : function(){assign('Y',vars.y); schedNext('2a');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		pc : 0,
+		x : 0,
+		y : 0
+	}),
+new act.Anim('ch5ex22', '1',
+	{
+		'1'   : function(){act.clear(idents); execute('1'); vars.pc=1; vars.q=7; schedNext('Q');},
+		'2a'  : function(){noclass(); execute('2a'); vars.pc++; vars.q--; schedNext('Q');},
+		'2'   : function(){noclass(); execute('2'); vars.s=2+18/vars.q; schedNext('S');},
+		'Q'   : function(){assign('Q',vars.q); schedNext(vars.pc==1?'2a':'2');},
+		'S'   : function(){assign('S',vars.s); schedNext('End');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		pc : 0,
+		q : 0,
+		s : 0
+	}),
+new act.Anim('ch5vol', 'InputR',
+	{
+		'1' : function(){noclass(); hide(); execute('1'); schedNext('2');},
+		'2' : function(){noclass(); execute('2'); schedNext('R');},
+		'3' : function(){noclass(); execute('3'); schedNext('H');},
+		'4' : function(){noclass(); execute('4'); vars.v=Math.PI*vars.r*vars.r*vars.h; schedNext('V');},
+		'5' : function(){noclass(); execute('5'); schedNext('Div');},
+		'6' : function(){noclass(); hide(); execute('6'); schedNext('End');},
+
+		'R' : function(){assign('R',vars.r); schedNext('3');},
+		'H' : function(){assign('H',vars.h); schedNext('4');},
+		'V' : function(){assign('V',vars.v); schedNext('5');},
+
+		'InputR'  : function(){act.clear(idents); hide(); vars.r=act.randReal(4,8,1); enter('InputR','EnterR',vars.r); schedNext('InputH');},
+		'InputH'  : function(){noclass(); hide(); vars.h=act.randInt(8,13); enter('InputH','EnterH',vars.h); schedNext('Button');},
+		'Button'  : function(){noclass(); hide(); click('Button','Click'); schedNext('1');},
+		'Div'     : function(){display('Div','Display',vars.v); schedNext('6');},
+		'EnterR'  : null,
+		'EnterH'  : null,
+		'Click'   : null,
+		'Display' : null,
+		'End'     : function(){noclass(); hide(); reset();}
+	},
+	{
+		r : 0,
+		h : 0,
+		v : 0
+	}),
+new act.Anim('ch5dist', 'InputX1',
+	{
+		'1'  : function(){noclass(); hide(); execute('1'); schedNext('2');},
+		'2'  : function(){noclass(); execute('2'); schedNext('X1');},
+		'3'  : function(){noclass(); execute('3'); schedNext('Y1');},
+		'4'  : function(){noclass(); execute('4'); schedNext('X2');},
+		'5'  : function(){noclass(); execute('5'); schedNext('Y2');},
+		'6'  : function(){noclass(); execute('6'); vars.dx=vars.x2-vars.x1; schedNext('DX');},
+		'7'  : function(){noclass(); execute('7'); vars.dy=vars.y2-vars.y1; schedNext('DY');},
+		'8'  : function(){noclass(); execute('8'); vars.dist=Math.sqrt(vars.dx*vars.dx+vars.dy*vars.dy); schedNext('Dist1');},
+		'9'  : function(){noclass(); execute('9'); vars.digits=2; schedNext('Digits');},
+		'10' : function(){noclass(); execute('10'); vars.mult=Math.pow(10,vars.digits); schedNext('Mult');},
+		'11' : function(){noclass(); execute('11'); vars.dist=Math.round(vars.dist*vars.mult)/vars.mult; schedNext('Dist2');},
+		'12' : function(){noclass(); execute('12'); schedNext('Div');},
+		'13' : function(){noclass(); hide(); execute('13'); schedNext('End');},
+
+		'X1'     : function(){assign('X1',vars.x1); schedNext('3');},
+		'Y1'     : function(){assign('Y1',vars.y1); schedNext('4');},
+		'X2'     : function(){assign('X2',vars.x2); schedNext('5');},
+		'Y2'     : function(){assign('Y2',vars.y2); schedNext('6');},
+		'DX'     : function(){assign('DX',vars.dx); schedNext('7');},
+		'DY'     : function(){assign('DY',vars.dy); schedNext('8');},
+		'Dist1'  : function(){assign('Dist1',vars.dist); schedNext('9');},
+		'Dist2'  : function(){assign('Dist2',vars.dist,'Dist1'); schedNext('12');},
+		'Digits' : function(){assign('Digits',vars.digits); schedNext('10');},
+		'Mult'   : function(){assign('Mult',vars.mult); schedNext('11');},
+
+		'InputX1' : function(){act.clear(idents); vars.mult=0; hide(); vars.x1=act.randInt(-10,20); enter('InputX1','EnterX1',vars.x1); schedNext('InputY1');},
+		'InputY1' : function(){noclass(); hide(); vars.y1=act.randInt(-10,20); enter('InputY1','EnterY1',vars.y1); schedNext('InputX2');},
+		'InputX2' : function(){noclass(); hide(); vars.x2=act.randInt(-10,20); enter('InputX2','EnterX2',vars.x2); schedNext('InputY2');},
+		'InputY2' : function(){noclass(); hide(); vars.y2=act.randInt(-10,20); enter('InputY2','EnterY2',vars.y2); schedNext('Button');},
+		'Button'  : function(){noclass(); hide(); click('Button','Click'); schedNext('1');},
+		'Div'     : function(){display('Div','Display',vars.dist); schedNext('13');},
+		'EnterX1' : null,
+		'EnterY1' : null,
+		'EnterX2' : null,
+		'EnterY2' : null,
+		'Click'   : null,
+		'Display' : null,
+		'End'     : function(){noclass(); hide(); reset();}
+	},
+	{
+		x1 : 0,
+		y1 : 0,
+		x2 : 0,
+		y2 : 0,
+		dx : 0,
+		dy : 0,
+		dist : 0,
+		digits : 0,
+		mult : 0
+	})
+		]);
+		act.prepare();
+	}
+};

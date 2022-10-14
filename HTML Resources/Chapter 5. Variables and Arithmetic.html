@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<!-- saved from url=(0095)https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/variables.htm -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Rex A. Barzee">
+<title>Chapter 5. Variables and Arithmetic</title>
+<link rel="stylesheet" type="text/css" href="./Chapter 5. Variables and Arithmetic_files/ebook.css">
+<script src="./Chapter 5. Variables and Arithmetic_files/interact.js.download"></script>
+<script src="./Chapter 5. Variables and Arithmetic_files/variables.js.download"></script>
+</head>
+
+<body id="ch5variables" onload="va.prepare()"><div>
+<div class="pagenum" id="page037">37</div>
+<h2>Chapter 5. Variables and Arithmetic</h2>
+
+<p>A computer program is composed of data and instructions. The data may
+be temporarily stored in the computer’s memory, or it may be
+stored more permanently on the computer’s hard drive, a DVD, or a
+jump drive. When data is in the computer’s memory, it is stored
+inside variables. A <dfn id="ch5var">variable</dfn> has a name, type,
+value, and scope. The term variable comes from the fact that a
+variable’s value can be changed or varied.</p>
+
+<h3 id="ch5outcomes">Chapter Outcomes</h3>
+<p>By the end of this chapter, you will be able to:</p>
+<ul>
+	<li>Declare a variable and assign a value to that variable.</li>
+	<li>Declare a constant and assign a value to that constant.</li>
+	<li>Write JavaScript code to copy the value from one variable to
+	another variable.</li>
+	<li>Write code to perform calculations and store the result in a
+	variable.</li>
+	<li>Use the increment and decrement operators in an arithmetic
+	expression.</li>
+	<li>Use the mathematical constants and functions in the
+	<code>Math</code> object.</li>
+</ul>
+
+<h3 id="ch5decl">Declaring a Variable</h3>
+<p>Before you can use a variable in a computer program, you must declare
+that variable. Declaring a variable tells a computer to reserve space in
+main memory for that variable. To declare a variable in a JavaScript
+program, simply write the keyword <code>var</code> or the keyword
+<code>let</code> followed by the variable’s name. A programmer can
+declare multiple variables in one line of code if she separates the
+variable names with commas.</p>
+
+<h4>Templates</h4>
+<pre class="template">    var <var>name</var><span class="opt">, <var>name2</var>, <var>name3</var>…</span>;
+    let <var>name</var><span class="opt">, <var>name2</var>, <var>name3</var>…</span>;</pre>
+
+<h4>Example 1</h4>
+<p>Declare three variables named <code>x</code>, <code>balance</code>,
+and <code>interest</code>.</p>
+
+<pre>    <span title="variable declaration">let x</span>;
+    <span title="variable declaration">let balance, interest</span>;</pre>
+
+<p>When JavaScript was first developed, the keyword <code>var</code> was
+the only keyword used to declare a variable. The keyword
+<code>let</code> was added to JavaScript in 2015 as part of the 6th
+edition of ECMAScript and is now preferred instead of the keyword
+<code>var</code>. The difference between <code>var</code> and
+<code>let</code> is that a variable declared with the keyword
+<code>var</code> has function scope and a variable declared with the
+keyword <code>let</code> has block scope. For more information about
+variable scope, see the
+<a target="_blank" href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#ch9scope">Variable Scope</a> section of
+Chapter&nbsp;9.</p>
+
+<p>A variable name must start with an uppercase or lowercase letter, the
+underscore&nbsp;(_), or the dollar sign&nbsp;($). The rest of the name
+must be made of letters, digits (0–9), the underscore, or the
+dollar sign. A variable name cannot include spaces. A variable name
+should be meaningful and should curtly describe what the variable
+stores. A computer programmer uses a variable’s <dfn>name</dfn> in
+a program as a representation of the variable’s <dfn>value</dfn>.
+This is similar to how a mathematician uses a variable in an algebraic
+equation.</p>
+
+<div class="pagenum" id="page038">38</div>
+<h3 id="ch5type">Variable Types</h3>
+<p>Each variable has a <dfn>type</dfn> so that the computer knows what
+kind of data can be stored in the variable and what operations the
+computer may perform on the variable. A variable in a JavaScript program
+may have any one of these types.</p>
+
+<table class="reference"><thead>
+	<tr><th colspan="3">JavaScript Variable Types</th></tr>
+	<tr><th scope="col">Type</th>
+		<th scope="col">Purpose</th>
+		<th scope="col">Example</th></tr>
+</thead><tbody>
+	<tr><th>boolean</th>
+		<th>stores true or false</th>
+		<th><code>true</code></th></tr>
+	<tr><th>number</th>
+		<th>a number with or without a decimal point</th>
+		<th><code>74.3</code></th></tr>
+	<tr><th>string</th>
+		<th>a string of text</th>
+		<th><code>"San Diego"</code></th></tr>
+	<tr><th>function</th>
+		<th>a part of a program created using the keyword
+		<code>function</code></th>
+		<th><code>function () { return 27; }</code></th></tr>
+	<tr><th>object</th>
+		<th>an object such as an <code>Array</code> or <code>Date</code></th>
+		<th><code>{name:"Sam", phone:"1788"}</code></th></tr>
+</tbody></table>
+
+<h3 id="ch5assign">Assigning to a Variable</h3>
+<p>A programmer may assign a value to a variable at any point in a
+JavaScript program by using the assignment operator, which is simply the
+equal symbol (=). The assignment operator works from right to left,
+copying the value that is on the right side of the equal symbol and
+storing it into the variable or location that is on the left side of the
+equal symbol.</p>
+
+<h4>Template</h4>
+<pre class="template">    <var>name</var> = <var>value</var>;</pre>
+
+<h4>Example 2</h4>
+<pre>    <span title="variable declaration">let price, discRate</span>;
+    <span title="variable declaration">let title</span>;
+
+    <span title="variable assignment">price = 12.95</span>;
+    <span title="variable assignment">discRate = 0.25</span>;
+    <span title="variable assignment">title = "A Poor Wayfaring Man of Grief"</span>;</pre>
+
+<p>The computer determines a variable’s type by the data that is
+stored in the variable. Notice that to store a number in a variable you
+must type the number without quotes around it, for example:</p>
+
+<pre>    price = 12.95;</pre>
+
+<p>To store a string of text in a variable, you must put quotes (either
+double or single) around the text, for example:</p>
+
+<pre>    title = "A Poor Wayfaring Man of Grief";</pre>
+
+<div class="pagenum" id="page039">39</div>
+<p>To store a boolean value in a variable, you must type either true or
+false in all lower case letters and without quotes, for example:</p>
+
+<pre>    registered = false;</pre>
+
+<p>In JavaScript, the default value for all variables is
+<code id="ch5undef">undefined</code>. If a programmer does not use the
+equal symbol (=) to assign a value to a variable, the value of that
+variable will be <code>undefined</code>, not 0, not null, but literally
+the value <code>undefined</code>. Obviously, <code>undefined</code> is
+not a number and cannot be successfully used as part of a calculation.
+To help ensure that all variables have a value other than
+<code>undefined</code>, the JavaScript language allows a programmer to
+assign a value to a variable when it is declared. This is sometimes
+called <dfn>initializing</dfn> a variable, and many programmers like it
+because it saves the programmer from writing an extra line of code.</p>
+
+<h4>Templates</h4>
+<pre class="template">    var <var>name</var> = <var>value</var><span class="opt">, <var>name2</var> = <var>value2</var>, <var>name3</var> = <var>value3</var>…</span>;
+    let <var>name</var> = <var>value</var><span class="opt">, <var>name2</var> = <var>value2</var>, <var>name3</var> = <var>value3</var>…</span>;</pre>
+
+<h4>Example 3</h4>
+<p>Declare a variable named <code>price</code> and assign the number
+12.95 to it. Also, declare a variable named <code>title</code> and
+assign the text “A Poor Wayfaring Man of Grief” to it.</p>
+<pre>    <span title="variable declaration">let price</span> <span title="variable assignment">= 12.95</span>;
+    <span title="variable declaration">let title</span> <span title="variable assignment">= "A Poor Wayfaring Man of Grief"</span>;</pre>
+
+<h3 id="ch5const">Declaring a Constant</h3>
+<p>A <dfn>constant</dfn> in a JavaScript program is essentially a variable
+whose value cannot change. To declare a constant use the keyword
+<code>const</code>. Because the value of a constant cannot change, you must
+assign a value to a constant at the same time that you declare it.</p>
+
+<h4>Template</h4>
+<pre class="template">    const <var>name</var> = <var>value</var><span class="opt">, <var>name2</var> = <var>value2</var>, <var>name3</var> = <var>value3</var>…</span>;</pre>
+
+<h4>Example 4</h4>
+<p>Declare a constant named <code>g</code> and assign the value 9.807 to it.
+Also, declare a constant named <code>team</code> and assign the text
+“Nuggets” to it.</p>
+<pre>    <span title="constant declaration">const g</span> <span title="assignment">= 9.807</span>;
+    <span title="constant declaration">const team</span> <span title="assignment">= "Nuggets"</span>;</pre>
+
+<div class="pagenum" id="page040">40</div>
+<h3 id="ch5check">Desk Checks</h3>
+<p>While reading the rest of this book, you will find it helpful to step
+through the example code line by line as if you were a computer. Doing
+this is sometimes called a <dfn>desk check</dfn> because you are
+checking the code on paper or “at your desk” instead of
+running it on a computer. To perform a desk check, draw a table that
+represents part of the computer’s main memory. Step through the
+given code line by line as if you were the computer, and change the
+value of each variable just as the computer would. For example, if you
+were given the following code:</p>
+
+<div class="code">
+<pre class="linenum">1
+2
+3
+4</pre>
+<pre>let x = 7;
+let y = -3;
+let a = x;
+x = 4;</pre>
+</div>
+
+<p>You would draw a table like this to represent part of the
+computer’s main memory.</p>
+
+<table class="check"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>x</th> <th>y</th> <th>a</th></tr>
+</thead><tbody>
+	<tr><th><del>7</del></th> <th>-3</th> <th>7</th></tr>
+	<tr><th>4</th> <th class="empty"></th> <th class="empty"></th></tr>
+</tbody></table>
+
+<p>Notice that the first line of the code changes the value of the
+variable <var>x</var> to 7, so in the table 7 is written underneath the
+heading “x”. The second line of code changes <var>y</var> to
+−3, so −3 is written underneath “y”. The third
+line of code copies the value of <var>x</var> into <var>a</var>, so 7 is
+written underneath “a”. Finally, the last line of code
+changes the value of <var>x</var> to 4, so 7 is crossed through and 4 is
+written below “x”.</p>
+
+<p>Technically, writing one value beneath another, as shown in the desk
+check table for <var>x</var>, does not accurately model the way a
+computer stores a value in a variable. When the computer assigns a new
+value to a variable, it replaces the old value with the new value. To
+model this accurately in a desk check, we would erase the old value and
+replace it with the new value. However, to understand how code works, it
+is often helpful to see a history of the values that a variable has held
+over time, so when you complete the desk checks, you should cross
+through an old value and write a new value below the old one.</p>
+
+<p>Sometimes example code requires input from the user or somewhere
+else. This input is given in the desk check table. For example, the
+code:</p>
+
+<pre>    let y = x;</pre>
+
+<p>requires that the variable <var>x</var> already have a value. This
+value will be given in the desk check table:</p>
+
+<table class="check"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>x</th> <th>y</th></tr>
+</thead><tbody>
+	<tr><th>15</th> <th></th></tr>
+</tbody></table>
+
+<h3 id="ch5swap">Swapping Values</h3>
+<p>If a program needs to exchange the value of one variable with another
+variable, or in other words swap their values, a common and easy way to
+do this is to use a temporary variable. The example code below uses a
+temporary variable named <var>swap</var> to exchange the values of two
+variables: <var>a</var> and <var>b</var>. Desk check this code. To
+perform a desk check, step through the example code line by line as if
+you were a computer and write the value for each variable in the empty
+boxes. A missing box is a hint that means there is no value for you to
+write in that spot.</p>
+
+<div class="pagenum" id="page041">41</div>
+<h4>Example 5</h4>
+<pre><span id="ch5swap0"></span><span id="ch5swap1">    let swap = a;</span>
+<span id="ch5swap2">    a = b;</span>
+<span id="ch5swap3">    b = swap;</span></pre>
+<span id="ch5swapEnd"></span>
+<button type="button" id="ch5swapRun" title="Run" onclick="act.runClick(&#39;ch5swap&#39;)">►</button>
+<button type="button" id="ch5swapStep" title="Step" onclick="act.stepClick(&#39;ch5swap&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>a</th> <th>b</th> <th>swap</th></tr>
+</thead><tbody>
+	<tr><th id="ch5swapA">8</th>
+		<th id="ch5swapB">−3</th>
+		<th id="ch5swapSwap"></th></tr>
+	<tr><th></th> <th></th> <th class="empty"></th></tr>
+</tbody></table>
+
+<h3 id="ch5expr">Arithmetic Expressions</h3>
+<p>The word computer comes from the ability these machines have to
+compute values or in other words to perform arithmetic. A programmer
+tells the computer to perform arithmetic by writing arithmetic
+expressions in a program. An <dfn>arithmetic expression</dfn> is
+composed of <dfn>operands</dfn> (numbers and variables) and
+<dfn>operators</dfn> (addition, multiplication, etc.).</p>
+
+<p>Arithmetic in JavaScript is written differently than it is written in
+algebra. For example in algebra, 3<var>x</var> means to multiply 3 times
+<var>x</var>. However, typing <code>3x</code> in a JavaScript program
+will not cause the computer to multiply anything. Instead, it will
+simply cause an error. If you want multiplication in JavaScript, you
+must use the multiplication operator (<code>*</code>) like this:
+<code>3 * x</code>.</p>
+
+<h3 id="ch5ops">Arithmetic Operators</h3>
+<p>The five basic arithmetic operations that a computer can perform are
+multiplication, division, modulus, addition, and subtraction. As
+explained earlier in this chapter, a computer can also assign a value to
+a variable. A programmer makes the computer perform these arithmetic
+operations by writing the corresponding operator (symbol) in a program.
+Here are the arithmetic operators available in JavaScript.</p>
+
+<table class="reference"><thead>
+	<tr><th colspan="4">JavaScript Arithmetic Operators</th></tr>
+	<tr><th scope="col">Operator</th>
+		<th scope="col">Name</th>
+		<th scope="col">Algebraic Expression</th>
+		<th scope="col">JavaScript<br>Expression</th></tr>
+</thead><tbody>
+	<tr><th class="center"><code>−</code></th>
+		<th>negation</th>
+		<th class="center"><var>−r</var></th>
+		<th><code>−r</code></th></tr>
+	<tr><th class="center"><code>*</code></th>
+		<th>multiplication</th>
+		<th class="center"><var>vt</var> or <var>v ⋅ t</var> or <var>v × t</var></th>
+		<th><code>v * t</code></th></tr>
+	<tr><th class="center"><code>/</code></th>
+		<th>division</th>
+		<th class="center"><var>x ÷ y</var> or <var>x / y</var></th>
+		<th><code>x / y</code></th></tr>
+	<tr><th class="center"><code>%</code></th>
+		<th>modulus</th>
+		<th class="center"><var>r</var> mod <var>s</var></th>
+		<th><code>r % s</code></th></tr>
+	<tr><th class="center"><code>+</code></th>
+		<th>addition</th>
+		<th class="center"><var>p + q</var></th>
+		<th><code>p + q</code></th></tr>
+	<tr><th class="center"><code>−</code></th>
+		<th>subtraction</th>
+		<th class="center"><var>f − 3</var></th>
+		<th><code>f − 3</code></th></tr>
+	<tr><th class="center"><code>=</code></th>
+		<th>assignment</th>
+		<th class="center"><var>s = t</var></th>
+		<th><code>s = t</code></th></tr>
+</tbody></table>
+
+<h4>Modulus</h4>
+<p>The <dfn>modulus</dfn> operator is sometimes called the remainder
+operator because it returns the remainder after division. However, its
+correct name is the modulus operator because it returns the
+<strong>signed</strong> remainder after division, which means the
+remainder can be positive or negative. In JavaScript, the sign of a
+modulus result depends only on the sign of the dividend (operand on the
+left of the %).</p>
+
+<div class="pagenum" id="page042">42</div>
+<h4>Examples</h4>
+<table>
+	<tbody><tr><th class="number">7</th> <td>%</td>
+		<th class="number">3</th> <td>=</td>
+		<th class="number">1</th></tr>
+	<tr><th class="number">12</th> <td>%</td>
+		<th class="number">3</th> <td>=</td>
+		<th class="number">0</th></tr>
+	<tr><th class="number">−6</th> <td>%</td>
+		<th class="number">4</th> <td>=</td>
+		<th class="number">−2</th></tr>
+	<tr><th class="number">6</th> <td>%</td>
+		<th class="number">−4</th> <td>=</td>
+		<th class="number">2</th></tr>
+	<tr><th class="number">−6</th> <td>%</td>
+		<th class="number">−4</th> <td>=</td>
+		<th class="number">−2</th></tr>
+</tbody></table>
+
+<p>In addition to the basic arithmetic operators, most computer
+languages provide functions to compute exponentiation, square root,
+logarithms, sine, cosine, and others.</p>
+
+<h3 id="ch5prec">Operator Precedence</h3>
+<p>When an arithmetic expression includes two or more different
+operators, the result is often ambiguous. For example, what is the
+result of <span class="expr">7 − 3 * 2</span>? Is it 8 or 1? The
+answer depends on the order in which the arithmetic operations are done.
+Because of this ambiguity, programming languages include arithmetic
+operator <dfn>precedence</dfn>. Precedence determines which operator the
+computer evaluates first and which it evaluates last.</p>
+
+<table class="reference"><thead>
+	<tr><th colspan="3">JavaScript Arithmetic Operator Precedence</th></tr>
+	<tr><th scope="col">Operator(s)</th>
+		<th scope="col">Name(s)</th>
+		<th scope="col">Precedence</th></tr>
+</thead><tbody>
+	<tr><th><code>( )</code></th>
+		<th>parentheses</th>
+		<th>Highest (evaluated first)</th></tr>
+	<tr><th><code>−</code></th>
+		<th>negation</th>
+		<th></th></tr>
+	<tr><th><code>* / %</code></th>
+		<th>multiplication, division, modulus</th>
+		<th></th></tr>
+	<tr><th><code>+ −</code></th>
+		<th>addition, subtraction</th>
+		<th></th></tr>
+	<tr><th><code>=</code></th>
+		<th>assignment</th>
+		<th>Lowest (evaluated last)</th></tr>
+</tbody></table>
+
+<p>When an expression includes two operators with the same precedence,
+the computer evaluates them from left to right. For example, in the
+arithmetic expression <code>x / y * c</code>, the computer will first
+divide <var>x</var> by <var>y</var> then multiply that result by
+<var>c</var>. When writing an arithmetic expression, if you need a lower
+precedence operator evaluated before a higher precedence one, you can
+add parentheses to change the evaluation order. The computer will always
+evaluate arithmetic that is inside parentheses first regardless of the
+operator precedence.</p>
+
+<h4>Example 6</h4>
+<div class="p">Translate the algebraic equation
+<div class="expr">
+	<var>v</var> = <var>i</var> (1 +
+	<div> <var>a</var> <hr><var>n</var></div> ) <div> <var>y</var> <hr><var>n</var></div>
+</div>
+into JavaScript.</div>
+<pre>    let v = i * (1 + a / n) * (y / n);</pre>
+
+<h4>Example 7</h4>
+<div class="p">Translate the algebraic equation
+<div class="expr">
+	<var>x</var> =
+	<var>r</var>(<var>ab</var> + 1)
+	− <div>t<hr> 3(<var>r</var> + 5) </div>
+</div>
+into JavaScript.</div>
+<pre>    let x = r * (a * b + 1) - t / (3 * (r + 5));</pre>
+
+<div class="pagenum" id="page043">43</div>
+<h3 id="ch5celsToFahr">Celsius to Fahrenheit</h3>
+<div class="p">The formula for converting a temperature in Celsius to
+Fahrenheit is
+<div class="expr"><var>f</var> = <div> 9 <hr>5</div> <var>c</var> + 32</div>
+</div>
+
+<p>Example&nbsp;8 is a JavaScript program that uses this formula to
+convert a temperature entered by a user in Celsius to a temperature in
+Fahrenheit. Notice at line&nbsp;14 of example&nbsp;8 the program
+contains code to read the value that a user typed into a text field and
+to store that value in a variable named <code>text</code>. At
+line&nbsp;17, the <code id="ch5parseFloat">parseFloat</code> function
+converts what the user typed from a string into a number. Line&nbsp;17
+is necessary because a computer always treats values typed by a user as
+if they were text. This is true no matter what the user types. If a user
+clicks in a text field and then presses the 5 key and then the 8 key, a
+human will look at the user input and think of it as the number 58, but
+a computer will treat it as the digit “5” followed by the
+digit “8”. In other words, if you are writing a program to
+get user input and to perform calculations with that input, then your
+program must convert the user input from a string of text into a number
+before performing calculations with that number.  Converting from text
+to a number is what the <code>parseFloat</code> function does as shown
+on line&nbsp;17.</p>
+
+<h4>Example 8</h4>
+<div class="code">
+<pre class="linenum">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre>
+<pre class="hilite" id="ch5celsToFahrProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Convert Celsius to Fahrenheit&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: a temperature in Celsius
+ * Processing: convert the temperature from Celsius to Fahrenheit
+ * Output: the temperature converted to Fahrenheit
+ */</span>
+<span id="ch5cToF1"><span class="key">function</span> <span class="func">celsToFahr</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+    <span class="comm">// Read a Celsius temperature from the user.</span>
+<span id="ch5cToF2">    <span class="key">let</span> text = document.getElementById<span class="tok">(</span><span class="lit">'celsiusInputBox'</span><span class="tok">)</span>.value;</span>
+
+    <span class="comm">// Convert what the user typed from text into a number.</span>
+<span id="ch5cToF3">    <span class="key">let</span> c = <b>parseFloat<span class="tok">(</span>text<span class="tok">)</span></b>;</span>
+
+    <span class="comm">// Convert the Celsius temperature into Fahrenheit.</span>
+<span id="ch5cToF4">    <span class="key">let</span> f = c * 9 / 5 + 32;</span>
+
+    <span class="comm">// Display the Fahrenheit temperature to the user.</span>
+<span id="ch5cToF5">    document.getElementById<span class="tok">(</span><span class="lit">'fahrenDiv'</span><span class="tok">)</span>.innerHTML = f;</span>
+<span id="ch5cToF6"><span class="tok">}</span></span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;                               <span id="ch5cToFEnter" class="explain"></span>
+Enter a temperature in Celsius: <span id="ch5cToFInput">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="celsiusInputBox"</span>&gt;</span>
+<span id="ch5cToFButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">celsToFahr</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Convert&lt;/<span class="key">button</span>&gt;</span>
+<span id="ch5cToFDiv">&lt;<span class="key">div</span> <span class="attr">id="fahrenDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>                     <span id="ch5cToFClick" class="explain"></span>
+&lt;/<span class="key">body</span>&gt;            <span id="ch5cToFDisplay" class="explain"></span>
+<span id="ch5cToFEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+</div>
+<button type="button" id="ch5cToFRun" title="Run" onclick="act.runClick(&#39;ch5cToF&#39;)">►</button>
+<button type="button" id="ch5cToFStep" title="Step" onclick="act.stepClick(&#39;ch5cToF&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch5celsToFahrProg&#39;)"><b>⇗</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="5">Desk Check</th></tr>
+	<tr><th>text</th> <th>c</th> <th>c * 9</th>
+		<th>c * 9 / 5</th> <th>f</th></tr>
+</thead><tbody>
+	<tr><th id="ch5cToFText">"20"</th>
+		<th id="ch5cToFC"></th>
+		<th id="ch5cToFCmult9"></th>
+		<th id="ch5cToFDiv5"></th>
+		<th id="ch5cToFF"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page044">44</div>
+<p>In JavaScript, there are two functions to convert a string of text
+into a number: <code id="ch5parseInt">parseInt</code> and
+<code>parseFloat</code>. <code>parseInt</code> converts a
+<code>string</code> to an integer. If a user enters text with digits
+after the decimal point, <code>parseInt</code> will convert only the
+digits before the decimal point and will ignore the digits after the
+decimal point. For example, if a user enters “75.814”,
+<code>parseInt</code> will convert that to the number 75.
+<code>parseFloat</code> converts a <code>string</code> to a number that
+may have digits after the decimal point. For example,
+<code>parseFloat</code> will convert the string “75.814” to
+the number 75.814 or a close approximation to 75.814.</p>
+
+<h3 id="ch5fahrToCels">Fahrenheit to Celsius</h3>
+<div class="p">The formula for converting a temperature in Fahrenheit to
+Celsius is
+<div class="expr"><var>c</var> = <div> 5 <hr>9</div> (<var>f</var> − 32)</div>
+</div>
+
+<p>In some programming languages, such as Java, C++, and C, this formula
+must be carefully written because in those languages
+<span class="expr">5 / 9</span> causes the computer to perform
+<dfn id="ch5intdiv">integer division</dfn> which truncates the result by
+simply dropping the digits after the decimal point. Thus, in such
+languages <span class="expr">5 / 9</span> yields 0, and a programmer
+must write the code in a way to force the computer to perform
+floating-point division instead of integer division. However, in
+JavaScript, the division operator always causes the computer to perform
+floating-point division.</p>
+
+<h4>Example 9</h4>
+<pre class="hilite" id="ch5fahrToCelsProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Convert Fahrenheit to Celsius&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: a temperature in Fahrenheit
+ * Processing: convert the temperature from Fahrenheit to Celsius
+ * Output: the temperature converted to Celsius
+ */</span>
+<span id="ch5fToC1"><span class="key">function</span> <span class="func">fahrToCels</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+    <span class="comm">// Read a Fahrenheit temperature from the user.</span>
+<span id="ch5fToC2">    <span class="key">let</span> text = document.getElementById<span class="tok">(</span><span class="lit">'fahrenInputBox'</span><span class="tok">)</span>.value;</span>
+
+    <span class="comm">// Convert what the user typed from text into a number.</span>
+<span id="ch5fToC3">    <span class="key">let</span> f = parseFloat<span class="tok">(</span>text<span class="tok">)</span>;</span>
+
+    <span class="comm">// Convert the Fahrenheit temperature into Celsius.</span>
+<span id="ch5fToC4">    <span class="key">let</span> c = 5 / 9 * <span class="tok">(</span>f - 32<span class="tok">)</span>;</span>
+
+    <span class="comm">// Display the Celsius temperature to the user.</span>
+<span id="ch5fToC5">    document.getElementById<span class="tok">(</span><span class="lit">'celsiusDiv'</span><span class="tok">)</span>.innerHTML = c;</span>
+<span id="ch5fToC6"><span class="tok">}</span></span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;                                         <span id="ch5fToCEnter" class="explain"></span>
+Enter a temperature in Fahrenheit: <span id="ch5fToCInput">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="fahrenInputBox"</span>&gt;</span>
+<span id="ch5fToCButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">fahrToCels</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Convert&lt;/<span class="key">button</span>&gt;</span>
+<span id="ch5fToCDiv">&lt;<span class="key">div</span> <span class="attr">id="celsiusDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>                <span id="ch5fToCClick" class="explain"></span>
+&lt;/<span class="key">body</span>&gt;       <span id="ch5fToCDisplay" class="explain"></span>
+<span id="ch5fToCEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+<button type="button" id="ch5fToCRun" title="Run" onclick="act.runClick(&#39;ch5fToC&#39;)">►</button>
+<button type="button" id="ch5fToCStep" title="Step" onclick="act.stepClick(&#39;ch5fToC&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch5fahrToCelsProg&#39;)"><b>⇗</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="5">Desk Check</th></tr>
+	<tr><th>text</th> <th>f</th>
+		<th>f − 32</th> <th>5 / 9</th> <th>c</th></tr>
+</thead><tbody>
+	<tr><th id="ch5fToCText">"25"</th>
+		<th id="ch5fToCF"></th>
+		<th id="ch5fToCFmin32"></th>
+		<th id="ch5fToC5div9"></th>
+		<th id="ch5fToCC"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page045">45</div>
+<h3 id="ch5assignOps">Assignment Operators</h3>
+<p>In addition to the arithmetic operators described above, JavaScript
+also has assignment operators that perform arithmetic. These operators
+are really shortcuts for performing arithmetic using the current value
+of a variable and then storing the result of the arithmetic back into
+that variable.</p>
+
+<table class="reference"><thead>
+	<tr><th colspan="4">JavaScript Assignment Operators</th></tr>
+	<tr><th scope="col">Operator</th>
+		<th scope="col">Name</th>
+		<th scope="col">Example</th>
+		<th scope="col">Equivalent<br>Example</th></tr>
+</thead><tbody>
+	<tr><th class="center"><code>*=</code></th>
+		<th>multiplication assignment</th>
+		<th class="center"><code>x *= 5;</code></th>
+		<th class="center"><code>x = x * 5;</code></th></tr>
+	<tr><th class="center"><code>/=</code></th>
+		<th>division assignment</th>
+		<th class="center"><code>s /= t;</code></th>
+		<th class="center"><code>s = s / t;</code></th></tr>
+	<tr><th class="center"><code>%=</code></th>
+		<th>modulus assignment</th>
+		<th class="center"><code>w %= z;</code></th>
+		<th class="center"><code>w = w % z;</code></th></tr>
+	<tr><th class="center"><code>+=</code></th>
+		<th>addition assignment</th>
+		<th class="center"><code>x += y;</code></th>
+		<th class="center"><code>x = x + y;</code></th></tr>
+	<tr><th class="center"><code>−=</code></th>
+		<th>subtraction assignment</th>
+		<th class="center"><code>r −= t;</code></th>
+		<th class="center"><code>r = r − t;</code></th></tr>
+</tbody></table>
+
+<p>For example, <code>x += 2</code> is equivalent to
+<code>x = x + 2</code>. In other words the += operator is a combination
+of addition and assignment and is a shortcut way of writing a command
+with both. Here are some interesting uses of the assignment operators
+and some equivalent statements. Understanding these examples will help
+you better understand the assignment operators.</p>
+
+<table><tbody>
+	<tr><th scope="col">Example 10</th>
+		<th style="width:2em"></th>
+		<th scope="col">Equivalent Example</th></tr>
+	<tr><td><pre>x += x;
+// 1. retrieve the value in x
+// 2. add the value in x to it
+// 3. store the sum back in x</pre></td>
+		<td></td>
+		<td><pre>x *= 2;
+// 1. retrieve the value in x
+// 2. multiply that value by 2
+// 3. store the sum back in x</pre></td></tr>
+	<tr><td colspan="3">&nbsp;</td></tr>
+	<tr><th scope="col">Example 11</th>
+		<th style="width:2em"></th>
+		<th scope="col">Equivalent Example</th></tr>
+	<tr><td><pre>x -= x;
+// 1. retrieve the value in x
+// 2. subtract the value in x from it
+// 3. store the difference back in x</pre></td>
+		<td></td>
+		<td><pre>x = 0;
+// store 0 in x</pre></td></tr>
+	<tr><td colspan="3">&nbsp;</td></tr>
+	<tr><th scope="col">Example 12</th>
+		<th style="width:2em"></th>
+		<th scope="col">Equivalent Example</th></tr>
+	<tr><td><pre>x *= -1;
+// 1. retrieve the value in x
+// 2. multiply that value by -1
+// 3. store the product back in x</pre></td>
+		<td></td>
+		<td><pre>x = -x;
+// change the sign of x</pre></td></tr>
+</tbody></table>
+
+<div class="pagenum" id="page046">46</div>
+<p>Imagine a program to compute the price of a pizza. The price of a
+large sized cheese pizza with no other toppings is $10.95. The price
+for each topping such as ham, peperoni, olives, and pineapple is $1.45.
+Here is a short example that uses the += operator to compute the price
+of a pizza.</p>
+
+<h4>Example 13</h4>
+<pre>    let price = 10.95;
+    let toppings = 3;
+    let perTopping = 1.45;
+    price += toppings * perTopping;</pre>
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>price</th> <th>toppings</th> <th>perTopping</th></tr>
+</thead><tbody>
+	<tr><th><del>10.95</del></th>
+		<th>3</th>
+		<th>1.45</th></tr>
+	<tr><th>15.30</th>
+		<th class="empty"></th>
+		<th class="empty"></th></tr>
+</tbody></table>
+
+<p>Now imagine a program to compute sales tax and the total amount that
+a customer owes. The next three examples show three different ways that
+a program could compute the total including sales tax that a customer
+owes.</p>
+
+<h4>Example 14</h4>
+<pre><span id="ch5taxA1">    let subtotal = 175;</span>
+<span id="ch5taxA2">    let tax = subtotal * 0.06;</span>
+<span id="ch5taxA3">    let total = subtotal + tax;</span></pre>
+<span id="ch5taxAEnd"></span>
+<button type="button" id="ch5taxARun" title="Run" onclick="act.runClick(&#39;ch5taxA&#39;)">►</button>
+<button type="button" id="ch5taxAStep" title="Step" onclick="act.stepClick(&#39;ch5taxA&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>subtotal</th> <th>tax</th> <th>total</th></tr>
+</thead><tbody>
+	<tr><th id="ch5taxASub"></th>
+		<th id="ch5taxATax"></th>
+		<th id="ch5taxATot"></th></tr>
+</tbody></table>
+
+<h4>Example 15</h4>
+<pre><span id="ch5taxB1">    let total = 175;</span>
+<span id="ch5taxB2">    let tax = total * 0.06;</span>
+<span id="ch5taxB3">    total += tax;</span></pre>
+<span id="ch5taxBEnd"></span>
+<button type="button" id="ch5taxBRun" title="Run" onclick="act.runClick(&#39;ch5taxB&#39;)">►</button>
+<button type="button" id="ch5taxBStep" title="Step" onclick="act.stepClick(&#39;ch5taxB&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>total</th> <th>tax</th></tr>
+</thead><tbody>
+	<tr><th id="ch5taxBTot"></th>
+		<th id="ch5taxBTax"></th></tr>
+	<tr><th></th> <th class="empty"></th></tr>
+</tbody></table>
+
+<h4>Example 16</h4>
+<pre><span id="ch5taxC1">    let total = 175;</span>
+<span id="ch5taxC2">    total *= 1.06;</span></pre>
+<span id="ch5taxCEnd"></span>
+<button type="button" id="ch5taxCRun" title="Run" onclick="act.runClick(&#39;ch5taxC&#39;)">►</button>
+<button type="button" id="ch5taxCStep" title="Step" onclick="act.stepClick(&#39;ch5taxC&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>total</th></tr>
+</thead><tbody>
+	<tr><th id="ch5taxCTot"></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page047">47</div>
+<h3 id="ch5incr">Increment and Decrement Operators</h3>
+<p>JavaScript includes two more shortcut operators called the increment
+and decrement operators. The increment operator (<code>++</code>) simply
+adds one to the value of a variable. The decrement operator
+(<code>--</code>) subtracts one from the value of a variable.</p>
+
+<table class="reference" id="ch5decr"><thead>
+	<tr><th colspan="4">JavaScript Increment and Decrement Operators</th></tr>
+	<tr><th scope="col">Operator</th>
+		<th scope="col">Name</th>
+		<th scope="col">Example</th>
+		<th scope="col">Equivalent Examples</th></tr>
+</thead><tbody>
+	<tr><th rowspan="2" class="middle center"><code>++</code></th>
+		<th>pre-increment</th>
+		<th class="center"><code>++x;</code></th>
+		<th rowspan="2" class="middle center"><code>x += 1;  x = x + 1;</code></th></tr>
+	<tr><th>post-increment</th>
+		<th class="center"><code>x++;</code></th></tr>
+	<tr><th rowspan="2" class="middle center"><code>--</code></th>
+		<th>pre-decrement</th>
+		<th class="center"><code>--t;</code></th>
+		<th rowspan="2" class="middle center"><code>t -= 1;  t = t − 1;</code></th></tr>
+	<tr><th>post-decrement</th>
+		<th class="center"><code>t--;</code></th></tr>
+</tbody></table>
+
+<p>Both the increment and decrement operators can be written as a pre or
+post operator. If you write one of these operators before a variable
+name, such as <code>++x</code>, then it is a pre-increment, meaning the
+computer will perform the increment <em>before</em> the rest of the
+arithmetic in the same statement. If you write one of the operators
+after a variable name, such as <code>x++</code>, then it is a
+post-increment, meaning the computer will perform the increment
+<em>after</em> the rest of the arithmetic in the same statement.
+However, if you use the increment or decrement operator in a statement
+all by itself, then it makes no difference whether you use the pre or
+post version. The next two examples show how pre and post-increment work
+when written inside a larger statement.</p>
+
+<h4>Example 17</h4>
+<pre>    let a = 4;
+    let b = ++a * 3 + 2;</pre>
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>a</th> <th>b</th></tr>
+</thead><tbody>
+	<tr><th><del>4</del></th> <th>17</th></tr>
+	<tr><th>5</th> <th class="empty"></th></tr>
+</tbody></table>
+
+<h4>Example 18</h4>
+<pre>    let a = 4;
+    let b = a++ * 3 + 2;</pre>
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>a</th> <th>b</th></tr>
+</thead><tbody>
+	<tr><th><del>4</del></th> <th>14</th></tr>
+	<tr><th>5</th> <th class="empty"></th></tr>
+</tbody></table>
+
+<p>Notice in example&nbsp;17, line&nbsp;1 causes the computer to store
+the number 4 in the variable <var>a</var>. On line&nbsp;2, because the
+increment operator is written as a pre-increment, the computer first
+adds 1 to the value of <var>a</var>, and then performs the rest of the
+calculations on line&nbsp;2 which results in 17 being stored in the
+variable <var>b</var>.</p>
+
+<p>In example&nbsp;18, line&nbsp;1 causes the computer to store the
+number 4 in the variable <var>a</var>. On line&nbsp;2, because the
+increment operator is written as a post-increment, the computer first
+performs the other calculations on line&nbsp;2 which results in 14
+being stored in <var>b</var>, and then increments the value of
+<var>a</var> from 4 to 5. Notice in example&nbsp;18 that incrementing
+<var>a</var> does not affect the value of <var>b</var> because the
+increment is a post-increment and the computer increments <var>a</var>
+<em>after</em> calculating the value of <var>b</var>.</p>
+
+<div class="pagenum" id="page048">48</div>
+<p>When a new programmer first understands the post-increment operator,
+the most common question she asks is “Why? Why would anyone ever
+use the post-increment operator to change the value of a variable
+<em>after</em> the other calculations in the same statement are
+done?” The answer is “to prepare the incremented variable
+(<var>a</var> in examples 17 and 18) to be used later in the
+program.”</p>
+
+<p>When writing the increment or decrement operator, remember that it
+makes no difference whether you write the pre or post version of the
+operators if the operator is in a statement all by itself. For
+example:</p>
+<pre>    a++;</pre>
+
+<p>Here are three more examples of using the increment and decrement
+operators.</p>
+
+<h4>Example 19</h4>
+<pre><span id="ch5ex201">    let x = 3;</span>
+<span id="ch5ex202">    let y = <span id="ch5ex202a">++x</span> * 2 + 5;</span></pre>
+<span id="ch5ex20End"></span>
+<button type="button" id="ch5ex20Run" title="Run" onclick="act.runClick(&#39;ch5ex20&#39;)">►</button>
+<button type="button" id="ch5ex20Step" title="Step" onclick="act.stepClick(&#39;ch5ex20&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>x</th> <th>y</th></tr>
+</thead><tbody>
+	<tr><th id="ch5ex20X"></th> <th id="ch5ex20Y"></th></tr>
+	<tr><th></th> <th class="empty"></th></tr>
+</tbody></table>
+
+<h4>Example 20</h4>
+<pre><span id="ch5ex211">    let x = 3;</span>
+<span id="ch5ex212">    let y = <span id="ch5ex212a">x++</span> * 2 + 5;</span></pre>
+<span id="ch5ex21End"></span>
+<button type="button" id="ch5ex21Run" title="Run" onclick="act.runClick(&#39;ch5ex21&#39;)">►</button>
+<button type="button" id="ch5ex21Step" title="Step" onclick="act.stepClick(&#39;ch5ex21&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>x</th> <th>y</th></tr>
+</thead><tbody>
+	<tr><th id="ch5ex21X"></th> <th id="ch5ex21Y"></th></tr>
+	<tr><th></th> <th class="empty"></th></tr>
+</tbody></table>
+
+<h4>Example 21</h4>
+<pre><span id="ch5ex221">    let q = 7;</span>
+<span id="ch5ex222">    let s = 2 + 18 / <span id="ch5ex222a">--q</span>;</span></pre>
+<span id="ch5ex22End"></span>
+<button type="button" id="ch5ex22Run" title="Run" onclick="act.runClick(&#39;ch5ex22&#39;)">►</button>
+<button type="button" id="ch5ex22Step" title="Step" onclick="act.stepClick(&#39;ch5ex22&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>q</th> <th>s</th></tr>
+</thead><tbody>
+	<tr><th id="ch5ex22Q"></th> <th id="ch5ex22S"></th></tr>
+	<tr><th></th> <th class="empty"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page049">49</div>
+<h3 id="ch5prec2">Operator Precedence Revisited</h3>
+<p>The following table shows the precedence for all the JavaScript
+arithmetic operators shown in this chapter.</p>
+
+<table class="reference"><thead>
+	<tr><th colspan="3">JavaScript Arithmetic Operator Precedence</th></tr>
+	<tr><th scope="col">Operator(s)</th>
+		<th scope="col">Name(s)</th>
+		<th scope="col">Precedence</th></tr>
+</thead><tbody>
+	<tr><th><code>( )</code></th>
+		<th>parentheses</th>
+		<th>Highest (evaluated first)</th></tr>
+	<tr><th><code>−</code></th>
+		<th>negation</th>
+		<th></th></tr>
+	<tr><th><code>++ --</code></th>
+		<th>increment, decrement</th>
+		<th></th></tr>
+	<tr><th><code>* / %</code></th>
+		<th>multiplication, division, modulus</th>
+		<th></th></tr>
+	<tr><th><code>+ −</code></th>
+		<th>addition, subtraction</th>
+		<th></th></tr>
+	<tr><th><code>= += −= *= /= %=</code></th>
+		<th>assignment operators</th>
+		<th>Lowest (evaluated last)</th></tr>
+</tbody></table>
+
+<p>Remember that the pre-increment is always executed before the rest of
+the arithmetic in the same statement, and the post-increment, even
+though it has a higher precedence, is always executed after the rest of
+the arithmetic in the same statement.</p>
+
+<div class="pagenum" id="page050">50</div>
+<h3 id="ch5math">Math Object</h3>
+<p>The <code>Math</code> object is an object (see
+<a target="_blank" href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/objects.htm">chapter&nbsp;11</a>) built into JavaScript that
+enables a program to perform more advanced mathematical
+computations. It contains the following mathematical constants and
+functions, all of which must be preceded by
+“<code>Math.</code>” when you use them in a program.</p>
+
+<table class="reference"><thead>
+	<tr><th colspan="4">Math Object Constants</th></tr>
+	<tr><th scope="col">Constant</th>
+		<th scope="col">Description</th>
+		<th scope="col">Algebraic<br>Expression</th>
+		<th scope="col">Approximate<br>Value</th></tr>
+</thead><tbody>
+	<tr><th><code>E</code></th>
+		<th>Euler’s number</th>
+		<th class="center"><var>e</var></th>
+		<th class="number">2.71828</th></tr>
+	<tr><th><code>LN2</code></th>
+		<th>Natural logarithm of 2</th>
+		<th class="center">ln 2</th>
+		<th class="number">0.69315</th></tr>
+	<tr><th><code>LN10</code></th>
+		<th>Natural logarithm of 10</th>
+		<th class="center">ln 10</th>
+		<th class="number">2.30259</th></tr>
+	<tr><th><code>LOG2E</code></th>
+		<th>Base-2 logarithm of Euler’s number</th>
+		<th class="center">log<sub>2</sub> <var>e</var></th>
+		<th class="number">1.44270</th></tr>
+	<tr><th><code>LOG210</code></th>
+		<th>Base-10 logarithm of Euler’s number</th>
+		<th class="center">log<sub>10</sub> <var>e</var></th>
+		<th class="number">0.43429</th></tr>
+	<tr><th><code>PI</code></th>
+		<th>Ratio of a circle’s circumference to its diameter</th>
+		<th class="center"><span class="expr">π</span></th>
+		<th class="number">3.14159</th></tr>
+	<tr><th><code>SQRT1_2</code></th>
+		<th>Square root of ½</th>
+		<th class="center"><div class="expr">√<div><hr>½</div></div></th>
+		<th class="number">0.70711</th></tr>
+	<tr><th><code>SQRT2</code></th>
+		<th>Square root of 2</th>
+		<th class="center"><div class="expr">√<div><hr>2</div></div></th>
+		<th class="number">1.41421</th></tr>
+</tbody></table>
+<br>
+<table class="reference"><thead>
+	<tr><th colspan="2">Math Object Functions</th></tr>
+	<tr><th scope="col">Function</th>
+		<th scope="col">Description</th></tr>
+</thead><tbody>
+	<tr><th><code>abs(x)</code></th>
+		<th>absolute value of <var>x</var></th></tr>
+	<tr><th><code>acos(x)</code></th>
+		<th>arccosine of <var>x</var> in radians</th></tr>
+	<tr><th><code>asin(x)</code></th>
+		<th>arcsine of <var>x</var> in radians</th></tr>
+	<tr><th><code>atan(x)</code></th>
+		<th>arctangent of <var>x</var> as a numeric value in the range [−π/2, π/2] radians</th></tr>
+	<tr><th><code>atan2(y, x)</code></th>
+		<th>arctangent of the quotient of its arguments</th></tr>
+	<tr><th><code>ceil(x)</code></th>
+		<th>smallest integer that is larger than or equal to <var>x</var></th></tr>
+	<tr><th><code>cos(x)</code></th>
+		<th>cosine of an angle <var>x</var> (<var>x</var> is in radians)</th></tr>
+	<tr><th><code>exp(x)</code></th>
+		<th>Euler’s number raised to the power of <var>x</var>&nbsp; ( <var>e<sup>x</sup></var> )</th></tr>
+	<tr><th><code>floor(x)</code></th>
+		<th>largest integer that is smaller than or equal to <var>x</var></th></tr>
+	<tr><th><code>log(x)</code></th>
+		<th>natural logarithm of <var>x</var>  (ln <var>x</var>)</th></tr>
+	<tr><th><code>max(x, y<span class="opt">, z…</span>)</code></th>
+		<th>largest value of many numbers</th></tr>
+	<tr><th><code>min(x, y<span class="opt">, z…</span>)</code></th>
+		<th>smallest value of many numbers</th></tr>
+	<tr><th><code>pow(y, x)</code></th>
+		<th><var>y</var> raised to the power of <var>x</var>&nbsp; ( <var>y<sup>x</sup></var> )</th></tr>
+	<tr><th><code>random()</code></th>
+		<th>a pseudo random number in the range [0.0, 1.0)</th></tr>
+	<tr><th><code>round(x)</code></th>
+		<th>integer that is nearest <var>x</var></th></tr>
+	<tr><th><code>sin(x)</code></th>
+		<th>sine of an angle <var>x</var> (<var>x</var> is in radians)</th></tr>
+	<tr><th><code>sqrt(x)</code></th>
+		<th>square root of <var>x</var></th></tr>
+	<tr><th><code>tan(x)</code></th>
+		<th>tangent of an angle <var>x</var> (<var>x</var> is in radians)</th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page051">51</div>
+<h3 id="ch5cylinder">Volume of a Cylinder</h3>
+<div class="figRight" id="figCylinder">
+<img src="./Chapter 5. Variables and Arithmetic_files/cylinder.gif" alt="A cylinder with radius r and height h" title="A cylinder with radius r and height h">
+<div><b>Figure 5-1:</b> A cylinder with radius <var>r</var>
+and height <var>h</var>.</div>
+</div>
+
+<p>If we know the radius and height of a cylinder, we can compute the
+volume of that cylinder using the formula:&nbsp;
+<span class="expr"><var>v</var> = <var>π</var> <var>r</var><sup>2</sup><var>h</var></span>&nbsp;
+where <var>v</var> is the volume, <var>r</var> is the radius, and
+<var>h</var> is the height of the cylinder. This formula can be written
+in JavaScript as shown in the next example. Notice the use of the
+built-in JavaScript constant <code>Math.PI</code> at line 18.</p>
+
+<h4>Example 22</h4>
+<div class="code">
+<pre class="linenum">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre>
+<pre class="hilite" id="ch5volProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Volume&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: radius and height of a cylinder
+ * Processing: Calculate the volume of the cylinder.
+ * Output: the volume
+ */</span>
+<span id="ch5vol1"><span class="key">function</span> <span class="func">volume</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+    <span class="comm">// Get the radius and height from the user.</span>
+<span id="ch5vol2">    <span class="key">let</span> r = parseFloat<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'radiusInput'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+<span id="ch5vol3">    <span class="key">let</span> h = parseFloat<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'heightInput'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+
+    <span class="comm">// Compute the volume of the cylinder.</span>
+<span id="ch5vol4">    <span class="key">let</span> v = <b>Math.PI</b> * r * r * h;</span>
+
+    <span class="comm">// Display the volume to the user.</span>
+<span id="ch5vol5">    document.getElementById<span class="tok">(</span><span class="lit">'outputDiv'</span><span class="tok">)</span>.innerHTML = v;</span>
+<span id="ch5vol6"><span class="tok">}</span></span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+Radius <span id="ch5volInputR">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="radiusInput"</span> <span class="attr">size="5"</span>&gt;</span>&lt;<span class="key">br</span>&gt;  <span id="ch5volEnterR" class="explain"></span>
+Height <span id="ch5volInputH">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="heightInput"</span> <span class="attr">size="5"</span>&gt;</span>&lt;<span class="key">br</span>&gt;  <span id="ch5volEnterH" class="explain"></span>
+<span id="ch5volButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">volume</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Volume&lt;/<span class="key">button</span>&gt;</span>  <span id="ch5volClick" class="explain"></span>
+<span id="ch5volDiv">&lt;<span class="key">div</span> <span class="attr">id="outputDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>  <span id="ch5volDisplay" class="explain"></span>
+&lt;/<span class="key">body</span>&gt;
+<span id="ch5volEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+</div>
+<button type="button" id="ch5volRun" title="Run" onclick="act.runClick(&#39;ch5vol&#39;)">►</button>
+<button type="button" id="ch5volStep" title="Step" onclick="act.stepClick(&#39;ch5vol&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch5volProg&#39;)"><b>⇗</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>r</th> <th>h</th> <th>v</th></tr>
+</thead><tbody>
+	<tr><th id="ch5volR">2.7</th>
+		<th id="ch5volH">5</th>
+		<th id="ch5volV"></th></tr>
+</tbody></table>
+
+<p>Example&nbsp;22 contains a program that reads the <var>radius</var>
+and <var>height</var> for a cylinder from a user, and then computes and
+outputs the volume for that cylinder. Notice the code at
+line&nbsp;14 combines into a single line, the code to read text from a
+text field and the code to convert that text into a number. In previous
+programs, these two steps were written separately like this:</p>
+
+<pre>    let text = document.getElementById('radiusInput').value;
+    let r = parseFloat(text);</pre>
+
+<p>In example&nbsp;22, these two steps are combined by wrapping
+<code>parseFloat</code> around the code to get the input, like this:</p>
+
+<pre>    let r = parseFloat(document.getElementById('radiusInput').value);</pre>
+
+<p>Combining these two steps into one line of code is convenient for a
+programmer and reduces the number lines of code. In fact, in
+example&nbsp;22, there are two lines of code, lines&nbsp;14 and 15 that
+combine the get input step and the convert step.</p>
+
+<div class="pagenum" id="page052">52</div>
+<h3 id="ch5round">Round to Decimal Places</h3>
+<div class="figRight" id="figDist">
+<img src="./Chapter 5. Variables and Arithmetic_files/distance.gif" alt="A plot of two points" title="A plot of two points">
+<div class="center"><b>Figure 5-2:</b> A plot of two points.</div>
+</div>
+
+<p>The built in JavaScript <code>Math</code> object has a function named
+<code>Math.round</code> that rounds a real number to an integer.
+However, a programmer will occasionally need to write a program that
+rounds fractional numbers to a fixed number of places after the decimal
+point. For example, U.S. currency amounts are usually rounded to two
+decimal places (pennies). Lines 27–29 of the next example use the
+built in <code>Math.pow</code> and <code>Math.round</code> functions to
+round the value in the variable named <var>dist</var> to two decimal
+places.</p>
+
+<p><a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/variables.htm#figDist">Figure&nbsp;5-2</a> shows a plot of two points in
+two-dimensional Cartesian space and the distance between those points.
+We can compute the distance between two points <var>p</var><sub>1</sub>
+and <var>p</var><sub>2</sub> with the formula:</p>
+
+<div class="blockExpr">
+	<var>d</var> = <div><span class="large">√</span><div><hr>
+	(<var>x</var><sub>2</sub> − <var>x</var><sub>1</sub>)<sup>2</sup> +
+	(<var>y</var><sub>2</sub> − <var>y</var><sub>1</sub>)<sup>2</sup></div></div>
+</div>
+
+<p>where <var>d</var> is the distance between the points.
+Point&nbsp;<var>p</var><sub>1</sub> has the coordinates
+(<var>x</var><sub>1</sub>,&nbsp;<var>y</var><sub>1</sub>), and
+point&nbsp;<var>p</var><sub>2</sub> has the coordinates
+(<var>x</var><sub>2</sub>,&nbsp;<var>y</var><sub>2</sub>). This formula
+can be written in JavaScript as shown in the next example. Notice the
+use of the built-in JavaScript function <code>Math.sqrt</code> at line
+24.</p>
+
+<div class="pagenum" id="page053">53</div>
+<h4>Example 23</h4>
+<div class="code">
+<pre class="linenum">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
+<pre class="hilite" id="ch5distProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Distance&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: x and y for two points: x1, y1, x2, y2
+ * Processing:
+ *   1. Calculate the distance between the two points.
+ *   2. Round the distance to two digits after the decimal.
+ * Output: the rounded distance
+ */</span>
+<span id="ch5dist1"><span class="key">function</span> <span class="func">distance</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+    <span class="comm">// Get the coordinates for two points from the user.</span>
+<span id="ch5dist2">    <span class="key">let</span> x1 = parseFloat<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'x1inputBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+<span id="ch5dist3">    <span class="key">let</span> y1 = parseFloat<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'y1inputBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+<span id="ch5dist4">    <span class="key">let</span> x2 = parseFloat<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'x2inputBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+<span id="ch5dist5">    <span class="key">let</span> y2 = parseFloat<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'y2inputBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+
+    <span class="comm">// Compute the distance between the two points.</span>
+<span id="ch5dist6">    <span class="key">let</span> dx = x2 - x1;</span>
+<span id="ch5dist7">    <span class="key">let</span> dy = y2 - y1;</span>
+<span id="ch5dist8">    <span class="key">let</span> dist = <b>Math.sqrt</b><span class="tok">(</span>dx * dx + dy * dy<span class="tok">)</span>;</span>
+
+    <span class="comm">// Round the distance to two digits after the decimal.</span>
+<b><span id="ch5dist9">    <span class="key">let</span> digits = 2;</span>
+<span id="ch5dist10">    <span class="key">let</span> multiplier = Math.pow<span class="tok">(</span>10, digits<span class="tok">)</span>;</span>
+<span id="ch5dist11">    dist = Math.round<span class="tok">(</span>dist * multiplier<span class="tok">)</span> / multiplier;</span></b>
+
+    <span class="comm">// Display the distance to the user.</span>
+<span id="ch5dist12">    document.getElementById<span class="tok">(</span><span class="lit">'outputDiv'</span><span class="tok">)</span>.innerHTML = dist;</span>
+<span id="ch5dist13"><span class="tok">}</span></span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+Please enter the x and y coordinates for two points:&lt;<span class="key">br</span>&gt;
+(x1, y1) <span id="ch5distInputX1">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="x1inputBox"</span> <span class="attr">size="3"</span>&gt;</span>  <span id="ch5distEnterX1" class="explain"></span>
+         <span id="ch5distInputY1">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="y1inputBox"</span> <span class="attr">size="3"</span>&gt;</span>&lt;<span class="key">br</span>&gt;  <span id="ch5distEnterY1" class="explain"></span>
+(x2, y2) <span id="ch5distInputX2">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="x2inputBox"</span> <span class="attr">size="3"</span>&gt;</span>  <span id="ch5distEnterX2" class="explain"></span>
+         <span id="ch5distInputY2">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="y2inputBox"</span> <span class="attr">size="3"</span>&gt;</span>&lt;<span class="key">br</span>&gt;  <span id="ch5distEnterY2" class="explain"></span>
+<span id="ch5distButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">distance</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Distance&lt;/<span class="key">button</span>&gt;</span>  <span id="ch5distClick" class="explain"></span>
+<span id="ch5distDiv">&lt;<span class="key">div</span> <span class="attr">id="outputDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>  <span id="ch5distDisplay" class="explain"></span>
+&lt;/<span class="key">body</span>&gt;
+<span id="ch5distEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+</div>
+<button type="button" id="ch5distRun" title="Run" onclick="act.runClick(&#39;ch5dist&#39;)">►</button>
+<button type="button" id="ch5distStep" title="Step" onclick="act.stepClick(&#39;ch5dist&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch5distProg&#39;)"><b>⇗</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="9">Desk Check</th></tr>
+	<tr><th>x1</th> <th>y1</th> <th>x2</th> <th>y2</th>
+		<th>dx</th> <th>dy</th> <th>dist</th>
+		<th>digits</th> <th>multiplier</th></tr>
+</thead><tbody>
+	<tr><th id="ch5distX1">7</th> <th id="ch5distY1">−2</th>
+		<th id="ch5distX2">4</th> <th id="ch5distY2">6</th>
+		<th id="ch5distDX"></th> <th id="ch5distDY"></th>
+		<th id="ch5distDist1"></th>
+		<th id="ch5distDigits"></th> <th id="ch5distMult"></th></tr>
+	<tr><th colspan="6" class="empty"></th>
+		<th id="ch5distDist2"></th> <th colspan="2" class="empty"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page054">54</div>
+<h3 id="ch5mistakes">Common Mistakes</h3>
+<h4>Forgetting to declare a variable</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>miles = 61;</pre></div>
+	<div><h5>Correct</h5>
+<pre>let miles = 61;</pre></div>
+</div>
+
+<h4>Declaring the same variable twice</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>let total = 175;
+let total *= 1.06;</pre></div>
+	<div><h5>Correct</h5>
+<pre>let total = 175;
+total *= 1.06;</pre></div>
+</div>
+
+<h4>Forgetting quotes around text</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>let speaker = Monson;</pre></div>
+	<div><h5>Correct</h5>
+<pre>let speaker = 'Monson';
+// or
+let speaker = "Monson";</pre></div>
+</div>
+
+<h4>Forgetting to convert (parse) text to a number</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>let x = document.getElementById('num1inputBox').value;
+let sum = x + 5;</pre></div>
+	<div><h5>Correct</h5>
+<pre>let text = document.getElementById('num1inputBox').value;
+let x = parseInt(text);
+let sum = x + 5;
+
+// or
+
+let x = parseInt(document.getElementById('num1inputBox').value);
+let sum = x + 5;</pre></div>
+</div>
+
+<h4>Using caret (^) for exponentiation</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>let g = (1 + r) ^ n;</pre></div>
+	<div><h5>Correct</h5>
+<pre>let g = Math.pow(1 + r, n);</pre></div>
+</div>
+
+<h4>Using parentheses for multiplication</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>let z = 3(x + y);</pre></div>
+	<div><h5>Correct</h5>
+<pre>let z = 3 * (x + y);</pre></div>
+</div>
+
+<div class="pagenum" id="page055">55</div>
+<h3 id="ch5summary">Chapter Summary</h3>
+<ul>
+	<li>Before using a variable in JavaScript, you must declare it. To
+	declare a variable, write the keyword <code>var</code> or the
+	keyword <code>let</code> followed by the variable’s name.</li>
+	<li>Use the assignment operator (=) to assign a value to a variable.</li>
+	<li>To make a constant, write the keyword <code>const</code>
+	followed by the constant’s name and assign it a value.</li>
+	<li>Within a JavaScript program, use these operators: *, /, %, +, -
+	to multiply, divide, compute the remainder after division, add, and
+	subtract.</li>
+	<li>The assignment operators (*=, /=, %=, +=, -=) are shortcuts for
+	performing arithmetic using the current value of a variable and then
+	storing the result into that variable.</li>
+	<li>To add one to the value of a variable, you can use the increment
+	operator (++). You can use the decrement operator (--) to subtract
+	one from the value of a variable.</li>
+	<li>Each of the arithmetic operators has a precedence. It is
+	important that you understand precedence when writing formulas in
+	JavaScript.</li>
+	<li>To program a computer to perform more advanced arithmetic, such
+	as exponentiation, square root, and rounding, you must use the
+	functions in the <code>Math</code> object.</li>
+</ul>
+
+<h3 id="ch5revQues">Review Questions</h3>
+<ol class="revQues">
+	<li>Declare two variables named <code>balance</code> and
+	<code>rate</code>.</li>
+
+	<li>Declare a variable named <code>inventor</code> and assign the
+	text “Franklin” to it.</li>
+
+	<li>In JavaScript what do both the keywords <code>var</code> and
+	<code>let</code> do?
+	<ol>
+		<li>reserve space in the computer’s memory for a variable</li>
+		<li>store a value in a variable</li>
+		<li>convert a number to text</li>
+		<li>prompt the user for input</li>
+	</ol></li>
+
+	<li>What does the <code>parseInt</code> function do?
+	<ol>
+		<li>use an ID to find an element in a document</li>
+		<li>display a message in a pop-up window</li>
+		<li>convert an integer to text</li>
+		<li>convert text to an integer</li>
+	</ol></li>
+
+	<li>What does the <code>parseFloat</code> function do?
+	<ol>
+		<li>use an ID to find an element in a document</li>
+		<li>display a message in a pop-up window</li>
+		<li>convert a number to text</li>
+		<li>convert text to a number</li>
+	</ol></li>
+
+	<li>After a computer executes the following JavaScript code,
+	variable <var>a</var> will be of what data type?
+	<pre>    let a = false;</pre></li>
+
+	<li>
+<div class="pagenum" id="page056">56</div>
+	After a computer executes the following JavaScript code,
+	variable <var>a</var> will be of what data type? Hint: pay attention
+	to the double quotes.
+	<pre>    let a = false;</pre></li>
+
+	<li>After a computer executes the following JavaScript code,
+	variable <var>c</var> will be of what data type?
+	<pre>    let c = 15;</pre></li>
+
+	<li>After a computer executes the following JavaScript code,
+	variable <var>e</var> will be of what data type and hold what value?
+<pre>    let c = 15;
+    let d = -2.17;
+    let e = c + d;</pre></li>
+
+	<li>After a computer executes the following JavaScript code,
+	variable <var>h</var> will be of what data type and hold what value?
+<pre>    let f = "Her name is ";
+    let g = "Isabella";
+    let h = f + g;</pre></li>
+
+	<li>After a computer executes the following JavaScript code,
+	variable <var>k</var> will be of what data type?
+<pre>    let i = document.getElementById('number1').value;
+    let j = document.getElementById('number2').value;
+    let k = i + j;</pre></li>
+
+	<li>After a computer executes the following JavaScript code,
+	variable <var>p</var> will be of what data type?
+<pre>    let m = parseInt(document.getElementById('number1').value);
+    let n = parseFloat(document.getElementById('number2').value);
+    let p = m + n;</pre></li>
+
+	<li>After a computer executes the following JavaScript code,
+	variable <var>r</var> will be of what data type and hold what value?
+<pre>    let c = 15;
+    let r = "You found " + c + " coins.";</pre></li>
+
+	<li>Write a JavaScript statement to calculate the amount of energy
+	released during a nuclear reaction. In other words, translate
+	<span class="expr"><var>E = mc</var><sup>2</sup></span> into
+	JavaScript. Assume that the variables <var>m</var> and
+	<var>c</var> already exist and that each holds a value. When writing
+	your answer, be sure to declare <var>E</var> and use the variable
+	names given in the equation above.</li>
+
+	<li>The semi-perimeter, <var>s</var>, of a triangle with side
+	lengths <var>a</var>, <var>b</var>, and <var>c</var> is given by the
+	formula&nbsp;
+	<div class="expr">
+		<var>s</var> = <div> <var>a + b + c</var> <hr>2</div>
+	</div>&nbsp;
+	Translate this formula into JavaScript. Assume that the variables
+	<var>a</var>, <var>b</var>, and <var>c</var> already exist and that
+	each holds a value. When writing your answer, be sure to declare
+	<var>s</var> and use the variable names given in the equation
+	above.</li>
+
+	<li>
+<div class="pagenum" id="page057">57</div>
+	Translate this formula
+	<div class="expr">
+		<var>r</var> = 2<var>k</var> +
+		<div> 6 − <var>n</var> <hr>3<var>p</var><sup>2</sup></div>
+	</div>
+	into JavaScript. Assume that the variables <var>k</var>, <var>n</var>,
+	and <var>p</var> already exist and that each holds a value. When
+	writing your answer, be sure to declare <var>r</var> and use the
+	variable names given in the equation above.</li>
+
+	<li>Rewrite the following JavaScript statement so that it doesn’t
+	use the += operator but still has the same functionality.
+	<pre>    z += x - 3 * y;</pre>
+	Assume that the variables <var>x</var>, <var>y</var>, and
+	<var>z</var> already exist and that each holds a value. When writing
+	your answer, be sure to use the variable names given in the
+	statement above.</li>
+
+	<li>Rewrite the following JavaScript statement so that it
+	doesn’t use the *= operator but still has the same
+	functionality.
+	<pre>    b *= q - s;</pre>
+	Assume that the variables <var>b</var>, <var>q</var>, and
+	<var>s</var> already exist and that each holds a value. When writing
+	your answer, be sure to use the variable names given in the
+	statement above. Hint: pay close attention to operator
+	precedence.</li>
+</ol>
+
+<h3 id="ch5progs">Programming Assignments</h3>
+<ol class="progs">
+	<li>Write a defining table and a JavaScript program that asks a user
+	for a volume in quarts and then converts that value into liters.
+	Your program should correctly handle real numbers such as 7.54.</li>
+
+	<li>Write a defining table and a JavaScript program that asks a user
+	for a distance in kilometers and then converts that value into
+	miles. Your program should correctly handle real numbers.</li>
+
+	<li>
+	<div class="figRight" id="figStacks" style="width:16em">
+	<img src="./Chapter 5. Variables and Arithmetic_files/stacks.png" alt="A running program that computes the number of stacks of boxes" title="A running program that computes the number of stacks of boxes">
+	</div>
+	An employee at a grocery store must frequently place boxes of
+	cans in stacks. Write a defining table and a program that allows him
+	to enter the total number of boxes and the number of boxes he will
+	place in each stack. Your program must output the number of stacks
+	he will have to make. All of the stacks except the last one must
+	have the exact number of boxes that the employee specifies. The last
+	stack must have the exact number or fewer boxes. For example, if the
+	employee enters 74 total boxes and 6 boxes in each stack your
+	program must output 13.</li>
+
+	<li>
+<div class="pagenum" id="page058">58</div>
+	<div class="figRight" id="figTeams" style="width:18em">
+	<img src="./Chapter 5. Variables and Arithmetic_files/teams.png" alt="A running program that calculates team size" title="A running program that calculates team size">
+	</div>
+	A teacher frequently divides her class into teams. Write a defining
+	table and a program that allows her to enter the number of students
+	in her class and the number of teams she wants. The number of
+	members on each team must be as balanced as possible. In other
+	words, if not all of the teams can have the same number of members
+	then some of the teams will have only one more member than the other
+	teams. Your program must output a phrase that tells the teacher how
+	to divide her class into teams. For example, if the teacher entered
+	22 class members and 5 teams, your program must output “2
+	teams with 5 members and 3 teams with 4 members.” Your program
+	must list the larger teams first.</li>
+
+	<li>Write a defining table and a JavaScript program to compute the
+	mileage of a vehicle. Your program should allow the user to enter
+	the beginning and ending odometer readings and the number of gallons
+	of gasoline used and should output the mileage in miles per gallon.
+	Your program should correctly handle real numbers.</li>
+
+	<li>When you exercise to strengthen your heart, you should maintain
+	your heart rate within a range. To find that range, subtract your
+	age from 220. This difference is your maximum heart rate per minute.
+	Your heart simply will not beat faster than this maximum (220
+	− age). When exercising to strengthen your heart, you should
+	keep your heart rate between 65% and 85% of your heart’s
+	maximum. Write a defining table and a JavaScript program that asks
+	for a person’s age and computes and outputs the slowest and
+	fastest rates necessary to strengthen his heart.</li>
+
+	<li>Write a defining table and a JavaScript program to compute and
+	output an employee’s after tax pay. Your program will read
+	from the keyboard the number of regular hours that an employee
+	worked and that employee’s wage, and then compute that
+	employee’s after tax pay. Tax is 15% of the employee’s
+	gross pay. Your program should correctly handle real numbers.</li>
+
+	<li>The length of a cable can be approximated with this formula:
+	<div class="blockExpr"><var>L</var> = <var>s</var> + <div>8<var>d</var><sup>2</sup><hr>3<var>s</var></div></div>
+	where <var>L</var> is the length of the cable, <var>s</var> is the
+	distance that the cable must span, and <var>d</var> is the distance
+	the cable will sag or dip. Write a defining table and a program that
+	allows a user to enter the distance a cable must span and the
+	distance the cable will sag. Your program must compute and output
+	the length of the cable.</li>
+
+	<li>
+<div class="pagenum" id="page059">59</div>
+	<div class="figRight" id="figTire" style="width:18em">
+	<img src="./Chapter 5. Variables and Arithmetic_files/tire.png" alt="A running program that calculates the volume inside a tire" title="A running program that calculates the volume inside a tire">
+	</div>
+	The size of a car tire in the United States is represented with
+	three numbers like this: 205/60R 15. The first number is the width
+	of the tire in millimeters. The second number is the aspect ratio.
+	The third number is the diameter in inches of the wheel that the
+	tire fits. Write a defining table and a program that reads from the
+	keyboard those three numbers for a tire and computes and outputs the
+	volume of space inside that tire. The volume of space inside a
+	tire can be approximated with this formula.
+
+	<div class="blockExpr"><var>v</var> = <div>π <var>w</var><sup>2</sup> <var>a</var> (<var>w</var><var>a</var> + 2,540 <var>d</var>)<hr>10,000,000</div></div>
+
+	where <var>v</var> is the volume in cubic centimeters, <var>w</var>
+	is the width of the tire in millimeters, <var>a</var> is the aspect
+	ratio of the tire, and <var>d</var> is the diameter of the wheel in
+	inches.</li>
+</ol>
+
+<p class="fine">Copyright © 2017 by Rex A. Barzee.&nbsp; All rights
+reserved.&nbsp; Except as permitted under the Copyright Act of 1976, no
+part of this publication may be reproduced, stored in a retrieval
+system, or transmitted, in any form or by any means, electronic,
+mechanical, photocopying, recording, or otherwise, without the prior
+written permission of the author.</p>
+
+<p class="fine">The author and publisher of this book have used their
+best efforts in preparing this book, and the information contained in
+this book is believed to be reliable.&nbsp; These efforts include the
+development, research, and testing of the theories and computer programs
+in this book to determine their correctness.&nbsp; However, because of
+the possibility of human or mechanical error, the author and publisher
+make no warranty of any kind, expressed or implied, with regard to
+these programs or the documentation or information contained in this
+book.&nbsp; The author and publisher shall not be liable in any event
+for incidental or consequential damages in connection with or arising
+out of the furnishing, performance, or use of these programs.</p>
+</div>
+
+</body></html>

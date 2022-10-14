@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>Final</title>
+    <script>
+        /**
+        * Input: from the test function
+        * Processing: determine if the array element is above 1000 if so add it to all other elements above 1000 and find the average          
+        * Output: return the result
+        */
+
+        function averageBig(list) {
+            let total = 0;
+            let average = 0;
+            for (let i = 0; i < list.length; i++) {
+                if (list[i] > 1000) {
+                    total += 1;
+                    average += list[i];
+                }
+                else (list[i] < 1000)
+                average += 0;
+
+            }
+            if (average == 0 && total == 0)
+                return 0;
+            else
+            return average / total;
+
+        }
+
+
+
+
+        function test() {
+            let list1 = [70, 1010, 950, 2014, 6];
+            let list2 = [-72.3, 3000, 873, 2312, 68, 7501.3];
+            let list3 = [70, 950, 671, 6];
+            let result = averageBig(list1);
+            document.getElementById('outputDiv').innerHTML = result.toFixed(2);
+        }
+
+
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <button type="button" onclick="test()">Display Result</button>
+    <div id="outputDiv">
+
+    </div>
+
+</body>
+
+</html>

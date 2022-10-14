@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>Discount</title>
+        <script>
+            /*
+            * Input: Customer subtotal
+            * Processing: determine what day of the week it is and whether or not the subtotal exceeds $50 if both are true then a 10% discount is applied.
+            * Output: The customer total
+            **/
+            
+            function discount(){
+                let sub = parseFloat(document.getElementById('yourSubtotal').value)
+                let dayOfWeek = new Date().getDay();
+                let total;
+                if (sub > 50 && (dayOfWeek == 2 ^ dayOfWeek == 3)){
+                    total = sub -= sub * .1
+                }
+                else 
+                total = sub 
+
+
+
+                newTotal = total * 1.06
+                newerTotal = newTotal.toFixed(2) 
+
+                document.getElementById('outputDiv').innerHTML = newerTotal;
+            }
+
+            
+
+        </script>
+
+    </head>
+    <body>
+        <label for="yourSubtotal">Your Subtotal</label>
+        <input type="text" id="yourSubtotal" /> 
+        <button type="button" onclick = "discount()">Total</button>
+        <div id=outputDiv>
+           
+        </div>
+        
+    </body>
+</html>

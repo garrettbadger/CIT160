@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>Sum Odds</title>
+        <script>
+            /**
+            * Input: an integer from the user
+            * Processing: figure out all the odd numbers between 0 and the inputed integer and then add them all
+            * Ouput: display the result in the html
+            */
+            function sumOdds(){
+                let integer = parseInt(document.getElementById("integer").value)
+                let outputElement = document.getElementById("outputDiv");
+                outputElement.innerHTML = "";
+                
+                let sum = ""
+                let total = 0
+                for (let i = 1; i <= integer; i += 2){
+                   sum = 0 + i
+                   total += sum
+     
+                               
+                    
+                }
+                document.getElementById("outputDiv").innerHTML = total
+            }  
+
+            
+
+        </script>
+
+    </head>
+    <body>
+        <label for="integer ">Please input an integer:</label>
+        <input type="number" id="integer" /> 
+        <button type="button" onclick = "sumOdds()">Compute</button>
+        <div id=outputDiv>
+            
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,331 @@
+var rep = {
+	prepare : function() {
+		act.add([
+/*
+new act.Anim('ch8whileL', '1',
+	{
+		'1'   : function(){act.clear(idents); vars.i=1; execute('1'); schedNext('I');},
+		'2'   : function(){noclass(); execute('2'); schedNext(vars.i<3?'3':'6');},
+		'3'   : function(){noclass(); execute('3'); schedNext('4');},
+		'4'   : function(){alert(vars.i); noclass(); execute('4'); vars.i++; schedNext('I');},
+		'5'   : function(){noclass(); execute('5'); schedNext('2');},
+		'6'   : function(){noclass(); execute('6'); schedNext('End');},
+		'I'   : function(){assign('I',vars.i); schedNext(vars.i==1?'2':'5');},
+		'End' : function(){alert('Done'); noclass(); reset();}
+	},
+	{
+		i : 0
+	}),
+new act.Anim('ch8forL', '1a',
+	{
+		'1a'  : function(){act.clear(idents); vars.i=1; execute('1a'); schedNext('I');},
+		'1b'  : function(){noclass(); execute('1b'); schedNext(vars.i<3?'2':'4');},
+		'1c'  : function(){noclass(); execute('1c'); vars.i++; schedNext('I');},
+		'2'   : function(){noclass(); execute('2'); schedNext('3');},
+		'3'   : function(){alert(vars.i); noclass(); execute('3'); schedNext('1c');},
+		'4'   : function(){noclass(); execute('4'); schedNext('End');},
+		'I'   : function(){assign('I',vars.i); schedNext('1b');},
+		'End' : function(){alert('Done'); noclass(); reset();}
+	},
+	{
+		i : 0
+	}),
+*/
+new act.Anim('ch8part', '1',
+	{
+		'1'   : function(){act.clear(idents); vars.i=act.randInt(2,4); execute('1'); vars.pc='2a'; schedNext('I');},
+		'2a'  : function(){noclass(); execute('2a'); schedNext('2b');},
+		'2b'  : function(){noclass(); execute('2b'); schedNext(vars.i<=5?'3':'5');},
+		'2c'  : function(){noclass(); execute('2c'); vars.i++; vars.pc='2b'; schedNext('I');},
+		'3'   : function(){noclass(); execute('3'); schedNext('4');},
+		'4'   : function(){alert(vars.i); noclass(); execute('4'); schedNext('2c');},
+		'5'   : function(){noclass(); execute('5'); schedNext('End');},
+		'I'   : function(){assign('I',vars.i); schedNext(vars.pc);},
+		'End' : function(){alert('Done'); noclass(); reset();}
+	},
+	{
+		pc : '',
+		i : 0
+	}),
+/*
+new act.Anim('ch8doL', '1',
+	{
+		'1' : function(){act.clear(idents); execute('1'); vars.alias=vars.response=undefined; schedNext('Decl');},
+		'2' : function(){noclass(); execute('2'); schedNext('3');},
+		'3' : function(){noclass(); execute('3'); schedNext('Alias');},
+		'4' : function(){noclass(); execute('4'); schedNext('Response');},
+		'5' : function(){noclass(); execute('5'); schedNext(vars.response!='yes'?'2':'6');},
+		'6' : function(){noclass(); execute('6'); schedNext('End');},
+		'Decl'     : function(){assign('Alias',vars.alias); assign('Response',vars.response); schedNext('2');},
+		'Decl'     : function(){assign('Alias',vars.alias); assign('Response',vars.response); schedNext('2');},
+		'Alias'    : function(){vars.alias=prompt('What is your name?'); assign('Alias',vars.alias); schedNext('4');},
+		'Response' : function(){vars.response=prompt('Are you sure '+vars.alias+' is your name?'); assign('Response',vars.response); schedNext('5');},
+		'Alias2'   : null,
+		'Response2': null,
+		'End' : function(){alert('Hello ' + vars.alias); noclass(); reset();}
+	},
+	{
+		alias : '',
+		response : ''
+	}),
+*/
+new act.Anim('ch8countW', '1',
+	{
+		'1'   : function(){act.clear(idents); execute('1'); vars.i=1; schedNext('I');},
+		'2'   : function(){noclass(); execute('2'); schedNext(vars.i<=3?'3':'End');},
+		'3'   : function(){noclass(); execute('3'); schedNext('4');},
+		'4'   : function(){alert('leaf'); noclass(); execute('4'); vars.i++; schedNext('I');},
+		'5'   : function(){noclass(); execute('5'); schedNext('2');},
+		'I'   : function(){assign('I',vars.i); schedNext(vars.i==1?'2':'5');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		i : 0
+	}),
+new act.Anim('ch8countF', '1a',
+	{
+		'1a'   : function(){act.clear(idents); execute('1a'); vars.i=3; schedNext('I');},
+		'1b'  : function(){noclass(); execute('1b'); schedNext(vars.i>=1?'2':'End');},
+		'1c'  : function(){noclass(); execute('1c'); vars.i--; schedNext('I');},
+		'2'   : function(){noclass(); execute('2'); schedNext('3');},
+		'3'   : function(){alert('caterpillar'); noclass(); execute('3'); schedNext('1c');},
+		'I'   : function(){assign('I',vars.i); schedNext('1b');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		i : 0
+	}),
+new act.Anim('ch8zeroW', '1',
+	{
+		'1'   : function(){act.clear(idents); execute('1'); vars.i=0; schedNext('I');},
+		'2'   : function(){noclass(); execute('2'); schedNext(vars.i<3?'3':'End');},
+		'3'   : function(){noclass(); execute('3'); schedNext('4');},
+		'4'   : function(){alert('stem'); noclass(); execute('4'); vars.i++; schedNext('I');},
+		'5'   : function(){noclass(); execute('5'); schedNext('2');},
+		'I'   : function(){assign('I',vars.i); schedNext(vars.i==0?'2':'5');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		i : 0
+	}),
+new act.Anim('ch8zeroF', '1a',
+	{
+		'1a'   : function(){act.clear(idents); execute('1a'); vars.i=0; schedNext('I');},
+		'1b'  : function(){noclass(); execute('1b'); schedNext(vars.i<3?'2':'End');},
+		'1c'  : function(){noclass(); execute('1c'); vars.i++; schedNext('I');},
+		'2'   : function(){noclass(); execute('2'); schedNext('3');},
+		'3'   : function(){alert('blossom'); noclass(); execute('3'); schedNext('1c');},
+		'I'   : function(){assign('I',vars.i); schedNext('1b');},
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		i : 0
+	}),
+new act.Anim('ch8skipW', '1',
+	{
+		'1'    : function(){act.clear(idents); execute('1'); vars.i=12; schedNext('I');},
+		'2'    : function(){noclass(); execute('2'); schedNext(vars.i>0?'3':'End');},
+		'3'    : function(){noclass(); execute('3'); schedNext('4');},
+		'4'    : function(){alert('aphid');; noclass(); execute('4'); vars.i-=4; schedNext('I');},
+		'5'    : function(){noclass(); execute('5'); schedNext('2');},
+		'I'    : function(){assign('I',vars.i); schedNext(vars.i==12?'2':'5');},
+		'End'  : function(){noclass(); reset();}
+	},
+	{
+		i : 0
+	}),
+new act.Anim('ch8skipF', '1a',
+	{
+		'1a'    : function(){act.clear(idents); execute('1a'); vars.i=0; schedNext('I');},
+		'1b'   : function(){noclass(); execute('1b'); schedNext(vars.i<5?'2':'End');},
+		'1c'   : function(){noclass(); execute('1c'); vars.i+=2; schedNext('I');},
+		'2'    : function(){noclass(); execute('2'); schedNext('3');},
+		'3'    : function(){alert('butterfly'); noclass(); execute('3'); schedNext('1c');},
+		'I'    : function(){assign('I',vars.i); schedNext('1b');},
+		'End'  : function(){noclass(); reset();}
+	},
+	{
+		i : 0
+	}),
+new act.Anim('ch8repStr', '1',
+	{
+		'1' : function(){act.clear(idents); execute('1'); vars.output='0'; vars.pc='2'; schedNext('Output');},
+		'2' : function(){noclass(); execute('2'); vars.i=2; vars.pc='3'; schedNext('I');},
+		'3' : function(){noclass(); execute('3'); schedNext(vars.i<=10?'4':'7');},
+		'4' : function(){noclass(); execute('4'); vars.output+=', '+vars.i; vars.pc='5'; schedNext('Output');},
+		'5' : function(){noclass(); execute('5'); vars.i+=2; vars.pc='6'; schedNext('I');},
+		'6' : function(){noclass(); execute('6'); schedNext('3');},
+		'7' : function(){noclass(); execute('7'); schedNext('End');},
+		'Output' : function(){assign('Output',vars.output); schedNext(vars.pc);},
+		'I'      : function(){assign('I',vars.i); schedNext(vars.pc);},
+		'End'    : function(){noclass(); reset();}
+	},
+	{
+		pc : '',
+		output : '',
+		i : 0
+	}
+),
+new act.Anim('ch8fv', 'InputBal',
+	{
+		'1'   : function(){noclass(); hide(); execute('1'); schedNext('2');},
+		'2'   : function(){noclass(); execute('2'); vars.pc='3'; schedNext('Bal');},
+		'3'   : function(){noclass(); execute('3'); schedNext('AR');},
+		'4'   : function(){noclass(); execute('4'); schedNext('Num');},
+		'5'   : function(){noclass(); execute('5'); vars.monthlyRate=vars.annualRate/12; schedNext('MR');},
+		'6a'  : function(){noclass(); execute('6a'); vars.month=1; schedNext('Month');},
+		'6b'  : function(){noclass(); execute('6b'); schedNext(vars.month<=vars.numMonths?'7':'11');},
+		'6c'  : function(){noclass(); execute('6c'); vars.month++; vars.pc='6b'; schedNext('Month');},
+		'7'   : function(){noclass(); execute('7'); vars.interest=vars.balance*vars.monthlyRate; vars.pc='8'; schedNext('Int');},
+		'8'   : function(){noclass(); execute('8'); vars.interest=Math.round(vars.interest*100)/100; vars.pc='9'; schedNext('Int');},
+		'9'   : function(){noclass(); execute('9'); vars.balance+=vars.interest; vars.pc='10'; schedNext('Bal');},
+		'10'  : function(){noclass(); execute('10'); schedNext('6c');},
+		'11'  : function(){noclass(); execute('11'); schedNext('Div');},
+		'12'  : function(){noclass(); hide(); execute('12'); schedNext('End');},
+		'InputBal' : function(){act.clear(idents); hide(); vars.balance=act.randInt(100,200); enter('InputBal','EnterBal',vars.balance.toString()); schedNext('InputAR');},
+		'InputAR'  : function(){noclass(); hide(); vars.annualRate=act.randInt(2,8)/100; enter('InputAR','EnterAR',vars.annualRate.toString()); schedNext('InputNum');},
+		'InputNum' : function(){noclass(); hide(); vars.numMonths=act.randInt(3,6); enter('InputNum','EnterNum',vars.numMonths.toString()); schedNext('Button');},
+		'Button'   : function(){noclass(); hide(); click('Button','Click'); schedNext('1');},
+		'Div'      : function(){display('Div','Display','Your balance after '+vars.numMonths+' months will be $'+vars.balance.toFixed(2)); schedNext('12');},
+		'Bal'   : function(){assign('Bal',parseFloat(vars.balance.toFixed(2))); schedNext(vars.pc);},
+		'AR'    : function(){assign('AR',vars.annualRate); schedNext('4');},
+		'MR'    : function(){assign('MR',vars.monthlyRate); schedNext('6a');},
+		'Num'   : function(){assign('Num',vars.numMonths); schedNext('5');},
+		'Month' : function(){assign('Month',vars.month); schedNext('6b');},
+		'Int'   : function(){assign('Int',vars.interest); schedNext(vars.pc);},
+		'EnterBal' : null,
+		'EnterAR'  : null,
+		'EnterNum' : null,
+		'Click'    : null,
+		'Display'  : null,
+		'End' : function(){noclass(); reset();}
+	},
+	{
+		pc : '',
+		annualRate : 0,
+		monthlyRate : 0,
+		numMonths : 0,
+		month : 0,
+		fv : 0,
+		balance : 0
+	}),
+new act.Anim('ch8sum', '1',
+	{
+		'1'   : function(){act.clear(idents); execute('1'); schedNext('2');},
+		'2'   : function(){noclass(); execute('2'); vars.sum=0; schedNext('Sum');},
+		'3a'  : function(){noclass(); execute('3a'); vars.i=0; schedNext('I');},
+		'3b'  : function(){noclass(); execute('3b'); schedNext(vars.i<10?'4':'10');},
+		'3c'  : function(){noclass(); execute('3c'); vars.i++; schedNext('I');},
+		'4'   : function(){noclass(); execute('4'); schedNext('N');},
+		'5'   : function(){noclass(); execute('5'); schedNext(vars.n==0?'6':'8');},
+		'6'   : function(){noclass(); execute('6'); schedNext('10');},
+		'8'   : function(){noclass(); execute('8'); vars.sum+=vars.n; schedNext('Sum');},
+		'9'   : function(){noclass(); execute('9'); schedNext('3c');},
+		'10'  : function(){noclass(); execute('10'); schedNext('11');},
+		'11'  : function(){alert(vars.sum); noclass(); execute('11'); schedNext('End');},
+		'End' : function(){noclass(); reset();},
+		'Sum' : function(){assign('Sum',vars.sum); schedNext(vars.sum==0?'3a':'9');},
+		'I'   : function(){assign('I',vars.i); schedNext('3b');},
+		'N'   : function(){vars.n=parseFloat(prompt('Please enter a number')); assign('N',vars.n); schedNext('5');},
+		'N0'  : null,
+		'N1'  : null,
+		'N2'  : null,
+		'N3'  : null
+	},
+	{
+		sum : 0,
+		i : 0,
+		n : 0
+	}),
+new act.Anim('ch8slow', 'Input',
+	{
+		'1'   : function(){noclass(); hide(); execute('1'); schedNext('2');},
+		'2'   : function(){noclass(); execute('2'); schedNext('Candid');},
+		'3'   : function(){noclass(); execute('3'); vars.factorCount=0; schedNext('Fact');},
+		'4a'  : function(){noclass(); execute('4a'); vars.divisor=1; schedNext('Divisor');},
+		'4b'  : function(){noclass(); execute('4b'); schedNext(vars.divisor<=vars.candidate?'5':'10');},
+		'4c'  : function(){noclass(); execute('4c'); vars.divisor++; schedNext('Divisor');},
+		'5'   : function(){noclass(); execute('5'); vars.remainder=vars.candidate%vars.divisor; schedNext('Remain');},
+		'6'   : function(){noclass(); execute('6'); schedNext(vars.remainder==0?'7':'9');},
+		'7'   : function(){noclass(); execute('7'); vars.factorCount++; schedNext('Fact');},
+		'9'   : function(){noclass(); execute('9'); schedNext('4c');},
+
+		'10'  : function(){noclass(); execute('10'); schedNext('11');},
+		'11'  : function(){noclass(); execute('11'); schedNext(vars.factorCount==2?'12':'14');},
+		'12'  : function(){noclass(); execute('12'); vars.output=vars.candidate+' is prime'; schedNext('Output');},
+
+		'14'  : function(){noclass(); execute('14'); schedNext('15');},
+		'15'  : function(){noclass(); execute('15'); vars.output=vars.candidate+' is not prime'; schedNext('Output');},
+
+		'17'  : function(){noclass(); execute('17'); schedNext('Div');},
+		'18'  : function(){noclass(); hide(); execute('18'); schedNext('End');},
+		'End' : function(){noclass(); reset();},
+		'Input'   : function(){act.clear(idents); hide(); vars.candidate=act.randInt(7, 13); enter('Input','Enter',vars.candidate); schedNext('Button');},
+		'Button'  : function(){noclass(); hide(); click('Button','Click'); schedNext('1');},
+		'Div'     : function(){display('Div','Display',vars.output); schedNext('18');},
+		'Enter'   : null,
+		'Click'   : null,
+		'Display' : null,
+		'Candid'  : function(){assign('Candid',vars.candidate); schedNext('3');},
+		'Divisor' : function(){assign('Divisor',vars.divisor); schedNext('4b');},
+		'Remain'  : function(){assign('Remain',vars.remainder); schedNext('6');},
+		'Fact'    : function(){assign('Fact',vars.factorCount); schedNext(vars.factorCount==0?'4a':'9');},
+		'Output'  : function(){assign('Output',vars.output); schedNext('17');}
+	},
+	{
+		candidate : 0,
+		factorCount : 0,
+		divisor : 0,
+		remainder : 0,
+		output : ''
+	}),
+new act.Anim('ch8prime', 'Input',
+	{
+		'1'   : function(){noclass(); hide(); execute('1'); schedNext('2');},
+		'2'   : function(){noclass(); execute('2'); schedNext('Candid');},
+		'3'   : function(){noclass(); execute('3'); vars.limit=Math.sqrt(vars.candidate); schedNext('Limit');},
+		'4'   : function(){noclass(); execute('4'); vars.isPrime=true; vars.pc='5a'; schedNext('IsPrime');},
+		'5a'  : function(){noclass(); execute('5a'); vars.divisor=2; schedNext('Divisor');},
+		'5b'  : function(){noclass(); execute('5b'); schedNext(vars.divisor<=vars.limit?'6':'12');},
+		'5c'  : function(){noclass(); execute('5c'); vars.divisor++; schedNext('Divisor');},
+		'6'   : function(){noclass(); execute('6'); vars.remainder=vars.candidate%vars.divisor; schedNext('Remain');},
+		'7'   : function(){noclass(); execute('7'); schedNext(vars.remainder==0?'8':'11');},
+		'8'   : function(){noclass(); execute('8'); vars.isPrime=false; vars.pc='9'; schedNext('IsPrime');},
+		'9'   : function(){noclass(); execute('9'); schedNext('12');},
+		'11'  : function(){noclass(); execute('11'); schedNext('5c');},
+
+		'12'  : function(){noclass(); execute('12'); schedNext('13');},
+		'13'  : function(){noclass(); execute('13'); schedNext(vars.isPrime?'14':'16');},
+		'14'  : function(){noclass(); execute('14'); vars.output=vars.candidate+' is prime'; schedNext('Output');},
+
+		'16'  : function(){noclass(); execute('16'); schedNext('17');},
+		'17'  : function(){noclass(); execute('17'); vars.output=vars.candidate+' is not prime'; schedNext('Output');},
+
+		'19'  : function(){noclass(); execute('19'); schedNext('Div');},
+		'20'  : function(){noclass(); hide(); execute('20'); schedNext('End');},
+		'End' : function(){noclass(); reset();},
+		'Input'   : function(){act.clear(idents); hide(); vars.candidate=act.randInt(7, 13); enter('Input','Enter',vars.candidate); schedNext('Button');},
+		'Button'  : function(){noclass(); hide(); click('Button','Click'); schedNext('1');},
+		'Div'     : function(){display('Div','Display',vars.output); schedNext('20');},
+		'Enter'   : null,
+		'Click'   : null,
+		'Display' : null,
+		'Candid'  : function(){assign('Candid',vars.candidate); schedNext('3');},
+		'Limit'   : function(){assign('Limit',parseFloat(vars.limit.toFixed(2))); schedNext('4');},
+		'IsPrime' : function(){assign('IsPrime',vars.isPrime); schedNext(vars.pc);},
+		'Divisor' : function(){assign('Divisor',vars.divisor); schedNext('5b');},
+		'Remain'  : function(){assign('Remain',vars.remainder); schedNext('7');},
+		'Output'  : function(){assign('Output',vars.output); schedNext('19');}
+	},
+	{
+		candidate : 0,
+		isPrime : 0,
+		divisor : 0,
+		limit : 0,
+		remainder : 0,
+		output : ''
+	})
+		]);
+		act.prepare();
+	}
+};

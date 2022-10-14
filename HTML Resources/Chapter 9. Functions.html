@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<!-- saved from url=(0095)https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Rex A. Barzee">
+<title>Chapter 9. Functions</title>
+<link rel="stylesheet" type="text/css" href="./Chapter 9. Functions_files/ebook.css">
+<script src="./Chapter 9. Functions_files/interact.js.download"></script>
+<script src="./Chapter 9. Functions_files/functions.js.download"></script>
+</head>
+
+<body id="ch9functions" onload="func.prepare()"><div>
+<h2>Chapter 9. Functions</h2>
+<div class="pagenum" id="page133">133</div>
+
+<p>Because most useful computer programs are very large, computer
+programmers divide their programs into parts. A part of a program is
+called a <dfn id="ch9mod">module</dfn>. In JavaScript the smallest
+module that performs actions is a <dfn id="ch9func">function</dfn>,
+which is sometimes called a <dfn id="ch9meth">method</dfn>. Nearly all
+statements in a JavaScript program must be written inside a
+function.</p>
+
+<p>The term function comes from mathematics and is the name of the
+concept that one value (the <dfn id="ch9arg">argument</dfn> of the
+function) completely determines another value (the <dfn>result</dfn> of
+the function). Consider the function <var>f</var> with one argument
+<var>x</var>:&nbsp;
+<span class="expr"><var>f</var> (<var>x</var>) = <var>2x</var> − 1</span>.
+We can substitute any number for the argument <var>x</var> which
+completely determines the result of the function <var>f</var>. For
+example, substituting 5 for <var>x</var> produces 9 as the result of the
+function:&nbsp;
+<span class="expr"><var>f</var> (5) = 2(5) − 1 = 9</span>.
+Functions in a computer program work in a similar way, taking arguments
+and producing results.</p>
+
+<h3 id="ch9outcomes">Chapter Outcomes</h3>
+<p>By the end of this chapter, you will:</p>
+<ul>
+	<li>Write functions that accept and use parameters.</li>
+	<li>Write code to return a value from a function to its call point.</li>
+	<li>Write code to call a function and pass arguments to that
+	function.</li>
+	<li>Write code to store the result returned from a function in a
+	variable.</li>
+	<li>Distinguish between a parameter and an argument.</li>
+	<li>Distinguish between displaying output for the user to see and
+	returning a value to be used by the program.</li>
+	<li>Understand variable scope.</li>
+</ul>
+
+<div class="pagenum" id="page134">134</div>
+<h3 id="ch9advant">Advantages of Functions</h3>
+<p>There are many advantages to writing statements inside a function
+instead of outside of all functions, including</p>
+
+<ol>
+	<li>Control of execution – JavaScript statements that are
+	inside an HTML script tag but outside of all functions are executed
+	immediately when a document is read into memory by a browser.
+	Statements that are inside a function are not executed until a
+	function is called which gives the programmer control over when
+	those statements are executed.</li>
+	<li>Code reuse – After a function is written it can be reused
+	again and again by calling it from multiple locations in a
+	program.</li>
+	<li>Less code – Because a programmer can reuse code, he does
+	not have to write as much code.</li>
+	<li>Fewer coding mistakes – writing less code will naturally
+	lead to fewer mistakes because there is simply less code to contain
+	the mistakes.</li>
+	<li>Better organization</li>
+	<li>Easier to read and understand</li>
+	<li>Easier to debug</li>
+	<li>Faster execution – Because a program with well written
+	functions contains less code, that program will very likely load
+	faster and execute faster.</li>
+	<li>Variable name reuse – Because variables declared inside a
+	function are local to that function only, a programmer can reuse
+	variable names in different functions.</li>
+</ol>
+
+<h3 id="ch9writing">Writing a Function</h3>
+<p>To write a function in JavaScript, simply type code that
+matches this template.</p>
+
+<h4>Template</h4>
+<pre class="template">function <var>functionName</var>(<span class="opt"><var>param1</var>, <var>param2</var>, … <var>paramN</var></span>) {
+    <var>statements</var>;
+    <span class="opt">return <var>value</var>;</span>
+}</pre>
+
+<p>The first line of a function is called the
+<dfn id="ch9header">header</dfn> or <dfn id="ch9sig">signature</dfn>,
+and it includes</p>
+<ol>
+	<li>the keyword <code>function</code></li>
+	<li>the function name</li>
+	<li>the parameter list</li>
+</ol>
+
+<p>The function name must start with a letter, the underscore (_), or
+the dollar sign ($). The rest of the name must be made of letters,
+digits (0–9), the underscore, or the dollar sign. A function name
+cannot include spaces. A function name should be meaningful and should
+describe curtly what the function does.</p>
+
+<div class="pagenum" id="page135">135</div>
+<p>The parameter list contains data stored in variables that the
+function needs to complete its task. A
+<dfn id="ch9param">parameter</dfn> is a variable whose value comes from
+outside the function. One way to get input into a function is to ask the
+user for that input with a text field or popup window. Another way to
+get input into a function is through the function’s parameters.
+Getting input through parameters is much more flexible than asking the
+user for input because the input through parameters can come from the
+user or a file on a hard drive or the network or a sensor or even
+another function.</p>
+
+<p>The statements inside a function are called the <dfn>body</dfn> of
+the function. A function may contain as many statements as you wish to
+write inside of it. However, it is a good idea to limit functions to
+less than a page (60 lines) long. To <dfn id="ch9ret">return</dfn> a
+result from a function so that the result can be used somewhere else in
+your program, simply type the keyword <code>return</code> followed by
+whatever value you want returned to the calling function.</p>
+
+<h4>Example 1</h4>
+<p>Write the header for a function named <code>drawCircle</code> that
+takes three parameters:&nbsp; the <var>x</var> and <var>y</var> values
+for the center of the circle and the radius of the circle, all in
+pixels.</p>
+
+<pre>    <span title="function header">function drawCircle(<span title="parameters">centerX, centerY, radius</span>)</span></pre>
+
+<h4>Example 2</h4>
+<p>Write a function (header and body) that computes and returns the
+average of three numbers.</p>
+<pre>// Computes and returns the average of three numbers.
+<span title="function header">function average(<span title="parameters">a, b, c</span>) {</span>
+<span title="function body">    let sum = a + b + c;
+    let avg = sum / 3;
+    return avg;</span>
+}</pre>
+
+<h4>Example 3</h4>
+<p>Write a function that takes two parameters and computes and returns
+the value of this equation:&nbsp;
+<span class="expr"><var>f(a,r)</var> = <var>a</var> × (1 + <var>r</var>)</span>.</p>
+<pre><span title="function header">function formula(<span title="parameters">a, r</span>) {</span>
+<span title="function body">    let result = a * (1 + r);
+    return result;</span>
+}</pre>
+
+<h3 id="ch9calling">Calling a Function</h3>
+<p><dfn>Calling</dfn> or <dfn>invoking</dfn> a function causes the
+computer to execute the code in that function. If you write a function,
+but never write a call to that function, then the computer will never
+execute the code in that function. To call a function, simply write its
+name followed by the data, known as <dfn id="ch9arg2">arguments</dfn>,
+which the function will need to perform its task. An argument can be a
+constant such as <code>23</code>, a string literal such as
+<code>'Idaho'</code>, or a variable. If you use variables as arguments
+in a function call, the names of the arguments do not have to match the
+names of the parameters. However, the order of the arguments must match
+the order of the parameters.</p>
+
+<div class="pagenum" id="page136">136</div>
+<h4>Template</h4>
+<pre class="template">    <var>functionName</var>(<span class="opt"><var>arg1</var>, <var>arg2</var>, … <var>argN</var></span>);</pre>
+
+<h4>Example 4</h4>
+<p>Write the code to call a function that has this header:</p>
+<pre><span title="function header">function drawCircle(<span title="parameters">centerX, centerY, radius</span>)</span>
+
+<span title="function header">function run() {</span>
+    // Get three values from the user.
+    let x = parseInt(document.getElementById('xInputBox').value);
+    let y = parseInt(document.getElementById('yInputBox').value);
+    let radius = parseFloat(document.getElementById('radiusInputBox').value);
+
+    // Call the drawCircle function.
+    <b><span title="function call">drawCircle(<span title="arguments">x, y, radius</span>)</span>;</b>
+}</pre>
+
+<p>To call a function <em>and</em> assign its result to a variable so the
+result can be used later, write a line that includes the variable name
+that will hold the result, the assignment operator (=), the function
+name, and the arguments to the function.</p>
+
+<h4>Template</h4>
+<pre class="template">    <var>varName</var> = <var>functionName</var>(<span class="opt"><var>arg1</var>, <var>arg2</var>, … <var>argN</var></span>);</pre>
+
+<h4>Example 5</h4>
+<p>Write code to call a function named
+<code>computeCaloriesBurned</code> and store the result returned from
+that function in a variable named <var>calories</var>. The
+function has this header:</p>
+<pre><span title="function header">function computeCaloriesBurned(<span title="parameters">distance, elevation, weight</span>)</span>
+
+<span title="function header">function testCalories() {</span>
+    let dist = 2000;
+    let elev = 750;
+    let weight = 72.6;
+
+    // Call the computeCaloriesBurned function.
+    <span title="assignment">calories = </span><span title="function call">computeCaloriesBurned(<span title="arguments">dist, elev, weight</span>);</span>
+
+    // Display the calories for the user to see.
+    document.getElementById('outputDiv').innerHTML = calories;
+}</pre>
+
+<div class="pagenum" id="page137">137</div>
+<h4>Example 6</h4>
+<p>Write code to call the square root function found in the
+<code>Math</code> object and assign the result returned from it to a
+variable named <var>r</var>. The square root function has this
+header:&nbsp; <code>function sqrt(x)</code></p>
+
+<pre>function testSqrt() {
+    // Get a number from the user.
+    let value = parseFloat(document.getElementById('inputBox').value);
+
+    // Call the Math.sqrt function.
+    <b>let r = Math.sqrt(value);</b>
+
+    // Display the square root for the user to see.
+    document.getElementById('outputDiv').innerHTML = r;
+}</pre>
+
+<div class="figRight" id="figFuncCall" style="width:27em">
+<img src="./Chapter 9. Functions_files/funcCall.gif" alt="Demonstration of a function call" title="Demonstration of a function call">
+<div><b>Figure 9-1:</b> Demonstration of a function call, showing how
+the values of the arguments are assigned to the parameters and showing
+that when the computer is finished executing the function, the result is
+returned from the function to the call point.</div>
+</div>
+
+<p>Within a program, a line of code that calls a function is known as a
+<dfn id="ch9callp">call point</dfn>.
+<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#figFuncCall">Figure&nbsp;9-1</a> demonstrates what a computer
+does when it calls a function. As shown in the diagram, the computer
+first copies the value of each <span id="ch9arg3">argument</span> at the
+call point into the corresponding <span id="ch9param2">parameter</span>.
+The computer then executes the code in the body of the called function.
+Most functions end with a <span id="ch9ret2">return</span> statement.
+When the computer executes a return statement in the called function,
+the return statement causes the computer to do three things.</p>
+
+<ol>
+	<li>The return statement causes the computer to return a value,
+	which is often a number, to the call point. If the call point
+	includes a variable and the assignment operator (=), the computer
+	will store the returned value in that variable.</li>
+	<li>The return statement causes the computer to terminate the called
+	function or in other words to stop executing the code in the body of
+	the called function.</li>
+	<li>The return statement cause the computer to resume executing code
+	at or after the call point.</li>
+</ol>
+<div class="clear"></div>
+
+<div class="pagenum" id="page138">138</div>
+<h3 id="ch9scope">Variable Scope</h3>
+<p>The <dfn>scope</dfn> of a variable determines how long that variable
+exists and where it can be used. Within a JavaScript program, there are
+three categories of scope:&nbsp; block, function, and global. A variable
+with <dfn>block scope</dfn> is declared with the keyword
+<code>let</code> inside a block of code, exists for as long as its
+containing block is executing, and can be used within its containing
+block only. A block of code normally starts with an opening curly
+brace&nbsp;({) and ends with a closing curly brace&nbsp;(}). A variable
+with <dfn>function scope</dfn> is declared with the keyword
+<code>var</code> inside a function, exists for as long as its containing
+function is executing, and can be used anywhere within its containing
+function. Parameters have function scope because they are declared
+within a function, specifically within a function’s header and
+exist for as long as their containing function is executing. A variable
+with <dfn>global scope</dfn> is declared with either keyword
+<code>let</code> or <code>var</code> outside all functions, exists for
+as long as its containing file is loaded in the computer’s memory,
+and can be used within all functions in its containing file.</p>
+
+<table class="reference"><thead>
+	<tr><th colspan="4">JavaScript Variable Scope</th></tr>
+	<tr><th style="width:6em"></th> <th scope="col">Block</th>
+		<th scope="col">Function</th> <th scope="col">Global</th></tr>
+</thead><tbody>
+	<tr><th scope="row"><b>Keyword</b></th>
+		<th><code>let</code></th> <th><code>var</code></th>
+		<th><code>let</code> or <code>var</code></th></tr>
+	<tr><th scope="row"><b>Where to Declare</b></th>
+		<th>Inside a block</th> <th>Inside a function</th>
+		<th>Outside all functions</th></tr>
+	<tr><th scope="row"><b>Owner</b></th>
+		<th>The block where the variable is declared</th>
+		<th>The function where the variable is declared</th>
+		<th>The JavaScript program, or stated more accurately, the HTML
+		file that contains the script tag where it is declared</th></tr>
+	<tr><th scope="row"><b>Lifetime</b></th>
+		<th>Only as long as its containing block is executing</th>
+		<th>Only as long as its containing function is executing</th>
+		<th>As long as its containing HTML file is loaded in the
+		computer’s memory</th></tr>
+	<tr><th scope="row"><b>Where Usable</b></th>
+		<th>Only inside the block where it is declared</th>
+		<th>Only inside the function where it is declared</th>
+		<th>In all functions in the JavaScript program</th></tr>
+</tbody></table>
+
+<p>Example&nbsp;7 contains variables with block, function, and global
+scope. The variable <var>attempts</var> is global because it is declared
+outside of all functions. Because it is a global variable, the code in
+the body of all functions may use the variable <var>attempts</var>.
+Within the function <code>sqareArea</code>, the variable named
+<var>length</var> has function scope and the variable named
+<var>area</var> has block scope. Within the function
+<code>rectangleArea</code>, the variables named <var>width</var> and
+<var>length</var> have function scope and the variable named
+<var>area</var> has block scope. Because function and block variables
+are visible only within the function where they are declared, a
+programmer can declare two variables with the same name as long as he
+declares them in different functions. In example&nbsp;7, both of the
+functions <code>squareArea</code> and <code>rectangleArea</code> contain
+a variable named <var>length</var> and a variable named <var>area</var>.
+All four of these variables are entirely separate and do not conflict
+with each other in any way because the scope of each variable is within
+the block or function where it is declared.</p>
+
+<div class="pagenum" id="page139">139</div>
+<h4>Example 7</h4>
+<pre>let attempts;
+
+function squareArea(length) {
+    let area = length * length;
+    return area;
+}
+
+function rectangleArea(width, length) {
+    let area = width * length;
+    return area;
+}</pre>
+
+<h3 id="ch9random">Pseudo Random Integer</h3>
+<p>The following code example shows how to obtain a pseudo random
+integer that is in the range <var>min</var> inclusive to <var>max</var>
+exclusive, in other words in the range [<var>min</var>,
+<var>max</var>). Notice that this code calls both the
+<code>random</code> and <code>floor</code> functions from the
+<code>Math</code> object.</p>
+
+<h4>Example 8</h4>
+<pre>function randomInteger() {
+    let min = 5;
+    let max = 11;
+
+    // Call the Math.random and Math.floor functions.
+    let r = min + Math.floor(Math.random() * (max - min));
+
+    // Display the random integer for the user to see.
+    document.getElementById('outputDiv').innerHTML = r;
+}
+</pre>
+
+<table class="check right"><thead>
+	<tr><th colspan="4">Desk Check</th></tr>
+	<tr><th>min</th> <th>max</th>
+		<th>value returned<br>from Math.random</th>
+		<th style="width:15%">r</th></tr>
+</thead><tbody>
+	<tr><th></th> <th></th> <th>0.483</th> <th></th></tr>
+</tbody></table>
+
+<h3 id="ch9reuse">Code Reuse</h3>
+<p>The most reusable functions are ones that perform only calculations
+and do not perform user input and output. Example&nbsp;1 of
+chapter&nbsp;6 contains <a target="_blank" href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/selection.htm#ch6even">code</a> to
+determine if an integer is even or odd. The next two examples in this
+chapter, examples 9 and 10, contain the example code from
+chapter&nbsp;6, in both examples 9 and 10, the example code is split
+into two functions: <code>doInputOutput</code> and <code>isEven</code>.
+The first function, <code>doInputOutput</code>, gets the user input,
+calls the second function, and displays the result to the user. The
+first function is certainly useful in this program but is not reusable
+in another program because it requires a text field with an id of
+“number” and a div with an id of “output”. The
+second function, <code>isEven</code>, does only one thing: determine if
+an integer is even or odd. Because the second function does only
+calculations (it does not get user input nor display results to the
+user), the second function is reusable in other programs. The second
+function can be used in any program that needs to determine if an
+integer is even or odd regardless of where the input comes from, such as
+a user or a file or the network or anywhere else.</p>
+
+<div class="pagenum" id="page140">140</div>
+<h4>Example 9</h4>
+<pre class="hilite" id="ch9isEvenProg1"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Is Even&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: An integer
+ * Processing: Determine if the integer is even or not
+ * Output: A message stating if the integer is even or not
+ */</span>
+<span id="ch9isEven1"><span class="key">function</span> <span class="func">doInputOutput</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9isEven2">    <span class="key">let</span> number = parseInt<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'numberInputBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+    <span id="ch9isEvenCP"><span class="key">let</span> result = </span><span id="ch9isEven3"><span class="func">isEven</span><span class="tok">(</span>number<span class="tok">)</span>;</span>
+<span id="ch9isEven4">    document.getElementById<span class="tok">(</span><span class="lit">'outputDiv'</span><span class="tok">)</span>.innerHTML =
+        number + <span class="lit">' is even: '</span> + result;</span>
+<span id="ch9isEven5"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>number</th> <th>result</th></tr>
+</thead><tbody>
+	<tr><th id="ch9isEvenNumber">8</th>
+		<th id="ch9isEvenResult"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9isEvenProg2"><span class="comm">// Returns true if value is an even</span>
+<span class="comm">// integer; otherwise returns false.</span>
+<span id="ch9isEven6"><span class="key">function</span> <span class="func">isEven</span><span class="tok">(</span>value<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9isEven7">    <span class="key">if</span> <span class="tok">(</span><span class="tok">(</span>value % 2<span class="tok">)</span> == 0<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9isEven8">        <span class="key">return</span> <span class="key">true</span>;</span>
+<span id="ch9isEven9">    <span class="tok">}</span></span>
+<span id="ch9isEven10">    <span class="key">else</span> <span class="tok">{</span></span>
+<span id="ch9isEven11">        <span class="key">return</span> <span class="key">false</span>;</span>
+<span id="ch9isEven12">    <span class="tok">}</span></span>
+<span id="ch9isEven13"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th>value</th> <th>value % 2</th> <th>return</th></tr>
+</thead><tbody>
+	<tr><th id="ch9isEvenValue"></th>
+		<th id="ch9isEvenMod2"></th>
+		<th id="ch9isEvenReturn"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9isEvenProg3">&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;                               <span class="explain" id="ch9isEvenEnter"></span>
+Please enter an integer: <span id="ch9isEvenInput">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="numberInputBox"</span>&gt;</span>      <span class="explain" id="ch9isEvenClick"></span>
+<span id="ch9isEvenButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">doInputOutput</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Is Even?&lt;/<span class="key">button</span>&gt;</span>
+<span id="ch9isEvenDiv">&lt;<span class="key">div</span> <span class="attr">id="outputDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>
+&lt;/<span class="key">body</span>&gt;         <span class="explain" id="ch9isEvenDisplay"></span>
+<span id="ch9isEvenEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+<button type="button" id="ch9isEvenRun" title="Run" onclick="act.runClick(&#39;ch9isEven&#39;)">►</button>
+<button type="button" id="ch9isEvenStep" title="Step" onclick="act.stepClick(&#39;ch9isEven&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch9isEvenProg1&#39;, &#39;ch9isEvenProg2&#39;, &#39;ch9isEvenProg3&#39;)"><b>⇗</b></button>
+
+<div class="pagenum" id="page141">141</div>
+<p>Because the <code>isEven</code> function returns a boolean value, we
+can write it without the <code>if</code> statement. Eliminating the
+<code>if</code> statement makes the function easier to test because the
+function will contain only one possible path of execution instead of
+two.</p>
+
+<h4>Example 10</h4>
+<pre class="hilite" id="ch9evenShortProg1"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Is Even&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: An integer
+ * Processing: Determine if the integer is even or not
+ * Output: A message stating if the integer is even or not
+ */</span>
+<span id="ch9isShort1"><span class="key">function</span> <span class="func">doInputOutput</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9isShort2">    <span class="key">let</span> number = parseInt<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'numberInputBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+    <span id="ch9isShortCP"><span class="key">let</span> result = </span><span id="ch9isShort3"><span class="func">isEven</span><span class="tok">(</span>number<span class="tok">)</span>;</span>
+<span id="ch9isShort4">    document.getElementById<span class="tok">(</span><span class="lit">'outputDiv'</span><span class="tok">)</span>.innerHTML =
+        number + <span class="lit">' is even: '</span> + result;</span>
+<span id="ch9isShort5"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>number</th> <th>result</th></tr>
+</thead><tbody>
+	<tr><th id="ch9isShortNumber">8</th>
+		<th id="ch9isShortResult"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9evenShortProg2"><span class="comm">// Returns true if value is an even</span>
+<span class="comm">// integer; otherwise returns false.</span>
+<b><span id="ch9isShort6"><span class="key">function</span> <span class="func">isEven</span><span class="tok">(</span>value<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9isShort7">    <span class="key">return</span> <span class="tok">(</span>value % 2<span class="tok">)</span> == 0;</span>
+<span id="ch9isShort8"><span class="tok">}</span></span></b></pre>
+<table class="check right"><thead>
+	<tr><th>value</th> <th>value % 2</th> <th>return</th></tr>
+</thead><tbody>
+	<tr><th id="ch9isShortValue"></th>
+		<th id="ch9isShortMod2"></th>
+		<th id="ch9isShortReturn"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9evenShortProg3">&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;                               <span class="explain" id="ch9isShortEnter"></span>
+Please enter an integer: <span id="ch9isShortInput">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="numberInputBox"</span>&gt;</span>      <span class="explain" id="ch9isShortClick"></span>
+<span id="ch9isShortButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">doInputOutput</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Is Even?&lt;/<span class="key">button</span>&gt;</span>
+<span id="ch9isShortDiv">&lt;<span class="key">div</span> <span class="attr">id="outputDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>
+&lt;/<span class="key">body</span>&gt;         <span class="explain" id="ch9isShortDisplay"></span>
+<span id="ch9isShortEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+<button type="button" id="ch9isShortRun" title="Run" onclick="act.runClick(&#39;ch9isShort&#39;)">►</button>
+<button type="button" id="ch9isShortStep" title="Step" onclick="act.stepClick(&#39;ch9isShort&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch9evenShortProg1&#39;, &#39;ch9evenShortProg2&#39;, &#39;ch9evenShortProg3&#39;)"><b>⇗</b></button>
+
+<div class="pagenum" id="page142">142</div>
+<h3 id="ch9triangle">Area of a Triangle</h3>
+<div class="figRight" id="figTriangle">
+<img src="./Chapter 9. Functions_files/triangle.gif" alt="An irregular triangle" title="An irregular triangle">
+<div><b>Figure 9-2:</b> An irregular triangle with side lengths
+<var>a</var>, <var>b</var>, and <var>c</var>.</div>
+</div>
+
+<p>If we know the side lengths of a triangle as shown in
+<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#figTriangle">figure&nbsp;9-2</a>, then we can compute the area of
+that triangle using <dfn id="ch9heron">Heron’s formula</dfn> which
+is</p>
+
+<div class="blockExpr">
+	<var>area</var> =
+		√<div><hr><var>s</var>(<var>s−a</var>)(<var>s−b</var>)(<var>s−c</var>)</div>
+</div>
+
+<p>where <var>a</var>, <var>b</var>, and <var>c</var> are the lengths of
+the three sides of the triangle and <var>s</var> is the semi-perimeter
+of the triangle defined by</p>
+
+<div class="blockExpr">
+	<var>s</var> = <div><var>a + b + c</var><hr>2</div>
+</div>
+
+<h4>Example 11</h4>
+<pre class="hilite" id="ch9triangleProg1"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Triangle Area&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: No user input
+ * Processing: Compute the area of a triangle
+ *     with side lengths 4, 2, and 5
+ * Output: The area of the triangle
+ */</span>
+<span id="ch9triangle1"><span class="key">function</span> <span class="func">testTriangle</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+    <span id="ch9triangleCP"><span class="key">let</span> r = </span><span id="ch9triangle2"><span class="func">triangleArea</span><span class="tok">(</span>4, 2, 5<span class="tok">)</span>;</span>
+<span id="ch9triangle3">    document.getElementById<span class="tok">(</span><span class="lit">'outputDiv'</span><span class="tok">)</span>.innerHTML = r;</span>
+<span id="ch9triangle4"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>r</th></tr>
+</thead><tbody>
+	<tr><th id="ch9triangleR"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9triangleProg2"><span class="comm">// Computes and returns the area of a</span>
+<span class="comm">// triangle with side lengths a, b, and c.</span>
+<span id="ch9triangle5"><span class="key">function</span> <span class="func">triangleArea</span><span class="tok">(</span>a, b, c<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9triangle6">    <span class="key">let</span> s = <span class="tok">(</span>a + b + c<span class="tok">)</span> / 2;</span>
+<span id="ch9triangle7">    <span class="key">let</span> area = Math.sqrt<span class="tok">(</span>s * <span class="tok">(</span>s-a<span class="tok">)</span> * <span class="tok">(</span>s-b<span class="tok">)</span> * <span class="tok">(</span>s-c<span class="tok">)</span><span class="tok">)</span>;</span>
+<span id="ch9triangle8">    <span class="key">return</span> area;</span>
+<span id="ch9triangle9"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th>a</th> <th>b</th> <th>c</th> <th>s</th>
+		<th>(s − a)</th> <th>(s − b)</th> <th>(s − c)</th>
+		<th>area</th></tr>
+</thead><tbody>
+	<tr><th id="ch9triangleA"></th>
+		<th id="ch9triangleB"></th>
+		<th id="ch9triangleC"></th>
+		<th id="ch9triangleS"></th>
+		<th id="ch9triangleSminA"></th>
+		<th id="ch9triangleSminB"></th>
+		<th id="ch9triangleSminC"></th>
+		<th id="ch9triangleArea"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9triangleProg3">&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+<span id="ch9triangleButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">testTriangle</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Test&lt;/<span class="key">button</span>&gt;</span>
+<span id="ch9triangleDiv">&lt;<span class="key">div</span> <span class="attr">id="outputDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>                          <span class="explain" id="ch9triangleClick"></span>
+&lt;/<span class="key">body</span>&gt;           <span class="explain" id="ch9triangleDisplay"></span>
+<span id="ch9triangleEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+<button type="button" id="ch9triangleRun" title="Run" onclick="act.runClick(&#39;ch9triangle&#39;)">►</button>
+<button type="button" id="ch9triangleStep" title="Step" onclick="act.stepClick(&#39;ch9triangle&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch9triangleProg1&#39;, &#39;ch9triangleProg2&#39;, &#39;ch9triangleProg3&#39;)"><b>⇗</b></button>
+
+<div class="pagenum" id="page143">143</div>
+<h3 id="ch9pyramid">Surface Area of a Pyramid</h3>
+<p>Imagine designing one of the great pyramids. The stones on the inside
+of the pyramids are very rough and are essentially just filler. The
+stones on the outside are finished smooth to reflect sunlight. If you
+were writing the software to design a pyramid, your software would have
+to compute the surface area of a pyramid so the builders would know how
+much finished stone they need to cover the outside of the pyramid.</p>
+
+<div class="figRight" id="figPyramid">
+<img src="./Chapter 9. Functions_files/pyramid.gif" alt="A regular pyramid" title="A regular pyramid">
+<div><b>Figure 9-3:</b> A regular pyramid with edge length <var>e</var>,
+height <var>h</var>, and base length <var>b</var>.</div>
+</div>
+
+<p><a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#figPyramid">Figure&nbsp;9-3</a> shows a regular pyramid (the
+base is a square, and all four sides are the same size) with edge length
+<var>e</var>, height <var>h</var>, and base length <var>b</var>. Since
+it is a regular pyramid, to compute the surface area your software could
+compute the area of one of the pyramid’s triangular faces and
+multiply that by 4. If the builder of a regular pyramid specified the
+base length and the height, then your software could use this formula
+for computing the edge length:</p>
+
+<div class="blockExpr">
+	<var>e</var> = <div> &nbsp; /<div class="radic">√ &nbsp;</div></div><div><hr><div> <var>b</var><sup>2</sup> <hr>2</div> + <var>h</var><sup>2</sup> </div>
+</div>
+
+<p>and then call the <code>triangleArea</code> function shown in
+example&nbsp;11 to compute the area of one of the triangular faces.</p>
+
+<div class="pagenum" id="page144">144</div>
+<h4>Example 12</h4>
+<pre class="hilite" id="ch9pyramidProg1"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Surface Area of a Pyramid&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: No user input
+ * Processing: Compute the surface area of the
+ *     triangular faces of a regular pyramid
+ *     that has base 8 and height 7.
+ * Output: The surface area of the pyramid
+ */</span>
+<span id="ch9pyramid1"><span class="key">function</span> <span class="func">testPyramid</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+    <span id="ch9pyramidCPPSA"><span class="key">let</span> pa = </span><span id="ch9pyramid2"><span class="func">pyramidSurfaceArea</span><span class="tok">(</span>8, 7<span class="tok">)</span>;</span>
+<span id="ch9pyramid3">    document.getElementById<span class="tok">(</span><span class="lit">'outputDiv'</span><span class="tok">)</span>.innerHTML = pa;</span>
+<span id="ch9pyramid4"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>pa</th></tr>
+</thead><tbody>
+	<tr><th id="ch9pyramidPA"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9pyramidProg2"><span class="comm">// Computes and returns the surface area of the</span>
+<span class="comm">// four triangular faces of a regular pyramid</span>
+<span class="comm">// with the specified base length and height.</span>
+<span id="ch9pyramid5"><span class="key">function</span> <span class="func">pyramidSurfaceArea</span><span class="tok">(</span>base, height<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9pyramid6">    <span class="key">let</span> edge = Math.sqrt<span class="tok">(</span>base*base/2 + height*height<span class="tok">)</span>;</span>
+    <span id="ch9pyramidCPTA"><span class="key">let</span> triArea = </span><span id="ch9pyramid7"><span class="func">triangleArea</span><span class="tok">(</span>base, edge, edge<span class="tok">)</span>;</span>
+<span id="ch9pyramid8">    <span class="key">let</span> pyramidArea = 4 * triArea;</span>
+<span id="ch9pyramid9">    <span class="key">return</span> pyramidArea;</span>
+<span id="ch9pyramid10"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th>base</th> <th>height</th> <th>edge</th>
+		<th>triArea</th> <th>pyramidArea</th></tr>
+</thead><tbody>
+	<tr><th id="ch9pyramidBase"></th>
+		<th id="ch9pyramidHeight"></th>
+		<th id="ch9pyramidEdge"></th>
+		<th id="ch9pyramidTriArea"></th>
+		<th id="ch9pyramidPyramidArea"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9pyramidProg3"><span class="comm">// Computes and returns the area of a</span>
+<span class="comm">// triangle with side lengths a, b, and c.</span>
+<span id="ch9pyramid11"><span class="key">function</span> <span class="func">triangleArea</span><span class="tok">(</span>a, b, c<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9pyramid12">    <span class="key">let</span> s = <span class="tok">(</span>a + b + c<span class="tok">)</span> / 2;</span>
+<span id="ch9pyramid13">    <span class="key">let</span> area = Math.sqrt<span class="tok">(</span>s * <span class="tok">(</span>s-a<span class="tok">)</span> * <span class="tok">(</span>s-b<span class="tok">)</span> * <span class="tok">(</span>s-c<span class="tok">)</span><span class="tok">)</span>;</span>
+<span id="ch9pyramid14">    <span class="key">return</span> area;</span>
+<span id="ch9pyramid15"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th>a</th> <th>b</th> <th>c</th> <th>s</th>
+		<th>(s − a)</th> <th>(s − b)</th> <th>(s − c)</th>
+		<th>area</th></tr>
+</thead><tbody>
+	<tr><th id="ch9pyramidA"></th>
+		<th id="ch9pyramidB"></th>
+		<th id="ch9pyramidC"></th>
+		<th id="ch9pyramidS"></th>
+		<th id="ch9pyramidSminA"></th>
+		<th id="ch9pyramidSminB"></th>
+		<th id="ch9pyramidSminC"></th>
+		<th id="ch9pyramidArea"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9pyramidProg4">&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+<span id="ch9pyramidButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">testPyramid</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Test&lt;/<span class="key">button</span>&gt;</span>
+<span id="ch9pyramidDiv">&lt;<span class="key">div</span> <span class="attr">id="outputDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>            <span class="explain" id="ch9pyramidClick"></span>
+&lt;/<span class="key">body</span>&gt;   <span class="explain" id="ch9pyramidDisplay"></span>
+<span id="ch9pyramidEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+<button type="button" id="ch9pyramidRun" title="Run" onclick="act.runClick(&#39;ch9pyramid&#39;)">►</button>
+<button type="button" id="ch9pyramidStep" title="Step" onclick="act.stepClick(&#39;ch9pyramid&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch9pyramidProg1&#39;, &#39;ch9pyramidProg2&#39;, &#39;ch9pyramidProg3&#39;, &#39;ch9pyramidProg4&#39;)"><b>⇗</b></button>
+
+<div class="pagenum" id="page145">145</div>
+<h3 id="ch9invest">How Long to Invest</h3>
+<p>A common question when saving and investing money is, “How long
+will I need to invest a certain amount of money in order for that money
+to grow to a certain larger amount of money?” For example,
+how many months will I need to invest $100 at 6% fixed annual growth
+rate compounded monthly in order for my investment to grow to $103?</p>
+
+<h4>Example 13</h4>
+<pre class="hilite" id="ch9investProg1"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;How Long to Invest&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: No user input
+ * Processing: Determine the number of months required
+ *     to grow an initial investment from $100 to at
+ *     least $103 if it grows at an annual rate of 6%.
+ * Output: The number of months.
+ */</span>
+<span id="ch9invest1"><span class="key">function</span> <span class="func">testInvest</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+    <span id="ch9investCP"><span class="key">let</span> m = </span><span id="ch9invest2"><span class="func">determineMonths</span><span class="tok">(</span>100, 0.06, 103<span class="tok">)</span>;</span>
+<span id="ch9invest3">    document.getElementById<span class="tok">(</span><span class="lit">'outputDiv'</span><span class="tok">)</span>.innerHTML = m;</span>
+<span id="ch9invest4"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>m</th></tr>
+</thead><tbody>
+	<tr><th id="ch9investM"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9investProg2"><span class="comm">// Computes and returns the number of months</span>
+<span class="comm">// needed for principal invested at a constant</span>
+<span class="comm">// annual rate to grow to a target amount.</span>
+<span id="ch9invest5"><span class="key">function</span> <span class="func">determineMonths</span><span class="tok">(</span>principal, annualRate, target<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9invest6">    <span class="key">let</span> monthlyRate = annualRate / 12;</span>
+<span id="ch9invest7">    <span class="key">let</span> balance = principal;</span>
+<span id="ch9invest8">    <span class="key">let</span> month = 0;</span>
+
+    <span class="comm">// Repeat while the balance of the</span>
+    <span class="comm">// investment is less than the target.</span>
+<span id="ch9invest9">    <span class="key">while</span> <span class="tok">(</span>balance &lt; target<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9invest10">        <span class="key">let</span> interest = Math.round<span class="tok">(</span>balance * monthlyRate * 100<span class="tok">)</span> / 100;</span>
+<span id="ch9invest11">        balance += interest;</span>
+<span id="ch9invest12">        month++;</span>
+<span id="ch9invest13">    <span class="tok">}</span></span>
+
+<span id="ch9invest14">    <span class="key">return</span> month;</span>
+<span id="ch9invest15"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th>principal</th> <th>annualRate</th>
+		<th>interest</th> <th>balance</th> <th>month</th></tr>
+</thead><tbody>
+	<tr><th id="ch9investPrinc"></th>
+		<th id="ch9investAR"></th>
+		<th id="ch9investInt" class="empty"></th>
+		<th id="ch9investBal"></th>
+		<th id="ch9investMonth"></th></tr>
+	<tr><th class="empty" colspan="2"></th>
+		<th></th> <th></th> <th></th></tr>
+	<tr><th class="label">target</th> <th class="label">monthlyRate</th>
+		<th></th> <th></th> <th></th></tr>
+	<tr><th id="ch9investTarg"></th> <th id="ch9investMR"></th>
+		<th></th> <th></th> <th></th></tr>
+	<tr><th class="empty" colspan="2"></th>
+		<th></th> <th></th> <th></th></tr>
+	<tr><th class="empty" colspan="2"></th>
+		<th></th> <th></th> <th></th></tr>
+	<tr><th class="empty" colspan="2"></th>
+		<th></th> <th></th> <th></th></tr>
+</tbody></table>
+
+<pre class="hilite" id="ch9investProg3">&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+<span id="ch9investButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">testInvest</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Test&lt;/<span class="key">button</span>&gt;</span>
+<span id="ch9investDiv">&lt;<span class="key">div</span> <span class="attr">id="outputDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>        <span class="explain" id="ch9investClick"></span>
+&lt;/<span class="key">body</span>&gt;       <span class="explain" id="ch9investDisplay"></span>
+<span id="ch9investEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+<button type="button" id="ch9investRun" title="Run" onclick="act.runClick(&#39;ch9invest&#39;)">►</button>
+<button type="button" id="ch9investStep" title="Step" onclick="act.stepClick(&#39;ch9invest&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch9investProg1&#39;, &#39;ch9investProg2&#39;, &#39;ch9investProg3&#39;)"><b>⇗</b></button>
+
+<div class="pagenum" id="page146">146</div>
+<h3 id="ch9gcd">Greatest Common Divisor</h3>
+<p>The greatest common divisor (<dfn>gcd</dfn>) of two non-zero integers
+is the largest positive integer that divides both numbers without a
+remainder. An efficient algorithm to compute the gcd was
+discovered by Euclid and works like this. Given two integers, 102
+and 18,</p>
+<ol>
+	<li>divide 102 by 18 to get a quotient of 5 and a remainder of 12,</li>
+	<li>divide 18 by 12 to get a quotient of 1 and a remainder of 6,</li>
+	<li>divide 12 by 6 to get a quotient of 2 and a remainder of 0</li>
+	<li>the remainder 0 means the greatest common divisor of 102 and 18 is 6.</li>
+</ol>
+
+<p>Euclid’s algorithm is written in the next example inside a
+JavaScript function that has this header:&nbsp;
+<code>function gcd(a, b)</code>. Notice from its header that the
+<code>gcd</code> function requires two values as parameters. To call
+this function a programmer must write the name of the function,
+<code>gcd</code>, followed by an argument list with two arguments to
+match the two parameters, as shown in the <code>testGCD</code> function
+below.</p>
+
+<div class="pagenum" id="page147">147</div>
+<h4>Example 14</h4>
+<pre class="hilite" id="ch9gcdProg1"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Greatest Common Divisor&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: No user input
+ * Processing: Determine the greatest common divisor of -24 and 472
+ * Output: The greatest common divisor
+ */</span>
+<span id="ch9gcd1"><span class="key">function</span> <span class="func">testGCD</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9gcd2">    <span class="key">let</span> x = -24;</span>
+<span id="ch9gcd3">    <span class="key">let</span> y = 472;</span>
+    <span id="ch9gcdCPGCD"><span class="key">let</span> divisor = </span><span id="ch9gcd4"><span class="func">gcd</span><span class="tok">(</span>x, y<span class="tok">)</span>;</span>
+<span id="ch9gcd5">    document.getElementById<span class="tok">(</span><span class="lit">'outputDiv'</span><span class="tok">)</span>.innerHTML = divisor;</span>
+<span id="ch9gcd6"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>x</th> <th>y</th> <th>divisor</th></tr>
+</thead><tbody>
+	<tr><th id="ch9gcdX"></th>
+		<th id="ch9gcdY"></th>
+		<th id="ch9gcdDivisor"></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9gcdProg2"><span class="comm">// Finds and returns the greatest common</span>
+<span class="comm">// divisor of two integers a and b.</span>
+<span id="ch9gcd7"><span class="key">function</span> <span class="func">gcd</span><span class="tok">(</span>a, b<span class="tok">)</span> <span class="tok">{</span></span>
+    <span class="comm">// Ensure a and b are not negative.</span>
+<span id="ch9gcd8">    a = Math.abs<span class="tok">(</span>a<span class="tok">)</span>;</span>
+<span id="ch9gcd9">    b = Math.abs<span class="tok">(</span>b<span class="tok">)</span>;</span>
+
+    <span class="comm">// Ensure a is greater than or equal to b.</span>
+<span id="ch9gcd10">    <span class="key">if</span> <span class="tok">(</span>a &lt; b<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch9gcd11">        <span class="key">let</span> swap = a;</span>
+<span id="ch9gcd12">        a = b;</span>
+<span id="ch9gcd13">        b = swap;</span>
+<span id="ch9gcd14">    <span class="tok">}</span></span>
+
+    <span class="comm">// Repeat until the computer finds the greatest common divisor.</span>
+<span id="ch9gcd15">    <span class="key">do</span> <span class="tok">{</span></span>
+<span id="ch9gcd16">        <span class="key">let</span> r = a % b;</span>
+<span id="ch9gcd17">        a = b;</span>
+<span id="ch9gcd18">        b = r;</span>
+<span id="ch9gcd19">    <span class="tok">}</span> <span class="key">while</span> <span class="tok">(</span>b != 0<span class="tok">)</span>;</span>
+
+<span id="ch9gcd20">    <span class="key">return</span> a;</span>
+<span id="ch9gcd21"><span class="tok">}</span></span></pre>
+<table class="check right"><thead>
+	<tr><th>r</th> <th>a</th> <th>b</th>
+		<th>swap</th></tr>
+</thead><tbody>
+	<tr><th class="empty" id="ch9gcdR"></th>
+		<th id="ch9gcdA"></th>
+		<th id="ch9gcdB"></th>
+		<th id="ch9gcdSwap"></th></tr>
+	<tr><th class="empty"></th> <th></th> <th></th>
+		<th class="empty" rowspan="5"></th></tr>
+	<tr><th class="empty"></th> <th></th> <th></th></tr>
+	<tr><th></th> <th></th> <th></th></tr>
+	<tr><th></th> <th></th> <th></th></tr>
+	<tr><th></th> <th></th> <th></th></tr>
+</tbody></table>
+<pre class="hilite" id="ch9gcdProg3">&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+<span id="ch9gcdButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">testGCD</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Test&lt;/<span class="key">button</span>&gt;</span>
+<span id="ch9gcdDiv">&lt;<span class="key">div</span> <span class="attr">id="outputDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>            <span class="explain" id="ch9gcdClick"></span>
+&lt;/<span class="key">body</span>&gt;           <span class="explain" id="ch9gcdDisplay"></span>
+<span id="ch9gcdEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+<button type="button" id="ch9gcdRun" title="Run" onclick="act.runClick(&#39;ch9gcd&#39;)">►</button>
+<button type="button" id="ch9gcdStep" title="Step" onclick="act.stepClick(&#39;ch9gcd&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch9gcdProg1&#39;, &#39;ch9gcdProg2&#39;, &#39;ch9gcdProg3&#39;)"><b>⇗</b></button>
+
+<div class="pagenum" id="page148">148</div>
+<h3 id="ch9mistakes">Common Mistakes</h3>
+<h4>Putting a space in a function’s name</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>function check Answer() {
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>function checkAnswer() {
+}</pre></div>
+</div>
+
+<h4>Forgetting the opening or closing curly brace</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>function sum(x, y, z) {
+    let s = x + y + z;
+    return s;</pre></div>
+	<div><h5>Correct</h5>
+<pre>function sum(x, y, z) {
+    let s = x + y + z;
+    return s;
+}</pre></div>
+</div>
+
+<h4>Re-declaring or re-assigning parameters</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>function getDiscountRate(birthday, gpa) {
+    <b>// Wrong! Don't re-declare nor assign parameters.
+    let birthday = new Date("3/17/1995");
+    let gpa = prompt("What is your GPA?");</b>
+
+    let birthYear = birthday.getFullYear();
+    let currYear = new Date().getFullYear();
+    let age = currYear - birthYear;
+    let rate;
+    ⋮
+    return rate;
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>function getDiscountRate(birthday, gpa) {
+    let birthYear = birthday.getFullYear();
+    let currYear = new Date().getFullYear();
+    let age = currYear - birthYear;
+    let rate;
+    ⋮
+    return rate;
+}</pre></div>
+</div>
+
+<h4>Confusing the concepts of return and output</h4>
+<p>Return means to return a value to the call point of a function.
+This is entirely internal to a program, and the user will not see
+anything because of a return statement. To return a result from a
+JavaScript function, use the keyword <code>return</code>.</p>
+
+<p>Output means to show a value to the user. In JavaScript output
+is done by calling <code>alert</code>,
+<code>document.write</code>, or assigning a value to the
+<code>innerHTML</code> attribute of a div
+(<code>document.getElementById('resultDiv').innerHTML = x;</code>).</p>
+
+<div class="pagenum" id="page149">149</div>
+<h3 id="ch9summary">Chapter Summary</h3>
+<ul>
+	<li id="ch9mod2">A module is a part of a program. The term module
+	can refer to a very large part of a program, including many files
+	and functions, or it can refer to a small part of a program such as
+	a single function.</li>
+	<li id="ch9func2">A function is the smallest part of a program that
+	performs actions and is sometimes called a method. A well written
+	function is a reusable part of a program that performs one task such
+	as calculating the average of a list of numbers or the area of a
+	triangle.</li>
+	<li id="ch9header2">A function has a header and a body. The header
+	is also known as the signature.</li>
+	<li id="ch9param3">The header of a function includes the
+	function’s parameters. Each parameter is a variable.</li>
+	<li id="ch9callp2">A call point of a function is a line of code in a
+	program where that function is called or invoked. The values for a
+	function’s parameters come from a call point of that
+	function.</li>
+	<li id="ch9ret3">The body of a function includes all the statements
+	to perform a single task such as a calculation. The body normally
+	ends with a return statement to return a calculated value to the
+	call point.</li>
+	<li>A return statement causes a computer to stop executing the
+	current function, to return a value to the call point of the current
+	function, and to resume executing the code at or after the call
+	point.</li>
+	<li>To call a function, write the function’s name followed by
+	the arguments that the function will need to perform its task.</li>
+	<li id="ch9arg4">An argument is the value or variable that is passed
+	from the call point into a function.</li>
+	<li>To store the value returned from a function write a variable
+	name and the assignment operator (=) at the call point of the
+	function.</li>
+</ul>
+
+<h3 id="ch9revQues">Review Questions</h3>
+<ol class="revQues">
+	<li>Consider these three terms: function, module, and program. Order them
+	from largest (contains the most) to smallest (contains the least).</li>
+
+	<li>What is the JavaScript keyword that begins a function
+	header?</li>
+
+	<li>Write the header for a function named
+	<code>computeFutureValue</code>, which takes as parameters three
+	numbers named <code>principal</code>, <code>annualRate</code>, and
+	<code>years</code>.</li>
+
+	<li>Write the header for a function named <code>coneVolume</code>,
+	which takes as parameters a radius and a height.</li>
+
+	<li>Within a function header, for example:
+	<pre>function gcd(a, b) {</pre>
+	the variables that appear within parentheses are called what?</li>
+
+	<li>
+<div class="pagenum" id="page150">150</div>
+	Within a function call, for example:
+	<pre>let g = gcd(142, y);</pre>
+	the text that appears within parentheses are called what?</li>
+
+	<li>Given this function header:
+	<pre>function compute(x, y, z) {</pre>
+	and this code to call that function:
+<pre>let x = 7;
+let result = compute(3, 2, x);</pre>
+	Within the function <code>compute</code>, what value will be stored
+	in the parameter <code>x</code>?</li>
+
+	<li>Assume that a function with this header:
+	<pre>function addOrder(name, amount)</pre>
+	already exists. Write a single line of JavaScript code to call that
+	function.</li>
+
+	<li>Assume that a function with this header:
+	<pre>function isPrime(value)</pre>
+	already exists. Write a single line of JavaScript code to call that
+	function and assign the result returned from that function to a
+	variable named <var>p</var>.</li>
+
+	<li>Within a function, what does the keyword <code>return</code> do?
+	(Mark all that apply)
+	<ol>
+		<li>cause the computer to stop executing the current function</li>
+		<li>return a value to the call point</li>
+		<li>display a value for a user to see</li>
+		<li>cause the computer to resume executing code after the call
+		point</li>
+	</ol></li>
+</ol>
+
+<h3 id="ch9progs">Programming Assignments</h3>
+<ol class="progs">
+	<li>Rewrite the number guessing game code found in
+	<a target="_blank" href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/repetition.htm#ch8numGuess">review question&nbsp;14</a> of
+	chapter&nbsp;8 so that it
+	<ol>
+		<li>is inside a function with this header:
+		<pre>function numberGuessGame()</pre>
+		which is called when a user clicks a
+		<span class="menu">Play</span> button</li>
+
+		<li>chooses a different pseudo random number between 1 and 100
+		each time it runs</li>
+
+		<li>counts the number of guesses the user takes to correctly
+		guess the answer</li>
+	</ol></li>
+
+	<li><p>Create an HTML document, which contains a text field, a
+	button, and a div. Label the first text field
+	“Fahrenheit” and put the text “Celsius” on
+	the button. Write two functions with these headers:</p>
+<pre>function doInputOutput()
+function fahrToCels(fahr)</pre>
+	<p>The first function (<code>doInputOutput</code>) must be called
+	from the <code>onclick</code> attribute of the button and must do
+	the following:</p>
+	<ol>
+		<li>get a temperature in Fahrenheit from the text field</li>
+		<li>call the second function (<code>fahrToCels</code>)</li>
+		<li>store the value returned by <code>fahrToCels</code> in a
+		variable</li>
+		<li>output the value returned by <code>fahrToCels</code> to the
+		div for the user to see</li>
+	</ol>
+	<p>The second function (<code>fahrToCels</code>) must</p>
+	<ol>
+		<li>take a temperature in Fahrenheit as a parameter</li>
+		<li>calculate the corresponding Celsius temperature</li>
+		<li>return the Celsius temperature</li>
+	</ol>
+	<p>In other words, the second function (<code>fahrToCels</code>)
+	must not gather any input from a user and must not output anything
+	for a user to see. Instead, it must calculate and return the
+	result, which makes this second function very reusable in other
+	projects.</p></li>
+
+	<li>
+<div class="pagenum" id="page151">151</div>
+	<p>Create an HTML document, which contains two text fields, a
+	button, and a div. Label the first text field
+	“Temperature”, label the second “Wind
+	Speed”, and put the text “Wind Chill” on the
+	button. Write two functions with these headers:</p>
+<pre>function doInputOutput()
+function windChill(tempF, speed)</pre>
+	<p>The first function (<code>doInputOutput</code>) must be called
+	from the <code>onclick</code> attribute of the button and must do
+	the following:</p>
+	<ol>
+		<li>get a temperature from the first text field</li>
+		<li>get a wind speed from the second text field</li>
+		<li>call the second function (<code>windChill</code>)</li>
+		<li>store the value returned by <code>windChill</code> in a
+		variable</li>
+		<li>output the value returned by <code>windChill</code> to the
+		div for the user to see</li>
+	</ol>
+	<p>The second function (<code>windChill</code>) must</p>
+	<ol>
+		<li>take a temperature in Fahrenheit as a parameter</li>
+		<li>take a wind speed in miles per hour as a parameter</li>
+		<li>calculate the wind chill factor as a temperature in Fahrenheit</li>
+		<li>return the wind chill factor in Fahrenheit</li>
+	</ol>
+	<p>In other words, the second function (<code>windChill</code>) must
+	not gather any input from a user and must not output anything for a
+	user to see. Instead, it must calculate and return the result, which
+	makes this second function very reusable in other projects.</p>
+	<p>The formula for computing the wind chill factor is</p>
+	<div class="blockExpr"><var>f</var> = 35.74 + 0.6215 <var>t</var> − 35.75 <var>s</var><sup>0.16</sup> + 0.4275 <var>t s</var><sup>0.16</sup></div>
+	<p>where <var>f</var> is the wind chill factor in Fahrenheit,
+	<var>t</var> is the air temperature in Fahrenheit, and <var>s</var>
+	is the wind speed in miles per hour at five feet above the
+	ground.</p></li>
+
+	<li>
+<div class="pagenum" id="page152">152</div>
+	<p>Create an HTML document, which contains two text fields, a
+	button, and a div. Label the first text field
+	“Temperature”, label the second “Relative
+	Humidity”, and put the text “Heat Index” on the
+	button. Write two functions with these headers:</p>
+<pre>function doInputOutput()
+function heatIndex(tempF, humid)</pre>
+	<p>The first function (<code>doInputOutput</code>) must be called
+	from the <code>onclick</code> attribute of the button and must do
+	the following:</p>
+	<ol>
+		<li>get a temperature from the first text field</li>
+		<li>get a relative humidity from the second text field</li>
+		<li>call the second function (<code>heatIndex</code>)</li>
+		<li>store the value returned by <code>heatIndex</code> in a
+		variable</li>
+		<li>output the value returned by <code>heatIndex</code> to the
+		div for the user to see</li>
+	</ol>
+	<p>The second function (<code>heatIndex</code>) must</p>
+	<ol>
+		<li>take a temperature in Fahrenheit as a parameter</li>
+		<li>take a relative humidity between 0% and 100% as a parameter</li>
+		<li>calculate the heat index as a temperature in Fahrenheit</li>
+		<li>return the heat index in Fahrenheit</li>
+	</ol>
+	<p>In other words, the second function (<code>heatIndex</code>) must
+	not gather any input from a user and must not output anything for a
+	user to see. Instead, it must calculate and return the result, which
+	makes this second function very reusable in other projects.</p>
+	<p>The formula for computing the heat index is</p>
+
+	<div class="blockExpr"><var>i</var> =
+		−42.379
+		+ 2.04901523 <var>t</var>
+		+ 10.14333127 <var>r</var>
+		− 0.22475541 <var>t r</var>
+		− 0.00683783 <var>t</var><sup>2</sup>
+		− 0.05481717 <var>r</var><sup>2</sup>
+		+ 0.00122874 <var>t</var><sup>2</sup> <var>r</var>
+		+ 0.00085282 <var>t</var> <var>r</var><sup>2</sup>
+		− 0.00000199 <var>t</var><sup>2</sup> <var>r</var><sup>2</sup></div>
+
+	<p>where <var>i</var> is the heat index in Fahrenheit, <var>t</var>
+	is the air temperature in Fahrenheit, and <var>r</var> is the
+	relative humidity.</p></li>
+
+	<li>
+<div class="pagenum" id="page153">153</div>
+	<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#figPrism">Figure&nbsp;9-4</a> shows a triangular prism. The
+	volume of a triangular prism can be calculated by multiplying the
+	area of the triangular face by the length of the prism. In other
+	words
+	<div class="blockExpr"><var>volume</var> = <var>triangleArea</var> * <var>length</var></div>
+	<p>Write a program that calculates the volume of a triangular prism.
+	Your program must allow the user to enter the three side lengths of
+	the triangular face and the length of the prism. Your program must
+	include these three functions:</p>
+	<div class="figRight" id="figPrism" style="width:15em">
+	<img src="./Chapter 9. Functions_files/prism.png" alt="a triangular prism" title="a triangular prism">
+	<div><b>Figure 9-4:</b> A triangular prism</div>
+	</div>
+<pre>    function doInputOutput()
+    function prismVolume(a, b, c, length)
+    function triangleArea(a, b, c)</pre>
+	<p>The first function (<code>doInputOutput</code>)</p>
+	<ol>
+		<li>takes no parameters</li>
+		<li>is called from the <code>onclick</code> attribute</li>
+		<li>gets four numbers from the user</li>
+		<li>calls the <code>prismVolume</code> function</li>
+		<li>displays the result to the user</li>
+	</ol>
+	<p>The second function (<code>prismVolume</code>)</p>
+	<ol>
+		<li>takes four parameters</li>
+		<li>calls the <code>triangleArea</code> function</li>
+		<li>computes the volume of a prism</li>
+		<li>returns the volume</li>
+	</ol>
+	<p>The third function (<code>triangleArea</code>)</p>
+	<ol>
+		<li>takes three parameters</li>
+		<li>computes the area of a triangle</li>
+		<li>returns the area<br>
+		Hint: use the <a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#ch9triangle"><code>triangleArea</code></a>
+		function that is written in this chapter.</li>
+	</ol></li>
+
+	<li>
+<div class="pagenum" id="page154">154</div>
+	<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#figHouse">Figure&nbsp;9-5</a> shows a very basic house.
+	Notice that the roof space of the house is a triangular prism and
+	the living space of the house is a rectangular prism. Write a
+	program that calculates the total volume of the house, including the
+	volume of the roof space. Your program must allow the user to enter
+	the <var>width</var>, <var>depth</var>, <var>height</var>, and
+	<var>sweep</var> as shown in <a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#figHouse">figure&nbsp;9-5</a>.
+	Here are some useful formulas:
+	<div class="figRight" id="figHouse" style="width:18em">
+	<img src="./Chapter 9. Functions_files/house.png" alt="a simple house" title="a simple house">
+	<div><b>Figure 9-5:</b> A simple house</div>
+	</div>
+	<div class="blockExpr"><var>houseVolume</var> = <var>livingVolume</var> + <var>roofVolume</var></div>
+	<div class="blockExpr"><var>livingVolume</var> = <var>width</var> * <var>depth</var> * <var>height</var></div>
+	<div class="blockExpr"><var>roofVolume</var> = <var>triangleArea</var> * <var>width</var></div>
+	<div class="blockExpr"><var>triangleArea</var> = √<div><hr><var>s</var>(<var>s−a</var>)(<var>s−b</var>)(<var>s−c</var>)</div></div>
+	<div class="blockExpr"><var>s</var> = <div><var>a + b + c</var><hr>2</div></div>
+
+	<p>Your program must include these five functions:</p>
+<pre>    function doInputOutput()
+    function houseVolume(width, depth, height, sweep)
+    function livingVolume(width, depth, height)
+    function roofVolume(width, depth, sweep)
+    function triangleArea(a, b, c)</pre>
+	<p>The first function (<code>doInputOutput</code>)</p>
+	<ol>
+		<li>takes no parameters</li>
+		<li>is called from the <code>onclick</code> attribute</li>
+		<li>gets four numbers from the user</li>
+		<li>calls the <code>houseVolume</code> function</li>
+		<li>displays the house volume to the user</li>
+	</ol>
+	<p>The second function (<code>houseVolume</code>)</p>
+	<ol>
+		<li>takes four parameters</li>
+		<li>calls the <code>livingVolume</code> function</li>
+		<li>calls the <code>roofVolume</code> function</li>
+		<li>computes the house volume by adding the living volume and
+		the roof volume</li>
+		<li>returns the house volume</li>
+	</ol>
+	<p>The third function (<code>livingVolume</code>)</p>
+	<ol>
+		<li>takes three parameters</li>
+		<li>computes and returns the volume of the living space</li>
+	</ol>
+	<p>The fourth function (<code>roofVolume</code>)</p>
+	<ol>
+		<li>takes three parameters</li>
+		<li>calls the <code>triangleArea</code> function</li>
+		<li>computes and returns the volume of the roof</li>
+	</ol>
+	<p>The fifth function (<code>triangleArea</code>)</p>
+	<ol>
+		<li>takes three parameters</li>
+		<li>computes and returns the area of a triangle<br>
+		Hint: use the <a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#ch9triangle"><code>triangleArea</code></a>
+		function that is written in this chapter.</li>
+	</ol></li>
+
+	<li>
+<div class="pagenum" id="page155">155</div>
+	<p>Create an HTML document that looks similar to
+	<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#figInvestCalc">figure&nbsp;9-6</a>. Write two functions
+	with these headers:</p>
+<pre>function doFV()
+function computeFutureValue(principal, annualRate, years, periodsPerYear)</pre>
+	<div class="figRight" id="figInvestCalc" style="width:22em">
+	<img src="./Chapter 9. Functions_files/investCalc.png" alt="The user interface for an investment calculator" title="The user interface for an investment calculator">
+	<div><b>Figure 9-6:</b> The user interface for an investment
+		calculator.</div>
+	</div>
+	<p>The first function (<code>doFV</code>)</p>
+	<ol>
+		<li>takes no parameters</li>
+		<li>is called from the <code>onclick</code> attribute</li>
+		<li>gets input from the user</li>
+		<li>calls the <code>computeFutureValue</code> function</li>
+		<li>displays the result to the user</li>
+	</ol>
+	<p>The second function (<code>computeFutureValue</code>) computes
+	and returns the future value of an investment. The formula for
+	computing the future value of an investment is:&nbsp;
+	<span class="expr"><var>f</var> = <var>a</var> (1 + <var>r</var>)<sup><var>n</var></sup></span>&nbsp;
+	where <var>f</var> is the future value, <var>a</var> is the
+	investment amount sometimes called the principal, <var>r</var> is
+	the growth rate <strong>per period</strong>, and <var>n</var> is the
+	total number of periods <strong>throughout the life of the
+	investment</strong>.</p>
+	</li>
+
+	<li class="clear">
+<div class="pagenum" id="page156">156</div>
+	<p>Create an HTML document that looks similar to
+	<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#figLoanCalc">figure&nbsp;9-7</a>. Write four
+	functions with these headers:</p>
+<pre>function doPayment()
+function doBalance()
+function computePayment(principal, annualRate, years, periodsPerYear)
+function computeBalance(principal, annualRate, years, periodsPerYear,
+    numberOfPaymentsPaidToDate)</pre>
+	<div class="figRight" id="figLoanCalc" style="width:26em">
+	<img src="./Chapter 9. Functions_files/loanCalc.png" alt="The user interface for a loan calculator" title="The user interface for a loan calculator">
+	<div class="center"><b>Figure 9-7:</b> The user interface for a loan
+	calculator.</div>
+	</div>
+	<p>The first two functions (<code>doPayment</code> and
+	<code>doBalance</code>)</p>
+	<ol>
+		<li>take no parameters</li>
+		<li>are called from an <code>onclick</code> attribute</li>
+		<li>get input from the user</li>
+		<li>call the <code>computePayment</code> or the
+		<code>computeBalance</code> function</li>
+		<li>display a result to the user</li>
+	</ol>
+	<p>The <code>computePayment</code> function computes and returns the
+	monthly payment for a loan with a fixed annual interest rate. The
+	formula for computing a loan payment is</p>
+	<div class="blockExpr">
+		<var>p</var> =
+		<div><var>ar</var><hr> 1 − (1 + <var>r</var>)<sup>−<var>n</var></sup> </div>
+	</div>
+	<p>where <var>p</var> is the payment per period, <var>a</var> is the
+	loan amount, <var>r</var> is the interest rate <strong>per
+	period</strong>, and <var>n</var> is the total number of
+	periods <strong>throughout the life of the loan</strong>.</p>
+	<p>The <code>computeBalance</code> function computes and returns the
+	balance for a loan with a fixed annual interest rate. The formula
+	for computing the balance of a loan after <var>d</var> payments have
+	been made is</p>
+	<div class="blockExpr">
+		<var>b</var> =
+		<var>a</var> (1 + <var>r</var>)<sup><var>d</var></sup> −
+		<div> <var>p</var> ((1 + <var>r</var>)<sup><var>d</var></sup> − 1) <hr><var>r</var></div>
+	</div>
+	<p>where <var>b</var> is the balance or payoff amount, <var>a</var>
+	is the loan amount, <var>r</var> is the interest rate <strong>per
+	period</strong>, <var>p</var> is the payment per period, and
+	<var>d</var> is the number of payments <strong>paid to date</strong>.</p>
+	</li>
+</ol>
+
+
+<p class="fine">Copyright © 2017 by Rex A. Barzee.&nbsp; All rights
+reserved.&nbsp; Except as permitted under the Copyright Act of 1976, no
+part of this publication may be reproduced, stored in a retrieval
+system, or transmitted, in any form or by any means, electronic,
+mechanical, photocopying, recording, or otherwise, without the prior
+written permission of the author.</p>
+
+<p class="fine">The author and publisher of this book have used their
+best efforts in preparing this book, and the information contained in
+this book is believed to be reliable.&nbsp; These efforts include the
+development, research, and testing of the theories and computer programs
+in this book to determine their correctness.&nbsp; However, because of
+the possibility of human or mechanical error, the author and publisher
+make no warranty of any kind, expressed or implied, with regard to
+these programs or the documentation or information contained in this
+book.&nbsp; The author and publisher shall not be liable in any event
+for incidental or consequential damages in connection with or arising
+out of the furnishing, performance, or use of these programs.</p>
+</div>
+
+</body></html>

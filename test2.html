@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>Test 2</title>
+    <script>
+        /* Input: take two numbers as input from user
+         * Processing: determine wether the numbers satisfy conditions condtions are both numbers are greater than 5 or their sum is  greater than 20
+         * Output: display true or false
+         */
+
+        function test(){
+            
+            let x = 2, y = 6, z = 5;
+            let result = (x > 5 ^ !(y == 7 || z == 3));
+            document.getElementById("output").innerHTML = result;
+        }
+
+
+    </script>
+</head>
+
+<body>
+    Please enter two numbers:
+    <input type="text" id="one" size="5">
+    <input type="text" id="two" size="5">
+    <button type="button" onclick="test()">Click</button>
+    <div id="output"></div>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>Mileage</title>
+        <script>
+            /**
+            * Input: Beginning and ending odometer readings and the amount of gas put in the car (From the HTML form)
+            * Processing: First minus ending odometer reading by beginning odometer reading
+            * Secondly divide sum by amount of gas put in gar in gallons
+            * Output: Miles per gallon (displayed in the HTML)
+            */
+            function calculateMilesPerGallon () {
+                let startingmileage = document.getElementById("odometerBeginningInput").value;
+                let endingmileage = document.getElementById("odometerEndingInput").value
+                let totalMiles = endingmileage - startingmileage
+                let gasVolume = document.getElementById("gasAmount").value;
+                let mileage = totalMiles / gasVolume
+                document.getElementById("outputDiv").innerHTML = "Miles Per Gallon = " + mileage
+            }
+        </script>
+
+    </head>
+    <body>
+        <label for="odometerBeginningInput">Starting Odometer Reading</label>
+        <input type="number" id="odometerBeginningInput" /> 
+<br><br>
+        <label for="odometerEndingInput">Ending Odometer Reading</label>
+        <input type="number" id="odometerEndingInput" /> 
+<br><br>
+        <label for="gasAmount">Gasoline put in Tank</label>
+        <input type="number" id="gasAmount" /> 
+<br><br>
+        <button type="button" onclick = calculateMilesPerGallon()>Convert Miles Per Gallon</button>
+<br><br>
+        <div id=outputDiv>
+            
+        </div>
+        
+    </body>
+</html>

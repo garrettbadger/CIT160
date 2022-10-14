@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>Footwear</title>
+        <script>
+            /**
+            * Input: user enters the weather type
+            * Processing: processes user input and assigns results with matching footwear
+            * Output: Displays the footwear type for current weather type (in the html)
+            */
+            function footWear(){
+                let weather = document.getElementById('weatherType').value
+                let footwear;
+                if (weather == "hot") {
+                        footwear = 'Sandals';
+                }
+                    else if (weather == 'rain') {
+                        footwear = 'Galoshes';
+                    }
+                    else if (weather == 'snow'){
+                        footwear = 'Boots';
+                    }
+                    else {
+                        footwear = 'Shoes';
+                    }
+                
+
+                document.getElementById('outputDiv').innerHTML = footwear;
+
+            }
+
+
+            
+        </script>
+
+    </head>
+    <body>
+        <label for="weatherType">Current Weather: </label>
+        <input type="text" id="weatherType"/> 
+        <button type="button" onclick="footWear()">Footwear</button>
+        <div id=outputDiv>
+           
+        </div>
+        
+    </body>
+</html>

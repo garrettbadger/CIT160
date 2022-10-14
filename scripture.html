@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>Applied Scripture</title>
+        <script>
+            function applyScripture() {
+                let name = document.getElementById('nameInputBox').value;
+                let scripture = "And now, O my son " + name + ", behold, thou are in thy youth, " + 
+                " and therefore, I beseech of thee that thou wilt hear my words and learn of me; " + 
+                " for I do know that whosoever shall put their trust in God shall be supported in their trials, " + 
+                " and their troubles, and their afflictions, and shall be lifted up at the last day.";
+
+                document.getElementById('outputDiv').innerHTML = scripture;
+
+            }
+        </script>
+    </head>
+    <body>
+        Please enter your name: <input type="text" id="nameInputBox">
+        <button type="button" onclick="applyScripture()">Verse</button>
+        <div id="outputDiv"></div>
+    </body>
+</html>

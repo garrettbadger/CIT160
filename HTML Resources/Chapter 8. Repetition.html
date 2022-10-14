@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<!-- saved from url=(0096)https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/repetition.htm -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Rex A. Barzee">
+<title>Chapter 8. Repetition</title>
+<link rel="stylesheet" type="text/css" href="./Chapter 8. Repetition_files/ebook.css">
+<script src="./Chapter 8. Repetition_files/interact.js.download"></script>
+<script src="./Chapter 8. Repetition_files/repetition.js.download"></script>
+</head>
+
+<body id="ch8repetition" onload="rep.prepare()"><div>
+<h2>Chapter 8. Repetition</h2>
+<div class="pagenum" id="page109">109</div>
+
+<p>A computer programmer can cause a computer to repeat a series of
+statements by writing a loop in a computer program. Every loop includes
+a boolean condition. Each time the computer needs to decide if it should
+repeat the statements inside a loop, the computer evaluates the
+loop’s boolean condition. If the condition evaluates to true, then
+the computer repeats the statements inside the loop. If the condition
+evaluates to false, the computer does not repeat the statements inside
+the loop but instead continues executing the program starting with the
+statements after the loop.</p>
+
+<h3 id="ch8outcomes">Chapter Outcomes</h3>
+<p>By the end of this chapter, you will:</p>
+<ul>
+	<li>Be able to distinguish between pre-test and post-test loops and
+	between counting and sentinel controlled loops.</li>
+	<li>Know when to use a pre-test or post-test loop and when to use a
+	counting or sentinel controlled loop.</li>
+	<li>Be able to read and write <code>while</code>, <code>for</code>,
+	and <code>do-while</code> loops that cause a computer to repeat a
+	group of statements.</li>
+	<li>Know what the keyword <code>break</code> inside a loop causes a
+	computer to do.</li>
+</ul>
+
+<h3 id="ch8preVsPost">Pre-test and Post-test Loops</h3>
+<p>Loops can be categorized according to where the boolean condition is
+located. A <dfn id="ch8pretest">pre-test loop</dfn> has the condition
+at the top of the loop. It is known as a pre-test loop because the
+condition is evaluated <em>before</em> (pre) the computer executes the
+statements inside the loop. A <dfn id="ch8posttest">post-test
+loop</dfn> has the condition at the bottom of the loop. It is
+called a post-test loop because the condition is evaluated <em>after</em>
+(post) the statements inside the loop are executed.</p>
+
+<p>With a pre-test loop, the statements inside the loop may never be
+executed. This is because when the computer encounters the loop, the
+first thing the computer will do is to evaluate the loop’s
+condition. If the condition evaluates to false, then the computer will
+not execute the statements inside the loop.</p>
+
+<p>With a post-test loop, the statements inside the loop will always be
+executed at least once because when the computer encounters the loop, it
+will first execute the statements inside the loop, and then it will
+evaluate the loop’s condition.</p>
+
+<p>Pre-test loops are used much more frequently than post-test
+loops. In fact all post-test loops can be rewritten as pre-test
+loops, so post-test loops are not strictly necessary in a programming
+language, but they are sometimes convenient to use.</p>
+
+<div class="pagenum" id="page110">110</div>
+<h3 id="ch8countVsSentinel">Counting and Sentinel Controlled Loops</h3>
+<p>Loops can also be categorized by what is in their condition. A
+<dfn>counting</dfn> loop causes the computer to count from a start value
+to an end value. A counting loop’s condition is a simple
+check to see if the counting variable has reached the end value. A
+<dfn>sentinel controlled</dfn> loop causes the computer to repeat
+statements until some event occurs or the computer encounters some
+sentinel value. A sentinel controlled loop’s condition
+checks for the occurrence of that event or that sentinel value.</p>
+
+<h3 id="ch8ctrl">Repetition Control Structures</h3>
+<p>JavaScript has four different ways to write a repetition control
+structure to cause a computer to repeat statements. The four ways are:
+<code>while</code>, <code>for</code>, <code>for-in</code>, and
+<code>do-while</code>. The <code>while</code>,
+<code>for</code>, and <code>for-in</code> loops are pre-test loops.
+The <code>do-while</code> loop is a post-test loop. The
+<code>while</code>, <code>for</code>, and <code>do-while</code> loops
+all have a condition and repeat the statements inside of them while the
+condition is true. The <code>for-in</code> loop repeats the statements
+inside the loop once for each attribute in an object (see
+<a target="_blank" href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/objects.htm">chapter&nbsp;11</a>).</p>
+
+<div class="pagenum" id="page111">111</div>
+<h3 id="ch8while">while</h3>
+Use a <code>while</code> loop when:
+<ul>
+	<li>You need a simple counting loop; or</li>
+
+	<li>You cannot use a simple counting loop, so you must use a
+	sentinel controlled loop, the sentinel must be checked before
+	executing the statements inside the loop.</li>
+</ul>
+
+<h4>Template</h4>
+<pre class="template">    while (<var>condition</var>) {
+        <var>statements</var>;
+    }</pre>
+
+<p><a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/repetition.htm#figWhile">Figure&nbsp;8-1</a> shows a <code>while</code>
+loop and the order in which the computer executes its parts. The
+computer does the following when it executes that while loop:</p>
+<ol>
+	<li>reserve space in main memory for a variable named <var>i</var>
+	and store the value 1 into it</li>
+	<li>test if <var>i</var> is less than 3, which is true</li>
+	<li>because <var>i</var> is less than 3, execute the statements in
+	the body of the <code>while</code> loop
+	<ol>
+		<li>open a popup window that contains the number 1 and wait for
+		the user to click OK in the popup window</li>
+		<li>add 1 to <var>i</var> so that its new value is 2</li>
+	</ol></li>
+	<li>test if <var>i</var> is less than 3, which is true</li>
+	<li>because <var>i</var> is less than 3, execute the statements in
+	the body of the <code>while</code> loop
+	<ol>
+		<li>open a popup window that contains the number 2 and wait for
+		the user to click OK in the popup window</li>
+		<li>add 1 to <var>i</var> so that its new value is 3</li>
+	</ol></li>
+	<li>test if <var>i</var> is less than 3, which is false</li>
+	<li>because <var>i</var> is not less than 3, skip the statements
+	that are in the body of the loop and execute the statements
+	that are written after the body of the loop</li>
+</ol>
+
+<div class="figCode right" id="figWhile" style="width:20em">
+<img style="width:11em" src="./Chapter 8. Repetition_files/while.gif" alt="An example while loop and the order that the computer executes its parts" title="An example while loop and the order that the computer executes its parts">
+<table class="check inline"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th>1</th></tr>
+	<tr><th>2</th></tr>
+	<tr><th>3</th></tr>
+</tbody></table>
+<div><b>Figure 8-1:</b> An example <code>while</code> loop and the order
+that the computer executes its parts.</div>
+</div>
+<div class="clear"></div>
+
+<!--
+<h4>Example 1</h4>
+<pre><span id="ch8whileL1">    let i = 1;</span>
+<span id="ch8whileL2">    while (i &lt; 3) {</span>
+        // Statements to be repeated go here.
+<span id="ch8whileL3">        alert(i);</span>
+<span id="ch8whileL4">        i++;</span>
+<span id="ch8whileL5">    }</span>
+<span id="ch8whileL6">    alert('Done');</span></pre>
+<span id="ch8whileLEnd"></span>
+<button type="button" id="ch8whileLRun" title="Run" onclick="act.runClick('ch8whileL')" disabled>&#x25ba;</button>
+<button type="button" id="ch8whileLStep" title="Step" onclick="act.stepClick('ch8whileL')" disabled><b>|</b>&#x25ba;<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch8whileLI"></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+-->
+
+<div class="pagenum" id="page112">112</div>
+<h3 id="ch8for">for</h3>
+<p>The <code>for</code> loop is a shortened way of writing
+a counting <code>while</code> loop. Use a <code>for</code> loop
+when:</p>
+<ul>
+	<li>You need a simple counting loop.</li>
+</ul>
+
+<h4>Template</h4>
+<pre class="template">    for (<span class="opt"><var>initialization</var></span>;  <span class="opt"><var>condition</var></span>;  <span class="opt"><var>update</var></span>) {
+        <var>statements</var>;
+    }</pre>
+
+<p>Within the parentheses of a <code>for</code> loop there must always
+be three statements separated by two semicolons. The three
+statements are:</p>
+<ol>
+	<li>The initialization statement which is executed only once at the
+	beginning of the loop.</li>
+
+	<li>The condition that the computer checks to see if it should
+	continue to execute the statements inside the body of the
+	loop. The computer checks this condition after the
+	initialization statement and each time at the beginning of the
+	loop.</li>
+
+	<li>The update statement that the computer executes each time
+	through the loop as if it were written as the last statement in the
+	body of the loop.</li>
+</ol>
+
+<p><a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/repetition.htm#figFor">Figure&nbsp;8-2</a> shows a <code>for</code> loop
+and the order in which the computer executes the statements in the
+parentheses and the body of the loop. This is the order in which the
+computer executes the statements in figure&nbsp;8-2:</p>
+<ol>
+	<li>reserve space in main memory for a variable named <var>i</var>
+	and store the value 1 into it</li>
+	<li>test if <var>i</var> is less than 3, which is true</li>
+	<li>because <var>i</var> is less than 3, execute the statement in
+	the body of the <code>for</code> loop
+	<ol>
+		<li>open a popup window that contains the number 1 and wait for
+		the user to click OK in the popup window</li>
+	</ol></li>
+	<li>add 1 to <var>i</var> so that its new value is 2</li>
+	<li>test if <var>i</var> is less than 3, which is true</li>
+	<li>because <var>i</var> is less than 3, execute the statement in
+	the body of the <code>for</code> loop
+	<ol>
+		<li>open a popup window that contains the number 2 and wait for
+		the user to click OK in the popup window</li>
+	</ol></li>
+	<li>add 1 to <var>i</var> so that its new value is 3</li>
+	<li>test if <var>i</var> is less than 3, which is false</li>
+	<li>because <var>i</var> is not less than 3, skip the statement
+	that is in the body of the loop and execute the statements
+	that are written after the body of the loop</li>
+</ol>
+
+<div class="figCode right" id="figFor" style="width:29em">
+<img style="width:21em" src="./Chapter 8. Repetition_files/for.gif" alt="A for loop and the order that the computer executes its parts" title="A for loop and the order that the computer executes its parts">
+<table class="check inline"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th>1</th></tr>
+	<tr><th>2</th></tr>
+	<tr><th>3</th></tr>
+</tbody></table>
+<div><b>Figure 8-2:</b> A <code>for</code> loop and the order that the
+computer executes its parts.</div>
+</div>
+<div class="clear"></div>
+
+<!--
+<h4>Example 2</h4>
+<pre>    for (<span id="ch8forL1a">let i = 1;</span>  <span id="ch8forL1b">i &lt; 3;</span>  <span id="ch8forL1c">i++</span>) {
+        // Statements to be repeated go here.
+<span id="ch8forL2">        alert(i);</span>
+<span id="ch8forL3">    }</span>
+<span id="ch8forL4">    alert('Done');</span></pre>
+<span id="ch8forLEnd"></span>
+<button type="button" id="ch8forLRun" title="Run" onclick="act.runClick('ch8forL')" disabled>&#x25ba;</button>
+<button type="button" id="ch8forLStep" title="Step" onclick="act.stepClick('ch8forL')" disabled><b>|</b>&#x25ba;<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch8forLI"></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+-->
+
+<p>Within the parentheses of a <code>for</code> loop there must always
+be three statements separated by two semicolons. However, you may leave
+any or all of the statements empty, but you must always include the two
+semicolons as shown in example&nbsp;1.</p>
+
+<h4>Example 1</h4>
+<pre><span id="ch8part1">    let i = parseInt(document.getElementById('startInputBox').value);</span>
+    for (<span id="ch8part2a"> ;</span>  <span id="ch8part2b">i &lt;= 5;</span>  <span id="ch8part2c">i++</span>) {
+        // Statements to be repeated go here.
+<span id="ch8part3">        alert(i);</span>
+<span id="ch8part4">    }</span>
+<span id="ch8part5">    alert('Done');</span></pre>
+<span id="ch8partEnd"></span>
+<button type="button" id="ch8partRun" title="Run" onclick="act.runClick(&#39;ch8part&#39;)">►</button>
+<button type="button" id="ch8partStep" title="Step" onclick="act.stepClick(&#39;ch8part&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch8partI">4</th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page113">113</div>
+<h3 id="ch8forIn">For In Loop</h3>
+<p>The <code>for-in</code> loop is a special case of the
+<code>for</code> loop. The <code>for-in</code> loop causes the
+statements inside of it to be repeated once for each attribute in an
+object (see <a target="_blank" href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/objects.htm">chapter&nbsp;11</a>). Use a
+<code>for-in</code> loop when:</p>
+<ul>
+	<li>The statements in the loop must be repeated once for each
+	element in an object.</li>
+</ul>
+
+<h4>Template</h4>
+<pre class="template">    for (<var>variable</var> in <var>object</var>) {
+        <var>statements</var>;
+    }</pre>
+
+<h4>Example 2</h4>
+<pre>    let text = "";
+    for (let part in document) {
+        // Statements to be repeated go here.
+        text += part + ": " + document[part] + "&lt;br&gt;";
+    }
+    document.getElementById('outputDiv').value = text;</pre>
+
+<div class="pagenum" id="page114">114</div>
+<h3 id="ch8doWhile">do while</h3>
+<p>The <code>do-while</code> loop is the only post-test loop in
+JavaScript. The other three loops:&nbsp; <code>while</code>,
+<code>for</code>, and <code>for-in</code> are pre-test loops. Use a
+<code>do-while</code> loop when:</p>
+<ul>
+	<li>You can’t use a simple counting loop, so you must use a
+	sentinel controlled loop; and</li>
+
+	<li>The statements inside the loop must be executed before checking
+	the sentinel.</li>
+</ul>
+
+<h4>Template</h4>
+<pre class="template">    do {
+        <var>statements</var>;
+    } while (<var>condition</var>);</pre>
+
+<p><a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/repetition.htm#figDoWhile">Figure&nbsp;8-3</a> shows an example
+<code>do-while</code> loop and the order in which the computer executes
+its parts. The computer executes the statements in figure&nbsp;8-3 in
+this order:</p>
+<ol>
+	<li>reserve space in main memory for a variable named <var>i</var>
+	and store the value 1 into it</li>
+	<li>execute the statements in the body of the <code>do-while</code>
+	loop
+	<ol>
+		<li>open a popup window that contains the number 1 and wait for
+		the user to click OK in the popup window</li>
+		<li>add 1 to <var>i</var> so that its new value is 2</li>
+	</ol></li>
+	<li>test if <var>i</var> is less than 3, which is true</li>
+	<li>because <var>i</var> is less than 3, execute the statements in
+	the body of the <code>do-while</code> loop again
+	<ol>
+		<li>open a popup window that contains the number 2 and wait for
+		the user to click OK in the popup window</li>
+		<li>add 1 to <var>i</var> so that its new value is 3</li>
+	</ol></li>
+	<li>test if <var>i</var> is less than 3, which is false</li>
+	<li>because <var>i</var> is not less than 3, exit the loop
+	and execute the statements that are written after the body of the
+	loop</li>
+</ol>
+<div class="figCode right" id="figDoWhile" style="width:21em">
+<img style="width:12em" src="./Chapter 8. Repetition_files/doWhile.gif" alt="An example do-while loop and the order that the computer executes its parts" title="An example do-while loop and the order that the computer executes its parts">
+<table class="check inline"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th>1</th></tr>
+	<tr><th>2</th></tr>
+	<tr><th>3</th></tr>
+</tbody></table>
+<div><b>Figure 8-3:</b> An example <code>do-while</code> loop and the
+order that the computer executes its parts.</div>
+</div>
+<div class="clear"></div>
+
+<div class="pagenum" id="page115">115</div>
+<p>Figure&nbsp;8-3 shows the difference between a pre-test and a
+post-test loop. Recall that <code>do-while</code> loops are always
+post-test loops and that <code>while</code>, <code>for</code>, and
+<code>for-in</code> loops are always pre-test loops. Notice in
+figure&nbsp;8-3 that the test to determine if the <code>do-while</code>
+loop should continue is post or after the body of the loop. A computer
+will always execute the statements in the body of a post-test loop at
+least once because the test to continue the loop is at the bottom and is
+evaluated after the statements in the body are executed. A computer may
+never execute the statements in a pre-test loop (<code>while</code>,
+<code>for</code>, and <code>for-in</code>) because the test is at the
+top of those loops and evaluated before the statements in the body.</p>
+
+<p>Example&nbsp;3 contains a <code>do-while</code> loop that asks a user
+to enter her name and verify that her name is correct. If the user does
+not enter “yes” when the computer asks if her name is
+correct, then the computer will repeat the statements in the body of the
+loop and ask for the user’s name again.</p>
+
+<h4>Example 3</h4>
+<pre><span id="ch8doL1">    let alias, response;</span>
+<span id="ch8doL2">    do {</span>
+        // Get the user's name.
+<span id="ch8doL3">        alias = prompt("What is your name?");</span>
+
+        // Ask the user if that is really her name.
+<span id="ch8doL4">        response = prompt("Are you sure " +
+            alias + " is your name?");</span>
+
+<span id="ch8doL5">    } while (response != "yes");</span>
+
+    // Say hello to the user.
+<span id="ch8doL6">    alert("Hello " + alias);</span></pre>
+<span id="ch8doLEnd"></span>
+<button type="button" id="ch8doLRun" title="Run" onclick="act.runClick(&#39;ch8doL&#39;)" disabled="">►</button>
+<button type="button" id="ch8doLStep" title="Step" onclick="act.stepClick(&#39;ch8doL&#39;)" disabled=""><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<span id="ch8doLDecl"></span>
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>alias</th> <th>response</th></tr>
+</thead><tbody>
+	<tr><th id="ch8doLAlias"><del>"Sarah"</del></th>
+		<th id="ch8doLResponse"><del>"no"</del></th></tr>
+	<tr><th id="ch8doLAlias2">"Heidi"</th>
+		<th id="ch8doLResponse2">"yes"</th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page116">116</div>
+<h3 id="ch8simpleCount">Simple Counting Loop</h3>
+<p>A computer programmer can write a simple counting loop with either a
+<code>while</code> loop or a <code>for</code> loop. For a simple
+counting loop, it is up to the programmer to choose the type of loop
+that makes the most sense to him. However, most experienced programmers
+will use a <code>for</code> loop to write a simple counting loop. Here
+are two counting loops that open a popup window three times.
+Example&nbsp;4 contains a loop that ascends (counts up), and
+example&nbsp;5 contains a loop that descends (counts down).</p>
+
+<h4>Example 4</h4>
+<pre><span id="ch8countW1">    let i = 1;</span>
+<span id="ch8countW2">    while (i &lt;= 3) {</span>
+<span id="ch8countW3">        alert("leaf");</span>
+<span id="ch8countW4">        i++;</span>
+<span id="ch8countW5">    }</span></pre>
+<span id="ch8countWEnd"></span>
+<button type="button" id="ch8countWRun" title="Run" onclick="act.runClick(&#39;ch8countW&#39;)">►</button>
+<button type="button" id="ch8countWStep" title="Step" onclick="act.stepClick(&#39;ch8countW&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch8countWI"></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<h4>Example 5</h4>
+<pre>    for (<span id="ch8countF1a">let i = 3;</span>  <span id="ch8countF1b">i &gt;= 1;</span>  <span id="ch8countF1c">i--</span>) {
+<span id="ch8countF2">        alert("caterpillar");</span>
+<span id="ch8countF3">    }</span></pre>
+<span id="ch8countFEnd"></span>
+<button type="button" id="ch8countFRun" title="Run" onclick="act.runClick(&#39;ch8countF&#39;)">►</button>
+<button type="button" id="ch8countFStep" title="Step" onclick="act.stepClick(&#39;ch8countF&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch8countFI"></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<h3 id="ch8zeroBased">Zero-Based Counting Loop</h3>
+<p>Experienced computer programmers usually write counting loops to
+begin at zero (0) rather than one (1). There are likely many reasons
+programmers start loops at zero; one of them is because array elements
+(see <a target="_blank" href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/arrays.htm">chapter&nbsp;10</a>) are indexed starting with
+zero in C, C++, Java, and JavaScript. Because zero-based counting loops
+are so common and useful in computer programming, an aspiring programmer
+must learn to write them. Below are two examples of zero-based counting
+loops that execute the statements inside the loops exactly 3 times.</p>
+
+<h4>Example 6</h4>
+<pre><span id="ch8zeroW1">    let i = 0;</span>
+<span id="ch8zeroW2">    while (i &lt; 3) {</span>
+<span id="ch8zeroW3">        alert("stem");</span>
+<span id="ch8zeroW4">        i++;</span>
+<span id="ch8zeroW5">    }</span></pre>
+<span id="ch8zeroWEnd"></span>
+<button type="button" id="ch8zeroWRun" title="Run" onclick="act.runClick(&#39;ch8zeroW&#39;)">►</button>
+<button type="button" id="ch8zeroWStep" title="Step" onclick="act.stepClick(&#39;ch8zeroW&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch8zeroWI"></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<h4>Example 7</h4>
+<pre>    for (<span id="ch8zeroF1a">let i = 0;</span>  <span id="ch8zeroF1b">i &lt; 3;</span>  <span id="ch8zeroF1c">i++</span>) {
+<span id="ch8zeroF2">        alert("blossom");</span>
+<span id="ch8zeroF3">    }</span></pre>
+<span id="ch8zeroFEnd"></span>
+<button type="button" id="ch8zeroFRun" title="Run" onclick="act.runClick(&#39;ch8zeroF&#39;)">►</button>
+<button type="button" id="ch8zeroFStep" title="Step" onclick="act.stepClick(&#39;ch8zeroF&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch8zeroFI"></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page117">117</div>
+<h3 id="ch8skip">Skipping Loop</h3>
+<p>Sometimes we want the computer to count by a number other than one (1).
+We can easily write a loop that will count by some other number by using
+the <code>+=</code> or the <code>-=</code> operator instead of the
+<code>++</code> or <code>--</code> operator. Of course, counting in this
+way will cause the computer to skip some numbers.</p>
+
+<h4>Example 8</h4>
+<pre><span id="ch8skipW1">    let i = 12;</span>
+<span id="ch8skipW2">    while (i &gt; 0) {</span>
+<span id="ch8skipW3">        alert("aphid");</span>
+<span id="ch8skipW4">        i -= 4;</span>
+<span id="ch8skipW5">    }</span></pre>
+<span id="ch8skipWEnd"></span>
+<button type="button" id="ch8skipWRun" title="Run" onclick="act.runClick(&#39;ch8skipW&#39;)">►</button>
+<button type="button" id="ch8skipWStep" title="Step" onclick="act.stepClick(&#39;ch8skipW&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch8skipWI"></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<h4>Example 10</h4>
+<pre>    for (<span id="ch8skipF1a">let i = 0;</span>  <span id="ch8skipF1b">i &lt; 5;</span>  <span id="ch8skipF1c">i += 2</span>) {
+<span id="ch8skipF2">        alert("butterfly");</span>
+<span id="ch8skipF3">    }</span></pre>
+<span id="ch8skipFEnd"></span>
+<button type="button" id="ch8skipFRun" title="Run" onclick="act.runClick(&#39;ch8skipF&#39;)">►</button>
+<button type="button" id="ch8skipFStep" title="Step" onclick="act.stepClick(&#39;ch8skipF&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th>Desk Check</th></tr>
+	<tr><th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch8skipFI"></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<h3 id="ch8infinite">Infinite Loop</h3>
+<p>What does the computer do if a programmer forgets to write the update
+part of a loop? For example:</p>
+<pre>    // Warning! This is an infinite loop.
+    let i = 0;
+    while (i &lt; 5) {
+        alert('Hello');
+    }</pre>
+<p>Or this example:</p>
+<pre>    // Warning! This is an infinite loop.
+    for (let i = 0;  i &lt; 5;  ) {
+        alert('Hello');
+    }</pre>
+
+<p>Notice in both examples that <code>i++</code> is missing. In other
+words, after the value of the counting variable <var>i</var> is
+initialized to zero (0), its value is never changed. This means that
+<var>i</var> will start at the value zero, and each time the computer
+evaluates the boolean condition (<code>i &lt; 5</code>), <var>i</var>
+will be less than 5. In other words, the condition will always evaluate
+to true, and the computer will keep repeating the statements inside the
+loop forever or until the user kills the program. This is called an
+<dfn>infinite loop</dfn> and is usually, although not always, a mistake.
+Of course the way to fix both of the above infinite loop examples is to
+add code to change the value of <var>i</var> within the body of the
+loops. For example:</p>
+<div class="pagenum" id="page118">118</div>
+<pre>    let i = 0;
+    while (i &lt; 5) {
+        alert('Hello');
+        i++;
+    }
+
+    for (let i = 0;  i &lt; 5;  i += 2) {
+        alert('Hello');
+    }</pre>
+
+<p>The reason that an experienced programmer normally uses a
+<code>for</code> loop to write a simple counting loop is because if she
+uses a <code>while</code> loop, she may forget to write the update part
+(<code>i++</code>) which will result in an infinite loop. Instead, if
+she uses a <code>for</code> loop, she will not forget to write the
+update part because she will have to write the update part at the same
+time that she writes the initialization and boolean condition parts.</p>
+
+<h3 id="ch8interest">Compound Interest</h3>
+<p>Many bank accounts and other investments pay compound interest on the
+money that is saved in the account. This means each time the bank
+pays interest, the interest is added to the original money, which is
+called the principal. Then the next time the bank pays interest,
+it pays interest on the principal and the previous interest. The
+balance of such an account and its compound interest can easily be
+computed using a loop.</p>
+
+<div class="pagenum" id="page119">119</div>
+<h4>Example 10</h4>
+<pre class="hilite" id="ch8interestProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Compound Interest&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input:
+ *    An amount to invest: balance
+ *    The annual rate of growth: annualRate
+ *    The number of months to invest: numMonths
+ * Processing: Use a loop to compute the balance of an account after
+ *     a bank has paid interest for numMonths number of months.
+ * Output: The balance after numMonths have passed.
+ */</span>
+<span id="ch8fv1"><span class="key">function</span> <span class="func">futureValue</span><span class="token">(</span><span class="token">)</span> <span class="token">{</span></span>
+<span id="ch8fv2">    <span class="key">let</span> balance = parseFloat<span class="token">(</span>document.getElementById<span class="token">(</span><span class="lit">'balance'</span><span class="token">)</span>.value<span class="token">)</span>;</span>
+<span id="ch8fv3">    <span class="key">let</span> annualRate = parseFloat<span class="token">(</span>document.getElementById<span class="token">(</span><span class="lit">'annualRate'</span><span class="token">)</span>.value<span class="token">)</span>;</span>
+<span id="ch8fv4">    <span class="key">let</span> numMonths = parseInt<span class="token">(</span>document.getElementById<span class="token">(</span><span class="lit">'months'</span><span class="token">)</span>.value<span class="token">)</span>;</span>
+<span id="ch8fv5">    <span class="key">let</span> monthlyRate = annualRate / 12;</span>
+
+    <span class="comm">// For each month, compute the interest and add it to the balance.</span>
+    <span class="key">for</span> <span class="token">(</span><span id="ch8fv6a"><span class="key">let</span> month = 1;</span>  <span id="ch8fv6b">month &lt;= numMonths;</span>  <span id="ch8fv6c">month++</span><span class="token">)</span> <span class="token">{</span>
+        <span class="comm">// Compute the interest for a month.</span>
+<span id="ch8fv7">        <span class="key">let</span> interest = balance * monthlyRate;</span>
+
+        <span class="comm">// Round the interest to pennies.</span>
+<span id="ch8fv8">        interest = Math.round<span class="token">(</span>interest * 100<span class="token">)</span> / 100;</span>
+
+        <span class="comm">// Add the interest to the balance.</span>
+<span id="ch8fv9">        balance += interest;</span>
+<span id="ch8fv10">    <span class="token">}</span></span>
+
+    <span class="comm">// Display the resulting balance for the user to see.</span>
+<span id="ch8fv11">    document.getElementById<span class="token">(</span><span class="lit">'output'</span><span class="token">)</span>.innerHTML =
+        <span class="lit">'Your balance after '</span> + numMonths + <span class="lit">' months will be $'</span> + balance;</span>
+<span id="ch8fv12"><span class="token">}</span></span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+<span id="ch8fvEnd"></span>
+&lt;<span class="key">body</span>&gt;
+Balance: <span id="ch8fvInputBal">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="balance"</span> <span class="attr">size="7"</span>&gt;</span>&lt;<span class="key">br</span>&gt;  <span id="ch8fvEnterBal" class="explain"></span>
+Annual growth rate: <span id="ch8fvInputAR">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="annualRate"</span> <span class="attr">size="5"</span>&gt;</span>&lt;<span class="key">br</span>&gt;  <span id="ch8fvEnterAR" class="explain"></span>
+Number of months: <span id="ch8fvInputNum">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="months"</span> <span class="attr">size="3"</span>&gt;</span>&lt;<span class="key">br</span>&gt;  <span id="ch8fvEnterNum" class="explain"></span>
+<span id="ch8fvButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">futureValue</span><span class="token">(</span><span class="token">)</span>"</span>&gt;Future Value&lt;/<span class="key">button</span>&gt;</span>  <span id="ch8fvClick" class="explain"></span>
+<span id="ch8fvDiv">&lt;<span class="key">div</span> <span class="attr">id="output"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>  <span id="ch8fvDisplay" class="explain"></span>
+&lt;/<span class="key">body</span>&gt;
+&lt;/<span class="key">html</span>&gt;</pre>
+<button type="button" id="ch8fvRun" title="Run" onclick="act.runClick(&#39;ch8fv&#39;)">►</button>
+<button type="button" id="ch8fvStep" title="Step" onclick="act.stepClick(&#39;ch8fv&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" onclick="act.toggleHighlight()">Highlight</button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch8interestProg&#39;)"><b>⇗</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="6">Desk Check</th></tr>
+	<tr><th>annualRate</th> <th>monthlyRate</th>
+		<th>numMonths</th> <th>month</th>
+		<th>interest</th> <th>balance</th></tr>
+</thead><tbody>
+	<tr><th id="ch8fvAR">0.06</th> <th id="ch8fvMR"></th>
+		<th id="ch8fvNum">3</th> <th class="empty" id="ch8fvMonth"></th>
+		<th class="empty" id="ch8fvInt"></th> <th id="ch8fvBal">100</th></tr>
+	<tr><th class="empty" colspan="3"></th>
+		<th></th> <th></th> <th class="block"></th></tr>
+	<tr><th class="empty" colspan="3"></th>
+		<th class="block"></th> <th></th> <th></th></tr>
+	<tr><th class="empty" colspan="3"></th>
+		<th></th> <th></th> <th class="block"></th></tr>
+	<tr><th class="empty" colspan="3"></th>
+		<th class="block"></th> <th></th> <th></th></tr>
+	<tr><th class="empty" colspan="3"></th>
+		<th></th> <th></th> <th class="block"></th></tr>
+	<tr><th class="empty" colspan="3"></th>
+		<th class="block"></th> <th></th> <th></th></tr>
+	<tr><th class="empty" colspan="3"></th>
+		<th></th> <th class="empty" colspan="2"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page120">120</div>
+<h3 id="ch8break">break</h3>
+<p>The <code>break</code> keyword causes the computer to end a loop
+prematurely. It is normally used inside an <code>if</code> statement
+that is inside a loop. Here is a code example that reads 10 or fewer
+numbers from a user and computes and outputs the sum of those numbers.
+The code stops reading numbers from the user after 10 numbers or after
+the user enters zero (0), whichever comes first.</p>
+
+<h4>Example 11</h4>
+<pre>// Gets 10 or fewer numbers from the user and adds them together.
+<span id="ch8sum1">function sum10() {</span>
+<span id="ch8sum2">    let sum = 0;</span>
+    for (<span id="ch8sum3a">let i = 0;</span>  <span id="ch8sum3b">i &lt; 10;</span>  <span id="ch8sum3c">i++</span>) {
+<span id="ch8sum4">        let n = parseFloat(prompt('Please enter a number'));</span>
+<span id="ch8sum5">        if (n == 0) {</span>
+<span id="ch8sum6">            break;</span>
+<span id="ch8sum7">        }</span>
+<span id="ch8sum8">        sum += n;</span>
+<span id="ch8sum9">    }</span>
+<span id="ch8sum10">    alert(sum);</span>
+<span id="ch8sum11">}</span></pre>
+<span id="ch8sumEnd"></span>
+<button type="button" id="ch8sumRun" title="Run" onclick="act.runClick(&#39;ch8sum&#39;)">►</button>
+<button type="button" id="ch8sumStep" title="Step" onclick="act.stepClick(&#39;ch8sum&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>i</th> <th>n</th> <th>sum</th></tr>
+</thead><tbody>
+	<tr><th class="empty" id="ch8sumI"></th>
+		<th class="empty" id="ch8sumN"></th>
+		<th id="ch8sumSum"></th></tr>
+	<tr><th></th> <th id="ch8sumN0">17</th> <th></th></tr>
+	<tr><th></th> <th id="ch8sumN1">-3</th> <th></th></tr>
+	<tr><th></th> <th id="ch8sumN2">6</th> <th></th></tr>
+	<tr><th></th> <th id="ch8sumN3">0</th> <th class="empty"></th></tr>
+</tbody></table>
+
+<h3 id="ch8prime">Prime Numbers</h3>
+<p>A prime number is a positive integer that is evenly divisible by only
+two integers, 1 and itself. The numbers 2, 3, 5, and 7 are prime as are
+91, 97, and 101. Prime numbers are very important in computing, for
+example in hash code algorithms and data encryption. There are many well
+know algorithms, including the sieve of Eratosthenes, for determining if
+a number is prime. The following JavaScript code uses a naive and slow
+algorithm to determine if a number is prime, but it works. The code
+below increments a divisor from 1 to the candidate number, inclusive and
+repeatedly divides the candidate by the divisor. Each time the divisor
+divides the candidate without a remainder, then a factor count is
+incremented. After the divisor loop is finished, if the factor count is
+2 (1 and the candidate itself), the candidate is prime, otherwise it is
+not prime.</p>
+
+<div class="pagenum" id="page121">121</div>
+<h4>Example 12</h4>
+<pre class="hilite" id="ch8primeProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Prime Number&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: an integer
+ * Processing: determine if the given integer is prime or not.
+ * Output: __ is prime OR __ is not prime
+ */</span>
+<span id="ch8slow1"><span class="key">function</span> <span class="func">isPrime</span><span class="token">(</span><span class="token">)</span> <span class="token">{</span></span>
+<span id="ch8slow2">    <span class="key">let</span> candidate = parseInt<span class="token">(</span>document.getElementById<span class="token">(</span><span class="lit">'integerBox'</span><span class="token">)</span>.value<span class="token">)</span>;</span>
+
+    <span class="comm">// Count the number of factors that evenly divide candidate.</span>
+<span id="ch8slow3">    <span class="key">let</span> factorCount = 0;</span>
+    <span class="key">for</span> <span class="token">(</span><span id="ch8slow4a"><span class="key">let</span> divisor = 1;</span>  <span id="ch8slow4b">divisor &lt;= candidate;</span>  <span id="ch8slow4c">divisor++</span><span class="token">)</span> <span class="token">{</span>
+<span id="ch8slow5">        <span class="key">let</span> remainder = candidate % divisor;</span>
+<span id="ch8slow6">        <span class="key">if</span> <span class="token">(</span>remainder == 0<span class="token">)</span> <span class="token">{</span></span>
+<span id="ch8slow7">            factorCount++;</span>
+<span id="ch8slow8">        <span class="token">}</span></span>
+<span id="ch8slow9">    <span class="token">}</span></span>
+
+    <span class="comm">// Determine the output and show it to the user.</span>
+<span id="ch8slow10">    <span class="key">let</span> output;</span>
+<span id="ch8slow11">    <span class="key">if</span> <span class="token">(</span>factorCount == 2<span class="token">)</span> <span class="token">{</span></span>
+<span id="ch8slow12">        output = candidate + <span class="lit">' is prime'</span>;</span>
+<span id="ch8slow13">    <span class="token">}</span></span>
+<span id="ch8slow14">    <span class="key">else</span> <span class="token">{</span></span>
+<span id="ch8slow15">        output = candidate + <span class="lit">' is not prime'</span>;</span>
+<span id="ch8slow16">    <span class="token">}</span></span>
+<span id="ch8slow17">    document.getElementById<span class="token">(</span><span class="lit">'outputDiv'</span><span class="token">)</span>.innerHTML = output;</span>
+<span id="ch8slow18"><span class="token">}</span></span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+Please enter an integer: <span id="ch8slowInput">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="integerBox"</span>&gt;</span>&lt;<span class="key">br</span>&gt;  <span id="ch8slowEnter" class="explain"></span>
+<span id="ch8slowButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">isPrime</span><span class="token">(</span><span class="token">)</span>"</span>&gt;Is Prime&lt;/<span class="key">button</span>&gt;</span>  <span id="ch8slowClick" class="explain"></span>
+<span id="ch8slowDiv">&lt;<span class="key">div</span> <span class="attr">id="outputDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>  <span id="ch8slowDisplay" class="explain"></span>
+&lt;/<span class="key">body</span>&gt;
+&lt;/<span class="key">html</span>&gt;</pre>
+<span id="ch8slowEnd"></span>
+<button type="button" id="ch8slowRun" title="Run" onclick="act.runClick(&#39;ch8slow&#39;)">►</button>
+<button type="button" id="ch8slowStep" title="Step" onclick="act.stepClick(&#39;ch8slow&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch8primeProg&#39;)"><b>⇗</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="5">Desk Check</th></tr>
+	<tr><th>candidate</th> <th>divisor</th> <th>remainder</th>
+		<th>factorCount</th> <th style="width:10em">output</th></tr>
+</thead><tbody>
+	<tr><th id="ch8slowCandid">8</th>
+		<th class="empty" id="ch8slowDivisor"></th>
+		<th class="empty" id="ch8slowRemain"></th>
+		<th id="ch8slowFact"></th>
+		<th id="ch8slowOutput"></th></tr>
+	<tr><th class="empty" rowspan="9"></th>
+		<th></th> <th></th>
+		<th></th> <th class="empty"></th></tr>
+	<tr><th></th> <th></th>
+		<th></th> <th class="empty"></th></tr>
+	<tr><th></th> <th></th>
+		<th class="empty block"></th> <th class="empty"></th></tr>
+	<tr><th></th> <th></th>
+		<th></th> <th class="empty"></th></tr>
+	<tr><th></th> <th></th>
+		<th class="empty block"></th> <th class="empty"></th></tr>
+	<tr><th></th> <th></th>
+		<th class="empty block"></th> <th class="empty"></th></tr>
+	<tr><th></th> <th></th>
+		<th class="empty block"></th> <th class="empty"></th></tr>
+	<tr><th></th> <th></th>
+		<th></th> <th class="empty"></th></tr>
+	<tr><th></th> <th class="empty"></th>
+		<th class="empty"></th> <th class="empty"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page122">122</div>
+<p>The algorithm used by the previous code is naive and slow for the
+following reasons.</p>
+
+<ol>
+	<li>Every integer is evenly divisible by both 1 and itself, so there
+	is no reason for the <code>isPrime</code> code to divide by 1
+	and the candidate integer.</li>
+
+	<li>As soon as the computer finds an integer that evenly divides the
+	candidate, the computer knows the candidate is not prime, and the
+	loop should end.</li>
+
+	<li>For all integer candidates, whether they are prime or not prime,
+	there is no reason for the loop to repeat beyond the square root of
+	the candidate.</li>
+</ol>
+
+<p>Example&nbsp;13 contains a different version of the
+<code>isPrime</code> code that includes three improvements.</p>
+
+<ol>
+	<li>The divisor loop begins counting at 2 instead of 1.</li>
+
+	<li>The divisor loop no longer counts factors, but instead uses the
+	keyword <code>break</code> to end as soon as the computer determines
+	the candidate number is not prime.</li>
+
+	<li>In the case of a prime number, the divisor loop does not count
+	all the way to the candidate number but stops at the square root of
+	the candidate number.</li>
+</ol>
+
+<div class="pagenum" id="page123">123</div>
+<h4 id="ch8primeShort">Example 13</h4>
+<pre class="hilite" id="ch8primeShortProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Prime Number&lt;<span class="key">/title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: an integer
+ * Processing: determine if the given integer is prime or not.
+ * Output: __ is prime OR __ is not prime
+ */</span>
+<span id="ch8prime1"><span class="key">function</span> <span class="func">isPrime</span><span class="token">(</span><span class="token">)</span> <span class="token">{</span></span>
+<span id="ch8prime2">    <span class="key">let</span> candidate = parseInt<span class="token">(</span>document.getElementById<span class="token">(</span><span class="lit">'integerBox'</span><span class="token">)</span>.value<span class="token">)</span>;</span>
+<span id="ch8prime3">    <span class="key">let</span> limit = Math.sqrt<span class="token">(</span>candidate<span class="token">)</span>;</span>
+<span id="ch8prime4">    <span class="key">let</span> prime = <span class="key">true</span>;</span>
+
+    <span class="comm">// Find the first integer that evenly divides candidate.</span>
+    <span class="key">for</span> <span class="token">(</span><span id="ch8prime5a"><span class="key">let</span> divisor = 2;</span>  <span id="ch8prime5b">divisor &lt;= limit;</span>  <span id="ch8prime5c">divisor++</span><span class="token">)</span> <span class="token">{</span>
+<span id="ch8prime6">        <span class="key">let</span> remainder = candidate % divisor;</span>
+<span id="ch8prime7">        <span class="key">if</span> <span class="token">(</span>remainder == 0<span class="token">)</span> <span class="token">{</span></span>
+<span id="ch8prime8">            prime = <span class="key">false</span>;</span>
+<span id="ch8prime9">            <span class="key">break</span>;</span>
+<span id="ch8prime10">        <span class="token">}</span></span>
+<span id="ch8prime11">    <span class="token">}</span></span>
+
+    <span class="comm">// Determine the output and show it to the user.</span>
+<span id="ch8prime12">    <span class="key">let</span> output;</span>
+<span id="ch8prime13">    <span class="key">if</span> <span class="token">(</span>prime<span class="token">)</span> <span class="token">{</span></span>
+<span id="ch8prime14">        output = candidate + <span class="lit">' is prime'</span>;</span>
+<span id="ch8prime15">    <span class="token">}</span></span>
+<span id="ch8prime16">    <span class="key">else</span> <span class="token">{</span></span>
+<span id="ch8prime17">        output = candidate + <span class="lit">' is not prime'</span>;</span>
+<span id="ch8prime18">    <span class="token">}</span></span>
+<span id="ch8prime19">    document.getElementById<span class="token">(</span><span class="lit">'outputDiv'</span><span class="token">)</span>.innerHTML = output;</span>
+<span id="ch8prime20"><span class="token">}</span></span>
+<span id="ch8primeEnd">&lt;<span class="key">/script</span>&gt;</span>
+&lt;<span class="key">/head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+Please enter an integer: <span id="ch8primeInput">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="integerBox"</span>&gt;</span>&lt;<span class="key">br</span>&gt;  <span id="ch8primeEnter" class="explain"></span>
+<span id="ch8primeButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">isPrime</span><span class="token">(</span><span class="token">)</span>"</span>&gt;Is Prime&lt;<span class="key">/button</span>&gt;</span>  <span id="ch8primeClick" class="explain"></span>
+<span id="ch8primeDiv">&lt;<span class="key">div</span> <span class="attr">id="outputDiv"</span>&gt;&lt;<span class="key">/div</span>&gt;</span>  <span id="ch8primeDisplay" class="explain"></span>
+&lt;<span class="key">/body</span>&gt;
+&lt;<span class="key">/html</span>&gt;</pre>
+<button type="button" id="ch8primeRun" title="Run" onclick="act.runClick(&#39;ch8prime&#39;)">►</button>
+<button type="button" id="ch8primeStep" title="Step" onclick="act.stepClick(&#39;ch8prime&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.primeerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch8primeShortProg&#39;)"><b>⇗</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="6">Desk Check</th></tr>
+	<tr><th>candidate</th> <th>limit</th>
+		<th>prime</th> <th>divisor</th> <th>remainder</th>
+		<th style="width:10em">output</th></tr>
+</thead><tbody>
+	<tr><th id="ch8primeCandid">8</th>
+		<th id="ch8primeLimit"></th>
+		<th id="ch8primeIsPrime"></th>
+		<th id="ch8primeDivisor"></th>
+		<th id="ch8primeRemain"></th>
+		<th id="ch8primeOutput"></th></tr>
+	<tr><th class="empty" colspan="2"></th>
+		<th></th>
+		<th class="empty" colspan="3"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page124">124</div>
+<h3 id="ch8repString">Repetitive Strings</h3>
+<p>Occasionally we need the computer to produce a string that has a
+repeating pattern. We can use a loop to cause the computer to
+build such strings. Consider the string
+<span class="expr">“0, 2, 4, 6, 8, 10”</span> with the
+simple pattern of counting by twos. Here is code that builds this
+string and displays it to the user.</p>
+
+<h4>Example 14</h4>
+<pre><span id="ch8repStr1">    let output = '0';</span>
+<span id="ch8repStr2">    let i = 2;</span>
+<span id="ch8repStr3">    while (i &lt;= 10) {</span>
+<span id="ch8repStr4">        output += ', ' + i;</span>
+<span id="ch8repStr5">        i += 2;</span>
+<span id="ch8repStr6">    }</span>
+<span id="ch8repStr7">    document.getElementById('displayDiv').innerHTML = output;</span></pre>
+<span id="ch8repStrEnd"></span>
+<button type="button" id="ch8repStrRun" title="Run" onclick="act.runClick(&#39;ch8repStr&#39;)">►</button>
+<button type="button" id="ch8repStrStep" title="Step" onclick="act.stepClick(&#39;ch8repStr&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>i</th> <th style="width:90%">output</th></tr>
+</thead><tbody>
+	<tr><th class="empty" id="ch8repStrI"></th> <th id="ch8repStrOutput"></th></tr>
+	<tr><th></th> <th></th></tr>
+	<tr><th></th> <th></th></tr>
+	<tr><th></th> <th></th></tr>
+	<tr><th></th> <th></th></tr>
+	<tr><th></th> <th></th></tr>
+	<tr><th></th> <th class="empty"></th></tr>
+</tbody></table>
+
+<p>Notice in the above code that the line</p>
+
+<pre>    output += ', ' + i;</pre>
+
+<p>performs string concatenation and not addition. This is because
+the starting value for the variable <var>output</var> is a string
+(<code>'0'</code>) and because the comma and space (<code>', '</code>)
+is also a string. The += operator for string concatenation will append
+new text onto the string each time through the loop so that the value in
+<var>output</var> will grow from <code>'0'</code> to <code>'0, 2'</code>
+to <code>'0, 2, 4'</code> etc.</p>
+
+<div class="pagenum" id="page125">125</div>
+<h3 id="ch8mistakes">Common Mistakes</h3>
+<h4>Writing an infinite loop</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>let i = 0;
+while (i &lt; 3) {
+    alert("Hello");
+}</pre>
+	</div>
+	<div><h5>Correct</h5>
+<pre>let i = 0;
+while (i &lt; 3) {
+    alert("Hello");
+    i++;
+}
+
+// or
+
+for (let i = 0; i &lt; 3; i++) {
+    alert("Hello");
+}</pre>
+	</div>
+</div>
+
+<h4>Writing a loop that never repeats</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>for (let i = 0; i &gt; 3; i++) {
+}</pre>
+	</div>
+	<div><h5>Correct</h5>
+<pre>for (let i = 0; i &lt; 3; i++) {
+}
+
+// or
+
+for (let i= 0; i != 3; i++) {
+}</pre>
+	</div>
+</div>
+
+<h4>Using commas to separate the parts of a for loop</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>for (let i = 0, i &lt; 5, i++) {
+}</pre>
+	</div>
+	<div><h5>Correct</h5>
+<pre>for (let i = 0; i &lt; 5; i++) {
+}</pre>
+	</div>
+</div>
+
+<h4>Forgetting braces when there is more than one statement inside a loop</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>for (let i = 0; i &lt; n; i++)
+    interest = balance * rate;
+    balance += interest;</pre>
+	</div>
+	<div><h5>Correct</h5>
+<pre>for (let i = 0; i &lt; n; i++) {
+    interest = balance * rate;
+    balance += interest;
+}</pre>
+	</div>
+</div>
+
+<h4>Placing a semicolon at the end of a while loop or for loop</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>let i = 0;
+while (i &lt; 3); {
+    alert("Hello");
+    i++;
+}
+
+for (let i = 0; i &lt; 3; i++); {
+    alert("Hello");
+}</pre>
+	</div>
+	<div><h5>Correct</h5>
+<pre>let i = 0;
+while (i &lt; 3) {
+    alert("Hello");
+    i++;
+}
+
+for (let i = 0; i &lt; 3; i++) {
+    alert("Hello");
+}</pre>
+	</div>
+</div>
+
+<div class="pagenum" id="page126">126</div>
+<h3 id="ch8summary">Chapter Summary</h3>
+<ul>
+	<li>Repetition is the control structure that a programmer uses to
+	cause a computer to repeat a group of statements.</li>
+	<li>Loop is the informal term for repetition control structure.</li>
+	<li>In a pre-test loop, the loop continuation condition is written
+	at the top of the loop, which causes a computer to check the
+	condition before the computer executes the statements in the
+	loop.</li>
+	<li>In a post-test loop, the loop continuation condition is written
+	at the bottom of the loop, which causes a computer to execute the
+	statements in the loop before it checks the condition.</li>
+	<li>A counting loop causes a computer to repeat a group of
+	statements until a counting variable reaches a desired number.</li>
+	<li>A sentinel controlled loop causes a computer to repeat a group
+	of statements until an event (the sentinel) occurs.</li>
+	<li>There are four styles of loops in JavaScript: <code>while</code>,
+	<code>for</code>, <code>for-in</code>, and <code>do-while</code>.</li>
+	<li>A <code>while</code> loop is a pre-test loop that is often used
+	as a sentinel controlled loop that causes a computer to repeat the
+	statements inside it while a given condition is true.</li>
+	<li>A <code>for</code> loop is a pre-test loop that is used for
+	writing simple counting loops.</li>
+	<li>A <code>do-while</code> loop is a post-test loop that is often
+	used as a sentinel controlled loop.</li>
+</ul>
+
+<h3 id="ch8revQues">Review Questions</h3>
+<ol class="revQues">
+	<li>Given the following JavaScript code, how many times will the
+	computer display the word "Flowers"?
+<pre>    for (let i = 3;  i &lt; 7;  i++) {
+        alert("Flowers");
+    }</pre></li>
+
+	<li>Given the following JavaScript code, how many times will the
+	computer display the word "Apple"?
+<pre>    let i = 0;
+    let limit = 5;
+    while (i &lt; limit) {
+        alert("Apple");
+        i += 2;
+    }</pre></li>
+
+	<li>Given the following JavaScript code, how many times will the
+	computer display the word "Goodbye"?
+<pre>    for (let i = 0;  i &gt; 3;  i++) {
+        alert("Goodbye");
+    }</pre></li>
+
+	<li>
+<div class="pagenum" id="page127">127</div>
+	Given the following JavaScript code, how many times will the
+	computer display the word "Snow"?
+<pre>    let i = 0;
+    while (i &lt; 3) {
+        alert("Snow");
+    }</pre></li>
+
+	<li>Write a while loop to count from 1 to 10.</li>
+
+	<li>Write a for loop to count from 1 to 10.</li>
+
+	<li>Write a loop to count by threes from zero to nine. After
+	the loop is finished, your counting variable should hold the value
+	9.</li>
+
+	<li>Write a loop to count backwards from 90 to 81. After the
+	loop is finished, your counting variable should hold the value
+	81.</li>
+
+	<li>Write a loop to count forwards by twos from the value in the
+	variable <code>first</code> to the value in the variable
+	<code>last</code>. Assume the variables <code>first</code> and
+	<code>last</code> already exist and hold values.</li>
+
+	<li>Write a loop to count backwards by twos from the value in the
+	variable <code>last</code> to the value in the variable
+	<code>first</code>. Assume the variables <code>last</code> and
+	<code>first</code> already exist and hold values.</li>
+
+	<li><p>Desk check the following code and then write a sentence
+	describing what the code does.</p>
+
+<pre>function func1() {
+    let c = "";
+ let a = parseInt(document.getElementById('integerBox').value);
+    let b = 100;
+        while (b &gt;= 0) {
+ c += b + "&lt;br&gt;";
+       b -= a;
+             }
+    document.getElementById('outputDiv').innerHTML = c;
+}</pre>
+
+	<table class="check right"><thead>
+		<tr><th colspan="3">Desk Check</th></tr>
+		<tr><th>a</th> <th>b</th>
+			<th style="width:80%">c</th></tr>
+	</thead><tbody>
+		<tr><th>20</th> <th class="empty"></th> <th></th></tr>
+		<tr><th class="empty" rowspan="7"></th> <th></th> <th></th></tr>
+		<tr><th></th> <th></th></tr>
+		<tr><th></th> <th></th></tr>
+		<tr><th></th> <th></th></tr>
+		<tr><th></th> <th></th></tr>
+		<tr><th></th> <th></th></tr>
+		<tr><th></th> <th class="empty"></th></tr>
+	</tbody></table></li>
+
+	<li id="ch8countDown">
+<div class="pagenum" id="page128">128</div>
+	<p>Desk check the following code and then write a sentence
+	describing what the code does. How does this code differ from the
+	code in the previous example? Hint: consider the indentation of the
+	statements in the previous example compared to the indentation of
+	the statements in this example. Also, consider the names of the
+	variables in both examples. Which example is easier to read and desk
+	check?</p>
+
+<pre>function countDown() {
+    let output = "";
+    let skip = parseInt(document.getElementById('integerBox').value);
+    let i = 100;
+    while (i &gt;= 0) {
+        output += i + "&lt;br&gt;";
+        i -= skip;
+    }
+    document.getElementById('outputDiv').innerHTML = output;
+}</pre>
+
+	<table class="check right"><thead>
+		<tr><th colspan="3">Desk Check</th></tr>
+		<tr><th>skip</th> <th>i</th>
+			<th style="width:80%">output</th></tr>
+	</thead><tbody>
+		<tr><th>20</th> <th class="empty"></th> <th></th></tr>
+		<tr><th class="empty" rowspan="7"></th> <th></th> <th></th></tr>
+		<tr><th></th> <th></th></tr>
+		<tr><th></th> <th></th></tr>
+		<tr><th></th> <th></th></tr>
+		<tr><th></th> <th></th></tr>
+		<tr><th></th> <th></th></tr>
+		<tr><th></th> <th class="empty"></th></tr>
+	</tbody></table></li>
+
+	<li><p>Desk check the following code and then write a sentence
+	describing what the code does.</p>
+
+<pre>function func4() {
+      let d = "Please enter an integer.";
+let b = 38;
+    let c;
+  do {
+        c = parseInt(prompt(d));
+      if (c &lt; b) {
+      d = "Too low. Please enter another integer.";
+            }
+      else if (c &gt; b) {
+d = "Too high. Please enter another integer.";
+}
+      } while (c != b);
+  d = c + " is correct!";
+   alert(d);
+}</pre>
+
+	<table class="check right"><thead>
+		<tr><th colspan="3">Desk Check</th></tr>
+		<tr><th>b</th> <th>c</th>
+			<th style="width:80%">d</th></tr>
+	</thead><tbody>
+		<tr><th></th> <th class="empty"></th> <th></th></tr>
+		<tr><th class="empty" rowspan="3"></th> <th>25</th> <th></th></tr>
+		<tr><th>60</th> <th></th></tr>
+		<tr><th>38</th> <th></th></tr>
+	</tbody></table></li>
+
+	<li id="ch8numGuess">
+<div class="pagenum" id="page129">129</div>
+	<p>Desk check the following code and then write a sentence
+	describing what the code does. How does this code differ from the
+	code in the previous example? Hint: consider the indentation of the
+	statements in the previous example compared to the indentation of
+	the statements in this example. Also, consider the names of the
+	variables in both examples. Which example is easier to read and desk
+	check?</p>
+
+<pre>function numberGuessGame() {
+    let message =
+        "I'm thinking of a number between 1 and 100.\n" +
+        "Try to guess it!\n" +
+        "Please enter an integer between 1 and 100.";
+    let answer = 38;
+    let guess;
+    do {
+        guess = parseInt(prompt(message));
+        if (guess &lt; answer) {
+            message = guess +
+            " is too low. Please enter another integer.";
+        }
+        else if (guess &gt; answer) {
+            message = guess +
+            " is too high. Please enter another integer.";
+        }
+    } while (guess != answer);
+    message = guess + " is correct!";
+    alert(message);
+}</pre>
+
+	<table class="check right"><thead>
+		<tr><th colspan="3">Desk Check</th></tr>
+		<tr><th>answer</th> <th>guess</th>
+			<th style="width:70%">message</th></tr>
+	</thead><tbody>
+		<tr><th></th> <th class="empty"></th> <th></th></tr>
+		<tr><th class="empty" rowspan="3"></th> <th>50</th> <th></th></tr>
+		<tr><th>25</th> <th></th></tr>
+		<tr><th>38</th> <th></th></tr>
+	</tbody></table></li>
+</ol>
+
+<div class="pagenum" id="page130">130</div>
+<h3 id="ch8progs">Programming Assignments</h3>
+<ol class="progs">
+	<li>Write a defining table and program that reads an integer
+	<var>n</var> from the keyboard and then displays the word
+	“sunshine” <var>n</var> times in a div.</li>
+
+	<li>Write a defining table and a program that reads a phrase and an
+	integer <var>n</var> from the keyboard and then displays that phrase
+	<var>n</var> times in a div.</li>
+
+	<li>Write a defining table and a program that asks the user for an
+	integer <var>n</var> and then outputs all the integers between 1 and
+	<var>n</var>, inclusive.</li>
+
+	<li>Write a defining table and a program that asks the user for an
+	integer <var>n</var> and then outputs the sum of all the odd integers
+	between 1 and <var>n</var>, inclusive. For example, if a user
+	entered 10, your program would add
+	<span class="expr">1 + 3 + 5 + 7 + 9</span> and output 25. If a user
+	entered 11, your program would add
+	<span class="expr">1 + 3 + 5 + 7 + 9 + 11</span> and output 36.</li>
+
+	<li>Write a defining table and a program to output the five times
+	table from 1 to 12 in this format:<br>
+	5 x 1 = 5<br>
+	5 x 2 = 10<br>
+	…<br>
+	5 x 12 = 60</li>
+
+	<li>Write a defining table and a program to output all powers of 2
+	from 2<sup>0</sup> up to 2<sup>31</sup>, inclusive. In other
+	words, your program should output this series:&nbsp;
+	<span class="expr">1, 2, 4, 8, … 2147483648</span></li>
+
+	<li>Write a defining table and a program that outputs the first 25
+	numbers in this Fibonacci series:&nbsp;
+	<span class="expr">0, 1, 1, 2, 3, 5, 8, … 46368</span></li>
+
+	<li>Rewrite the number guessing game code found in
+	<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/repetition.htm#ch8numGuess">review question&nbsp;14</a> so that it counts the
+	number of guesses the user takes to guess correctly the answer.</li>
+
+	<li>Write a defining table and a program that asks the user for
+	an integer <var>n</var> and then outputs the following table.
+	<table class="list"><tbody>
+		<tr><td>n</td> <td>2*n</td> <td>3*n</td> <td>n*n</td> <td>n*n*n</td></tr>
+		<tr><td>1</td> <td>2</td> <td>3</td> <td>1</td> <td>1</td></tr>
+		<tr><td>2</td> <td>4</td> <td>6</td> <td>4</td> <td>8</td></tr>
+		<tr><td>3</td> <td>6</td> <td>9</td> <td>9</td> <td>27</td></tr>
+		<tr><td>⋮</td> <td>⋮</td> <td>⋮</td>
+			<td>⋮</td> <td>⋮</td></tr>
+		<tr><td><var>n</var></td> <td><var>2n</var></td> <td><var>3n</var></td>
+			<td><var>n</var><sup>2</sup></td> <td><var>n</var><sup>3</sup></td></tr>
+	</tbody></table></li>
+
+	<li class="clear">Write a defining table and a program that builds
+	and displays a 12 by 12 multiplication table.</li>
+
+	<li>
+<div class="pagenum" id="page131">131</div>
+	<div class="figRight" id="figAverage" style="width:15em">
+	<img src="./Chapter 8. Repetition_files/average.png" alt="An HTML document and JavaScript program that computes the average of ten numbers" title="An HTML document and JavaScript program that computes the average of ten numbers">
+	<div><b>Figure 8-4:</b> An HTML document and JavaScript program that
+	computes the average of ten numbers.</div>
+	</div>
+	Write a defining table and a program that allows a user to enter ten
+	numbers and then computes and outputs the average of those numbers.
+	The user interface for your program should look similar to
+	<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/repetition.htm#figAverage">figure&nbsp;8-4</a>. Your program must use a
+	loop to read the ten numbers and compute the sum of those
+	numbers.</li>
+</ol>
+
+<p class="fine">Copyright © 2017 by Rex A. Barzee.&nbsp; All rights
+reserved.&nbsp; Except as permitted under the Copyright Act of 1976, no
+part of this publication may be reproduced, stored in a retrieval
+system, or transmitted, in any form or by any means, electronic,
+mechanical, photocopying, recording, or otherwise, without the prior
+written permission of the author.</p>
+
+<p class="fine">The author and publisher of this book have used their
+best efforts in preparing this book, and the information contained in
+this book is believed to be reliable.&nbsp; These efforts include the
+development, research, and testing of the theories and computer programs
+in this book to determine their correctness.&nbsp; However, because of
+the possibility of human or mechanical error, the author and publisher
+make no warranty of any kind, expressed or implied, with regard to
+these programs or the documentation or information contained in this
+book.&nbsp; The author and publisher shall not be liable in any event
+for incidental or consequential damages in connection with or arising
+out of the furnishing, performance, or use of these programs.</p>
+</div>
+
+</body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    <script>
+        /* Input: the three numbers from the user
+         * Processing: compute all of the numbers divisble by the divisor in the given range
+         * Output: output all of the numbers that satisfied the conditions
+         */
+        function test() {
+
+            text = "";
+            str = parseFloat(document.getElementById('start').value);
+            end = parseFloat(document.getElementById('end').value);
+            div = parseFloat(document.getElementById('divisor').value);
+            for (let i = str; i <= end; i++) {
+                if (i % div == 0) {
+
+                    text += i + " ";
+                }
+                else {
+                    i = i;
+                }
+            }
+            document.getElementById("output").innerHTML = text;
+        }
+    </script>
+</head>
+
+<body>
+    Start: <input type="text" id="start" size="5"><br>
+    End: <input type="text" id="end" size="5"><br>
+    Divisor: <input type="text" id="divisor" size="5"><br>
+    <button type="button" onclick="test()">Click</button>
+    <div id="output"></div>
+</body>
+
+</html>

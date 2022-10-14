@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>Alarm</title>
+        <script>
+            /*
+            * Input: system clock
+            * Processing: determine what day it is and if you can sleep in or not
+            * Output: whether or not you can sleep in today
+            **/
+            function alarm(){
+            var now = new Date();
+            var month = now.getMonth();
+            var dayOfMonth = now.getDate();
+            var dayOfWeek = now.getDay();
+            let sleep;
+            if (month == 0 && dayOfMonth == 1){
+                sleep = "Sleep in."
+            }
+            else if (month == 6 && dayOfMonth == 4){
+                sleep = "Sleep in."
+            }
+            else if (month == 11 && dayOfMonth == 25){
+                sleep = "Sleep in."
+            }
+            else if (dayOfWeek == 0 ^ dayOfWeek == 6){
+                sleep = "Sleep in."
+            }
+            else
+                sleep = "Get up!"
+
+            document.getElementById('outputDiv').innerHTML = sleep;
+            }
+
+            
+
+        </script>
+
+    </head>
+    <body>
+
+        <button type="button" onclick = "alarm()">Do I have to wake up?</button>
+        <div id=outputDiv>
+           
+        </div>
+        
+    </body>
+</html>

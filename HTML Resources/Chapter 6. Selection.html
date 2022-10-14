@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<!-- saved from url=(0095)https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/selection.htm -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Rex A. Barzee">
+<title>Chapter 6. Selection</title>
+<link rel="stylesheet" type="text/css" href="./Chapter 6. Selection_files/ebook.css">
+<script src="./Chapter 6. Selection_files/interact.js.download"></script>
+<script src="./Chapter 6. Selection_files/selection.js.download"></script>
+</head>
+
+<body id="ch6selection" onload="sel.prepare()"><div>
+<h2>Chapter 6. Selection</h2>
+<div class="pagenum" id="page061">61</div>
+
+<p>In order for computer programs to be useful, a computer must be able
+to make decisions. The computer makes decisions by evaluating a
+condition and if the condition is true, selecting one set of statements
+to execute. If the condition evaluates to false, then the computer
+selects a different set of statements to execute. This decision making
+ability is known as <dfn>selection</dfn> because the computer is
+selecting either one group of statements or another group of statements
+to execute. A selection statement is also called an
+<dfn>if statement</dfn> because in most programming languages it starts
+with the keyword <code>if</code>.</p>
+
+<h3 id="ch6outcomes">Chapter Outcomes</h3>
+<p>By the end of this chapter, you will be able to read and write:</p>
+<ul>
+	<li>if statements with a single condition</li>
+	<li>nested if statements</li>
+	<li>a set of if…else if…else statements</li>
+	<li>switch statements which can be used instead of a set of
+	if…else if…else statements</li>
+</ul>
+
+<h3 id="ch6ops">Relational Operators</h3>
+<p>A selection statement always has a <dfn>condition</dfn>, which is the
+test the computer uses to select one set of statements or the other. A
+condition always evaluates to either true or false. Any expression that
+evaluates to either true or false is called a <dfn>boolean</dfn>
+expression named after the British mathematician George Boole. There are
+six JavaScript <dfn>relational operators</dfn>, which test the relation
+between two values and yield only true or false.</p>
+
+<table class="reference"><thead>
+	<tr><th colspan="3">JavaScript Relational Operators</th></tr>
+	<tr><th scope="col">Operator</th>
+		<th scope="col">Name</th>
+		<th scope="col">Example</th></tr>
+</thead><tbody>
+	<tr><th class="code center">&lt;</th>
+		<th>less than</th>
+		<th><code>if (i &lt; 3)</code></th></tr>
+	<tr><th class="code center">&gt;</th>
+		<th>greater than</th>
+		<th><code>if (x &gt; y)</code></th></tr>
+	<tr><th class="code center">&lt;=</th>
+		<th>less than or equal to</th>
+		<th><code>if (row &lt;= end)</code></th></tr>
+	<tr><th class="code center">&gt;=</th>
+		<th>greater than or equal to</th>
+		<th><code>if (age &gt;= 8)</code></th></tr>
+	<tr><th class="code center">==</th>
+		<th>equal to</th>
+		<th><code>if (col == last)</code></th></tr>
+	<tr><th class="code center">!=</th>
+		<th>not equal to</th>
+		<th><code>if (col != last)</code></th></tr>
+</tbody></table>
+
+<p>The relational operators are used inside the condition of selection
+statements. Shown below are the different forms of selection
+statements available in JavaScript.</p>
+
+<div class="pagenum" id="page062">62</div>
+<h3 id="ch6if">if …</h3>
+Use when:
+<ul>
+	<li>A true choice exists and the false choice does not exist</li>
+</ul>
+
+<h4>Template</h4>
+<pre class="template">    if (<var>condition</var>) {
+        <var>statements</var>;
+    }</pre>
+
+<p>When the computer executes the condition, if the condition evaluates
+true, then the computer executes the statements inside the body of the
+<code>if</code> statement. Otherwise the computer skips the
+statements in the body of the <code>if</code> statement.</p>
+
+<p>Figures&nbsp;6-1 and 6-2 contain an example <code>if</code> statement
+and show the order in which the computer will execute the statements in
+that example. Figure&nbsp;6-1 shows that when <var>balance</var> is
+greater than 500, the computer will execute the statements inside the
+body of the <code>if</code> statement. Figure&nbsp;6-2 shows that when
+<var>balance</var> is not greater than 500, the computer will skip the
+statements inside the body of the <code>if</code> statement.</p>
+
+<div class="figCode right" id="figIfTrue" style="width:30em">
+<img src="./Chapter 6. Selection_files/ifTrue.gif" alt="A simple if statement." title="A simple if statement.">
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>balance</th> <th>interest</th></tr>
+</thead><tbody>
+	<tr><th><del>700</del></th> <th>21</th></tr>
+	<tr><th>721</th> <th class="empty"></th></tr>
+</tbody></table>
+<div><b>Figure 6-1:</b> When <var>balance</var> is greater than 500, the
+computer will execute the statements inside the body of the
+<code>if</code> statement.</div>
+</div>
+<div class="clear"></div>
+
+<div class="figCode right" id="figIfFalse" style="width:30em">
+<img src="./Chapter 6. Selection_files/ifFalse.gif" alt="A simple if statement." title="A simple if statement.">
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>balance</th> <th>interest</th></tr>
+</thead><tbody>
+	<tr><th>300</th> <th class="empty"></th></tr>
+</tbody></table>
+<div><b>Figure 6-2:</b> When <var>balance</var> is not greater than 500,
+the computer will skip the statements inside the body of the
+<code>if</code> statement.</div>
+</div>
+<div class="clear"></div>
+
+<div class="pagenum" id="page063">63</div>
+<h3 id="ch6ifElse">if … else …</h3>
+Use when:
+<ul>
+	<li>A true choice exists and a false choice exists</li>
+</ul>
+
+<h4>Template</h4>
+<pre class="template">    if (<var>condition</var>) {
+        <var>statements</var>;
+    }
+    <span class="opt">else {
+        <var>statements</var>;
+    }</span></pre>
+
+<p>When the computer executes the condition, if the condition evaluates
+true, then the computer executes the statements inside the body of the
+<code>if</code> statement and skips the statements in the body of the
+<code>else</code> statement. Otherwise the computer skips the
+statements in the body of the <code>if</code> statement and executes the
+statements in the body of the <code>else</code> statement. The
+<code>else</code> statement is optional as shown in the previous
+section.</p>
+
+<p>Figures&nbsp;6-3 and 6-4 contain an example <code>if</code> and
+<code>else</code> statement and show the order in which the computer
+will execute the statements. Figure&nbsp;6-3 shows that when
+<var>sales</var> is less than or equal to 1000, the computer will
+execute the statements inside the body of the <code>if</code> statement
+and skip the statements in the <code>else</code>. Figure&nbsp;6-4 shows
+that when <var>sales</var> is greater than 1000, the computer will skip
+the statements inside the body of the <code>if</code> statement and
+execute the statements in the <code>else</code>.</p>
+
+<div>
+<div class="figCode left" id="figIfElseTrue" style="width:19em">
+<img src="./Chapter 6. Selection_files/ifElseTrue.gif" alt="An if statement with an else statement." title="An if statement with an else statement.">
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>sales</th> <th>bonus</th> <th>salary</th></tr>
+</thead><tbody>
+	<tr><th>900</th> <th>20</th> <th>110</th></tr>
+</tbody></table>
+<div><b>Figure 6-3:</b> When <var>sales</var> is less than or equal to
+1000, the computer will execute the statements inside the body of the
+<code>if</code> statement and skip the statements in the
+<code>else</code>.</div>
+</div>
+
+<div class="figCode left" id="figIfElseFalse" style="width:19em">
+<img src="./Chapter 6. Selection_files/ifElseFalse.gif" alt="An if statement with an else statement." title="An if statement with an else statement.">
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>sales</th> <th>bonus</th> <th>salary</th></tr>
+</thead><tbody>
+	<tr><th>1250</th> <th>100</th> <th>225</th></tr>
+</tbody></table>
+<div><b>Figure 6-4:</b> When <var>sales</var> is greater than 1000, the
+computer will skip the statements inside the body of the <code>if</code>
+statement and execute the statements in the <code>else</code>.</div>
+</div>
+</div>
+
+<div class="pagenum clear" id="page064">64</div>
+<h3 id="ch6ifElseIf">if … else if … else …</h3>
+Use when:
+<ul>
+	<li>More than two choices exist</li>
+	<li>Each choice is based on different variables or uses an operator
+	other than equals (==)</li>
+</ul>
+
+<h4>Template</h4>
+<pre class="template">    if (<var>condition</var>) {
+        <var>statements</var>;
+    }
+    <span class="opt">else if (<var>condition</var>) {
+        <var>statements</var>;
+    }
+    ⋮
+    else {
+        <var>statements</var>;
+    }</span></pre>
+
+<p>When a group of <code>if</code> statements is connected using
+<code>else</code>, the computer evaluates the conditions one at a time
+until one of them evaluates true. The computer executes the
+statements inside the first <code>if</code> that evaluates true and
+skips all other statements. If none of the conditions evaluates
+true, the computer executes the statements in the last <code>else</code>
+statement only. The last <code>else</code> statement is optional
+as are all the <code>else</code> statements.</p>
+
+<p>Figures&nbsp;6-5, 6-6, and 6-7 contain an example set of
+<code>if</code> … <code>else if</code> … <code>else</code>
+statements and show the order in which the computer will execute those
+statements. Figure&nbsp;6-5 shows that when <var>cost</var> is less than
+100, the computer will execute the statements inside the body of the
+first <code>if</code> statement and skip the statements in the
+<code>else</code> statements. Figure&nbsp;6-6 shows that when
+<var>cost</var> is between 250 and 400, the computer will skip the
+statements inside the body of the first two <code>if</code> statements,
+execute the statements in the body of the third if statement, and then
+skip the last <code>else</code>. Figure&nbsp;6-7 shows that when
+<var>cost</var> is greater than 400, the computer will skip the
+statements inside the bodies of the first three <code>if</code>
+statements and execute the code in the body of the last
+<code>else</code>.</p>
+
+<div class="pagenum" id="page065">65</div>
+<div>
+<div class="figCode left" id="figIfElseIf1" style="width:13em">
+<img src="./Chapter 6. Selection_files/ifElseIf1.gif" alt="A group of if else if statements." title="A group of if else if statements.">
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>cost</th> <th>discount</th></tr>
+</thead><tbody>
+	<tr><th><del>70</del></th> <th>0.10</th></tr>
+	<tr><th>63</th> <th class="empty"></th></tr>
+</tbody></table>
+<div><b>Figure 6-5:</b> When <var>cost</var> is less than 100, the
+computer will execute the statements inside the body of the first
+<code>if</code> statement and skip the statements in the
+<code>else</code> statements.</div>
+</div>
+
+<div class="figCode left" id="figIfElseIf2" style="width:13em">
+<img src="./Chapter 6. Selection_files/ifElseIf2.gif" alt="A group of if else if statements." title="A group of if else if statements.">
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>cost</th> <th>discount</th></tr>
+</thead><tbody>
+	<tr><th><del>300</del></th> <th>0.18</th></tr>
+	<tr><th>246</th> <th class="empty"></th></tr>
+</tbody></table>
+<div><b>Figure 6-6:</b> When <var>cost</var> is between 250 and 400, the
+computer will skip the statements inside the body of the first two
+<code>if</code> statements, execute the statements in the body of the
+third <code>if</code> statement, and then skip the last
+<code>else</code>.</div>
+</div>
+
+<div class="figCode left" id="figIfElseIf3" style="width:13em">
+<img src="./Chapter 6. Selection_files/ifElseIf3.gif" alt="A group of if else if statements." title="A group of if else if statements.">
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>cost</th> <th>discount</th></tr>
+</thead><tbody>
+	<tr><th><del>480</del></th> <th>0.20</th></tr>
+	<tr><th>384</th> <th class="empty"></th></tr>
+</tbody></table>
+<div><b>Figure 6-7:</b> When <var>cost</var> is greater than 400, the
+computer will skip the statements inside the bodies of the first three
+<code>if</code> statements and execute the statements in the body of the
+last <code>else</code>.</div>
+</div>
+</div>
+
+<div class="pagenum" id="page066">66</div>
+<h3 id="ch6else">Power of else</h3>
+<p>Many beginning programmers forget that the keyword <code>else</code>
+can be used by itself without another <code>if</code> statement. For
+example, when writing an <code>if</code> statement that will execute
+different code for males and females, many beginning programmers write
+something like this:</p>
+
+<pre>    if (gender == 'M') {
+        // Code for males goes here.
+    }
+    else if (gender == 'F') {
+        // Code for females goes here.
+    }</pre>
+
+<p>The second <code>if</code> statement, if (gender == 'F'), is
+unnecessary and simply clutters the code and makes more work for the
+computer. Instead, that code example should be written like this:</p>
+
+<pre>    if (gender == 'M') {
+        // Code for males goes here.
+    }
+    else {
+        // Code for females goes here.
+    }</pre>
+
+<p>Notice that the keyword <code>else</code> can be used by itself. When
+used in this way, the equivalent in English is “everything
+else.” Consider this example code that gives a 40% discount to
+minors, no discount to adults, and a 25% discount to senior citizens.</p>
+
+<pre>    let rate;
+    if (age &lt; 18) {
+        // Code for minors goes here.
+        rate = 0.4;
+    }
+    else if (age &lt; 58) {
+        // Code for adults goes here.
+        rate = 0;
+    }
+    else if (age &lt; 100) {
+        // Code for senior citizens goes here.
+        rate = 0.25;
+    }</pre>
+
+<p>In this age example, the third <code>if</code> statement is not only
+unnecessary, it is also awkward. What age should we write in the third
+<code>if</code> statement? At what advanced age should the program stop
+considering someone a senior citizen? There isn’t a good answer to
+this question. Instead, the correct way to write this code is to remove
+the last <code>if</code> statement and allow the <code>else</code>, by
+itself, to mean “everyone else.”</p>
+
+<pre>    let rate;
+    if (age &lt; 18) {
+        // Code for minors goes here.
+        rate = 0.4;
+    }
+    else if (age &lt; 57) {
+        // Code for adults goes here.
+        rate = 0;
+    }
+    else {
+        // Code for senior citizens goes here.
+        rate = 0.25;
+    }</pre>
+
+<div class="pagenum" id="page067">67</div>
+<h3 id="ch6switch">switch</h3>
+Use when:
+<ul>
+	<li>More than two choices exist</li>
+	<li>Each choice is based on the same variable and uses equals (==)</li>
+	<li>Comparison values are integer or string</li>
+</ul>
+
+<h4>Template</h4>
+<pre class="template">    switch (<var>variable</var>) {
+        case <var>constValue1</var>:
+            <var>statements</var>;
+            break;
+        <span class="opt">case <var>constValue2</var>:
+            <var>statements</var>;
+            break;
+        ⋮
+        default:
+            <var>statements</var>;
+            break;</span>
+    }</pre>
+
+<p>A <code>switch</code> statement functions like a group of connected
+<code>if … else if … else</code> statements that all test
+one variable for equality. When the computer executes a
+<code>switch</code> statement, it compares the value of the variable in
+the parentheses with each case one at a time. The computer skips
+statements for the cases that do not equal the value of the variable. It
+executes the statements after the first case that equals the value of
+the variable <em>and</em> continues executing statements in the
+<code>switch</code> until it encounters a <code>break</code> statement
+or the <code>switch</code> ends whichever happens first. If none of the
+cases equals the value of the variable, the computer skips the
+statements in all cases and executes the statements in the
+<code>default</code> case until it encounters a <code>break</code> or
+the <code>switch</code> ends. The <code>default</code> case is
+optional.</p>
+
+<p>Figures&nbsp;6-8 and 6-9 show the order in which the computer will
+execute the statements in a <code>switch</code> statement.
+Figure&nbsp;6-8 shows that when <var>classStanding</var> is 'J', the
+computer will skip the 'F' and 'S' cases and will execute the statements
+in the 'J' case. Then the <code>break</code> keyword will cause the
+computer to jump to the code after the <code>switch</code> statement.
+Figure&nbsp;6-9 shows that when <var>classStanding</var> is not 'F',
+'S', 'J', or 'N', the computer will skip all four of the corresponding
+cases and will execute the statements in the <code>default</code> case.
+Then because of the <code>break</code> keyword, the computer will jump
+to the code after the <code>switch</code> statement.</p>
+
+<div class="pagenum" id="page068">68</div>
+<div class="figCode right" id="figSwitch1" style="width:34em">
+<img src="./Chapter 6. Selection_files/switch1.gif" alt="A switch statement." title="A switch statement.">
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>classStanding</th> <th>registerDate</th></tr>
+</thead><tbody>
+	<tr><th>'J'</th> <th>'Nov 12'</th></tr>
+</tbody></table>
+<div><b>Figure 6-8:</b> When <var>classStanding</var> is 'J', the
+computer will skip the 'F' and 'S' cases and will execute the statements
+in the 'J' case and then jump to the code after the <code>switch</code>
+statement.</div>
+</div>
+<div class="clear"></div>
+
+<div class="pagenum" id="page069">69</div>
+<div class="figCode right" id="figSwitch2" style="width:34em">
+<img src="./Chapter 6. Selection_files/switch2.gif" alt="A switch statement." title="A switch statement.">
+<table class="check right"><thead>
+	<tr><th colspan="2">Desk Check</th></tr>
+	<tr><th>classStanding</th> <th>registerDate</th></tr>
+</thead><tbody>
+	<tr><th>'A'</th> <th>'none'</th></tr>
+</tbody></table>
+<div><b>Figure 6-9:</b> When <var>classStanding</var> is not 'F', 'S',
+'J', or 'N', the computer will skip all four of the corresponding cases,
+execute the statements in the <code>default</code> case, and then jump
+to the code after the <code>switch</code> statement.</div>
+</div>
+
+<h3 id="ch6even">Even Integers</h3>
+<div class="pagenum" id="page070">70</div>
+<p>The easiest way for a computer to determine if an integer is even is
+to divide the number by two, and if the remainder of this division is
+equal to zero, then the integer is even. The modulus operator performs
+integer division and returns the signed remainder of the division. The
+code example below uses the modulus operator to determine if an integer
+is even.</p>
+
+<h4>Example 1</h4>
+<pre class="hilite" id="ch6evenProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Is Even?&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: An integer
+ * Processing: Determine if the integer is even or odd
+ * Output: A message that says the integer is even or odd
+ */</span>
+<span id="ch6isEven1"><span class="key">function</span> <span class="func">isEven</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+    <span class="comm">// Get the user input from a text field and convert it to an integer.</span>
+<span id="ch6isEven2">    <span class="key">let</span> text = document.getElementById<span class="tok">(</span><span class="lit">'inputBox'</span><span class="tok">)</span>.value;</span>
+<span id="ch6isEven3">    <span class="key">let</span> number = parseInt<span class="tok">(</span>text<span class="tok">)</span>;</span>
+
+    <span class="comm">// Choose a message.</span>
+<span id="ch6isEven4">    <span class="key">let</span> message;</span>
+<span id="ch6isEven5">    <span class="key">if</span> <span class="tok">(</span><span class="tok">(</span>number % 2<span class="tok">)</span> == 0<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch6isEven6">        message = number + <span class="lit">" is an even integer"</span>;</span>
+<span id="ch6isEven7">    <span class="tok">}</span></span>
+<span id="ch6isEven8">    <span class="key">else</span> <span class="tok">{</span></span>
+<span id="ch6isEven9">        message = number + <span class="lit">" is an odd integer"</span>;</span>
+<span id="ch6isEven10">    <span class="tok">}</span></span>
+
+    <span class="comm">// Display the message to the user.</span>
+<span id="ch6isEven11">    document.getElementById<span class="tok">(</span><span class="lit">'output'</span><span class="tok">)</span>.innerHTML = message;</span>
+<span id="ch6isEven12"><span class="tok">}</span></span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;                      <span id="ch6isEvenEnter" class="explain"></span>
+Please enter an integer: <span id="ch6isEvenInput">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="inputBox"</span>&gt;</span>
+<span id="ch6isEvenButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">isEven</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Is Even?&lt;/<span class="key">button</span>&gt;</span>
+<span id="ch6isEvenDiv">&lt;<span class="key">div</span> <span class="attr">id="output"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>              <span id="ch6isEvenClick" class="explain"></span>
+&lt;/<span class="key">body</span>&gt;         <span id="ch6isEvenDisplay" class="explain"></span>
+<span id="ch6isEvenEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+<button type="button" id="ch6isEvenRun" title="Run" onclick="act.runClick(&#39;ch6isEven&#39;)">►</button>
+<button type="button" id="ch6isEvenStep" title="Step" onclick="act.stepClick(&#39;ch6isEven&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch6evenProg&#39;)"><b>⇗</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="4">Desk Check</th></tr>
+	<tr><th>text</th> <th>number</th> <th>number % 2</th>
+		<th style="width:50%">message</th></tr>
+</thead><tbody>
+	<tr><th id="ch6isEvenText">"8"</th>
+		<th id="ch6isEvenNumber"></th>
+		<th id="ch6isEvenMod2"></th>
+		<th id="ch6isEvenMessage"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page071">71</div>
+<h3 id="ch6odd">Odd Integers</h3>
+<p>Because the result of the modulus operator is signed, when
+determining if an integer is even or odd the result of the modulus
+operator must always be compared to zero. Comparing the result to one
+will <em>not</em> work for negative, odd integers. Consider this
+JavaScript code and two corresponding desk checks.</p>
+
+<h4>Example 2</h4>
+<pre>    // Wrong! Doesn't work for negative odd integers!
+    if ((number % 2) == 1) {
+        document.getElementById('output').innerHTML = number + ' is odd';
+    }
+    else {
+        document.getElementById('output').innerHTML = number + ' is even';
+    }</pre>
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th> <th>&nbsp;</th>
+		<th colspan="3">Desk Check</th></tr>
+	<tr><th>number</th> <th>number % 2</th> <th>output</th> <th></th>
+		<th>number</th> <th>number % 2</th> <th>output</th></tr>
+</thead><tbody>
+	<tr><th>5</th> <th>1</th> <th>"5 is odd"</th> <th class="empty"></th>
+		<th>−9</th> <th>−1</th> <th>"−9 is even"</th></tr>
+</tbody></table>
+
+<p>Notice that comparing <code>(number % 2) == 1</code> works fine for
+positive integers whether they are even or odd. However, as shown
+in the desk check above, it does <em>not</em> work for negative,
+odd integers. If you need to write code that takes action only if
+an integer is odd, the correct way to write the comparison is with the
+not equal relational operator (<code>!=</code>).</p>
+
+<h4>Example 3</h4>
+<pre>    // Correct check for odd integers
+    if ((number % 2) != 0) {
+        document.getElementById('output').innerHTML = number + ' is odd';
+    }</pre>
+
+<p>Sometimes a programmer will use the bitwise <code>And (&amp;)</code>
+operator to test if an integer is even as shown in the next example.
+Such code works but is a bad solution for at least two reasons.</p>
+<ul>
+	<li>It is not as straight forward as using the modulus operator.</li>
+	<li>It depends on the computer using two’s complement, binary
+	representation for integers. (Admittedly, computers will
+	continue to represent integers using two’s complement for the
+	foreseeable future.)</li>
+</ul>
+
+<h4>Example 4</h4>
+<pre>    // Correct, but poor check for even integers!
+    if ((number &amp; 1) == 0) {
+        document.getElementById('output').innerHTML = number + ' is even';
+    }</pre>
+
+<div class="pagenum" id="page072">72</div>
+<p>Many programmers write a test for even integers using the bitwise
+<code>And</code> operator because it may execute faster than a test
+using the modulus operator. However, the disadvantages of such code,
+almost never justify the very small, possible gain in execution speed,
+especially because most modern compilers will automatically optimize the
+compiled version of the statement using the modulus operator:&nbsp;
+<code>if ((number % 2) == 0)</code> to be the same as using the bitwise
+<code>And</code> operator:&nbsp;
+<code>if ((number &amp; 1) == 0)</code></p>
+
+<h3 id="ch6quadratic">Quadratic Formula</h3>
+<div class="figRight" id="figQuad">
+<img src="./Chapter 6. Selection_files/quadratic.gif" alt="A graph of three quadratic equations">
+<div><b>Figure 6-10:</b> A graph of three quadratic equations.</div>
+</div>
+
+<p>A quadratic equation of the form
+<span class="expr"><var>y = ax</var><sup>2</sup><var> + bx + c</var></span>
+has two solutions, also called roots, that may or may not be distinct
+and that may be real or complex. If you graph a quadratic equation, the
+roots are the locations where the equation crosses the x-axis.
+<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/selection.htm#figQuad">Figure&nbsp;6-10</a> contains the graph of three
+different quadratic equations. Notice that the first equation (on the
+left) crosses the x-axis twice and therefore has two real roots. The
+second equation crosses or touches the x-axis only once and therefore
+has only one distinct real root. The third equation does not cross
+the x-axis and so its two roots are <dfn>complex</dfn> meaning they
+contain the square root of −1. The square root of −1
+does not exist, and mathematicians say it is
+<dfn>imaginary</dfn>.</p>
+
+<p>We can find the roots of a quadratic equation by using the quadratic
+formula:</p>
+
+<div class="blockExpr">
+	<var>x</var> =
+	<div>−<var>b</var> ±
+		√<div><hr><var>b</var><sup>2</sup> − 4<var>ac</var></div>
+	<hr>
+	2<var>a</var>
+	</div>
+</div>
+
+<p>Within the quadratic formula,
+<span class="expr">b<sup>2</sup> − 4ac</span>
+is called the discriminant because it discriminates between equations
+that have two, one, or zero real roots. If the discriminant is positive
+(greater than zero), then the equation has two real roots. If the
+discriminant is zero, then the equation has only one root, and it is a
+real root. If the discriminant is negative (less than zero), then the
+roots include the square root of −1 and are complex.</p>
+
+<div class="pagenum" id="page073">73</div>
+<div class="figRight" id="figRoots" style="width:29em">
+<img src="./Chapter 6. Selection_files/roots.png" alt="The user interface for a program that computes the roots of a quadratic equation">
+<div><b>Figure 6-11:</b> The user interface for a program that computes
+the roots of a quadratic equation.</div>
+</div>
+<p><a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/selection.htm#figRoots">Figure&nbsp;6-11</a> and example&nbsp;5 show a
+program that computes the real roots of a quadratic equation if they
+exist. Notice the <code>if</code> statement in example&nbsp;5 determines
+if the roots exist (are real) or do not exist (are complex).</p>
+
+<h4>Example 5</h4>
+<pre class="hilite" id="ch6quadProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Quadratic Formula&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: Three coefificients from a quadratic equation.
+ * Processing: If they exist, compute the root or roots of the equation
+ * Output:
+ *     The root or roots of the equation or
+ *    "undefined" if they don't exist.
+ */</span>
+<span id="ch6quad1"><span class="key">function</span> <span class="func">quadratic</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+    <span class="comm">// Get three coefficients a, b, and c</span>
+    <span class="comm">// for a quadratic equation from the user.</span>
+<span id="ch6quad2">    <span class="key">let</span> a = parseFloat<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'aInputBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+<span id="ch6quad3">    <span class="key">let</span> b = parseFloat<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'bInputBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+<span id="ch6quad4">    <span class="key">let</span> c = parseFloat<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'cInputBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+
+    <span class="comm">// Compute the root or roots of the quadratic equation if they exist.</span>
+<span id="ch6quad5">    <span class="key">let</span> discr = b * b - 4 * a * c;</span>
+<span id="ch6quad6">    <span class="key">let</span> root1, root2;</span>
+<span id="ch6quad7">    <span class="key">if</span> <span class="tok">(</span>discr &gt;= 0<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch6quad8">        <span class="key">let</span> sq = Math.sqrt<span class="tok">(</span>discr<span class="tok">)</span>;</span>
+<span id="ch6quad9">        root1 = <span class="tok">(</span>-b + sq<span class="tok">)</span> / <span class="tok">(</span>2 * a<span class="tok">)</span>;</span>
+<span id="ch6quad10">        root2 = <span class="tok">(</span>-b - sq<span class="tok">)</span> / <span class="tok">(</span>2 * a<span class="tok">)</span>;</span>
+<span id="ch6quad11">    <span class="tok">}</span></span>
+
+    <span class="comm">// Display the roots to the user.</span>
+<span id="ch6quad12">    document.getElementById<span class="tok">(</span><span class="lit">'output'</span><span class="tok">)</span>.innerHTML = root1 + <span class="lit">' '</span> + root2;</span>
+<span id="ch6quad13"><span class="tok">}</span></span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+y = <span id="ch6quadInputA">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="aInputBox"</span> <span class="attr">size="3"</span>&gt;</span> x&lt;sup&gt;2&lt;/sup&gt; +  <span id="ch6quadEnterA" class="explain"></span>
+    <span id="ch6quadInputB">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="bInputBox"</span> <span class="attr">size="3"</span>&gt;</span> x +  <span id="ch6quadEnterB" class="explain"></span>
+    <span id="ch6quadInputC">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="cInputBox"</span> <span class="attr">size="3"</span>&gt;</span>  <span id="ch6quadEnterC" class="explain"></span>
+<span id="ch6quadButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">quadratic</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Compute Roots&lt;/<span class="key">button</span>&gt;</span>  <span id="ch6quadClick" class="explain"></span>
+<span id="ch6quadDiv">&lt;<span class="key">div</span> <span class="attr">id="output"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>  <span id="ch6quadDisplay" class="explain"></span>
+&lt;/<span class="key">body</span>&gt;
+<span id="ch6quadEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+<button type="button" id="ch6quadRun" title="Run" onclick="act.runClick(&#39;ch6quad&#39;)">►</button>
+<button type="button" id="ch6quadStep" title="Step" onclick="act.stepClick(&#39;ch6quad&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch6quadProg&#39;)"><b>⇗</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="7">Desk Check</th></tr>
+	<tr><th>a</th> <th>b</th> <th>c</th>
+		<th>discr</th> <th>sq</th> <th>root1</th> <th>root2</th></tr>
+</thead><tbody>
+	<tr id="ch6quadRoots"><th id="ch6quadA">1</th>
+		<th id="ch6quadB">−4</th>
+		<th id="ch6quadC">3</th>
+		<th id="ch6quadDiscr"></th>
+		<th id="ch6quadSq"></th>
+		<th id="ch6quadRoot1"></th>
+		<th id="ch6quadRoot2"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page074">74</div>
+<h3 id="ch6nested">Nested If Statements</h3>
+<p>It is often useful to write one <code>if</code> statement inside
+another <code>if</code> statement or inside the <code>else</code> part
+of an <code>if</code> statement. Consider the problem to write a
+program that reads from the keyboard the total weekly sales for a sales
+person and then outputs the sales person’s commission according to
+this table.</p>
+
+<table class="list"><thead>
+	<tr><th>If the sales<br>amount is greater<br>than or equal to</th>
+		<th>And the sales<br>amount is<br>less than</th>
+		<th>Then the<br>commission<br>rate is</th></tr>
+</thead><tbody>
+	<tr class="center"><th>0</th> <th>$300</th> <th>0%</th></tr>
+	<tr class="center"><th>$300</th> <th>$600</th> <th>2.0%</th></tr>
+	<tr class="center"><th>$600</th> <th>$1000</th> <th>2.5%</th></tr>
+	<tr class="center"><th>$1000</th> <th>∞</th> <th>3.0%</th></tr>
+</tbody></table>
+
+<p>This can be easily written using nested <code>if</code> statements as
+shown in the following code example. Notice the <code>if</code>
+statements nested inside the <code>else</code> statements.</p>
+
+<h4>Example 6</h4>
+<pre><span id="ch6nestA1">    let sales = parseFloat(document.getElementById('salesInputBox').value);</span>
+<span id="ch6nestA2">    let rate;</span>
+<span id="ch6nestA3">    if (sales &lt; 300) {</span>
+<span id="ch6nestA4">        rate = 0;</span>
+<span id="ch6nestA5">    }</span>
+<span id="ch6nestA6">    else {</span>
+<span id="ch6nestA7">        if (sales &lt; 600) {</span>
+<span id="ch6nestA8">            rate = 0.02;</span>
+<span id="ch6nestA9">        }</span>
+<span id="ch6nestA10">        else {</span>
+<span id="ch6nestA11">            if (sales &lt; 1000) {</span>
+<span id="ch6nestA12">                rate = 0.025;</span>
+<span id="ch6nestA13">            }</span>
+<span id="ch6nestA14">            else {</span>
+<span id="ch6nestA15">                rate = 0.03;</span>
+<span id="ch6nestA16">            }</span>
+<span id="ch6nestA17">        }</span>
+<span id="ch6nestA18">    }</span>
+<span id="ch6nestA19">    let commission = sales * rate;</span>
+<span id="ch6nestA20">    let output = 'The employee earned ' + commission;</span>
+<span id="ch6nestA21">    document.getElementById('output').innerHTML = output;</span></pre>
+<span id="ch6nestAEnd"></span>
+<button type="button" id="ch6nestARun" title="Run" onclick="act.runClick(&#39;ch6nestA&#39;)">►</button>
+<button type="button" id="ch6nestAStep" title="Step" onclick="act.stepClick(&#39;ch6nestA&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="4">Desk Check</th></tr>
+	<tr><th>sales</th> <th>rate</th>
+		<th>commission</th> <th style="width:50%">output</th></tr>
+</thead><tbody>
+	<tr><th id="ch6nestASales">850</th> <th id="ch6nestARate"></th>
+		<th id="ch6nestAComm"></th> <th id="ch6nestAOutput"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page075">75</div>
+<p>Although the previous example is correct, it can be written in a
+slightly shorter way by combining the <code>else</code> and
+<code>if</code> statements like this.</p>
+
+<h4>Example 7</h4>
+<pre><span id="ch6nestB1">    let sales = parseFloat(document.getElementById('salesInputBox').value);</span>
+<span id="ch6nestB2">    let rate;</span>
+<span id="ch6nestB3">    if (sales &lt; 300) {</span>
+<span id="ch6nestB4">        rate = 0;</span>
+<span id="ch6nestB5">    }</span>
+<span id="ch6nestB6">    else if (sales &lt; 600) {</span>
+<span id="ch6nestB7">        rate = 0.02;</span>
+<span id="ch6nestB8">    }</span>
+<span id="ch6nestB9">    else if (sales &lt; 1000) {</span>
+<span id="ch6nestB10">        rate = 0.025;</span>
+<span id="ch6nestB11">    }</span>
+<span id="ch6nestB12">    else {</span>
+<span id="ch6nestB13">        rate = 0.03;</span>
+<span id="ch6nestB14">    }</span>
+<span id="ch6nestB15">    let commission = sales * rate;</span>
+<span id="ch6nestB16">    let output = 'The employee earned ' + commission;</span>
+<span id="ch6nestB17">    document.getElementById('output').innerHTML = output;</span></pre>
+<span id="ch6nestBEnd"></span>
+<button type="button" id="ch6nestBRun" title="Run" onclick="act.runClick(&#39;ch6nestB&#39;)">►</button>
+<button type="button" id="ch6nestBStep" title="Step" onclick="act.stepClick(&#39;ch6nestB&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="4">Desk Check</th></tr>
+	<tr><th>sales</th> <th>rate</th>
+		<th>commission</th> <th style="width:50%">output</th></tr>
+</thead><tbody>
+	<tr><th id="ch6nestBSales">850</th> <th id="ch6nestBRate"></th>
+		<th id="ch6nestBComm"></th> <th id="ch6nestBOutput"></th></tr>
+</tbody></table>
+
+<p>As another example, consider a sports team that wants to provide
+discounted tickets to students and senior citizens and that wants to
+reward loyal fans that attend multiple games according to this
+table.</p>
+
+<table class="list"><thead>
+	<tr><th>Age</th> <th>Games Attended</th> <th>Ticket Price</th></tr>
+</thead><tbody>
+	<tr><th class="center">0 – 17</th>
+		<th class="center">0 – 5</th>
+		<th class="number">$8.00</th></tr>
+	<tr><th class="center">0 – 17</th>
+		<th class="center">6 – 10</th>
+		<th class="number">$6.00</th></tr>
+	<tr><th class="center">0 – 17</th>
+		<th class="center">11 and up</th>
+		<th class="number">$5.00</th></tr>
+	<tr><th class="center">18 – 54</th>
+		<th class="center">0 – 10</th>
+		<th class="number">$10.00</th></tr>
+	<tr><th class="center">18 – 54</th>
+		<th class="center">11 and up</th>
+		<th class="number">$8.00</th></tr>
+	<tr><th class="center">55 and older</th>
+		<th class="center">0 – 10</th>
+		<th class="number">$8.00</th></tr>
+	<tr><th class="center">55 and older</th>
+		<th class="center">11 and up</th>
+		<th class="number">$6.00</th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page076">76</div>
+<p>This could also be solved using nested <code>if</code> statements as
+shown in the next example.</p>
+
+<h4>Example 8</h4>
+<pre class="hilite" id="ch6TicketProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Ticket Price&lt;/<span class="key">title</span>&gt;
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: A person's age and the number
+ *     of games that person has attended
+ * Processing: Determine the price to charge
+ *     that person for a ticket to a game
+ * Output: The ticket price
+ */</span>
+<span id="ch6ticket1"><span class="key">function</span> <span class="func">ticketPrice</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch6ticket2">    <span class="key">let</span> age = parseInt<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'ageBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+<span id="ch6ticket3">    <span class="key">let</span> gamesAttended = parseInt<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'gamesBox'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+
+<span id="ch6ticket4">    <span class="key">let</span> price;</span>
+<span id="ch6ticket5">    <span class="key">if</span> <span class="tok">(</span>age &lt; 18<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch6ticket6">        <span class="key">if</span> <span class="tok">(</span>gamesAttended &lt; 6<span class="tok">)</span></span>
+<span id="ch6ticket7">            price = 8.0;</span>
+<span id="ch6ticket8">        <span class="key">else</span> <span class="key">if</span> <span class="tok">(</span>gamesAttended &lt; 11<span class="tok">)</span></span>
+<span id="ch6ticket9">            price = 6.0;</span>
+<span id="ch6ticket10">        <span class="key">else</span></span>
+<span id="ch6ticket11">            price = 5.0;</span>
+<span id="ch6ticket12">    <span class="tok">}</span></span>
+<span id="ch6ticket13">    <span class="key">else</span> <span class="key">if</span> <span class="tok">(</span>age &lt; 55<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch6ticket14">        <span class="key">if</span> <span class="tok">(</span>gamesAttended &lt; 11<span class="tok">)</span></span>
+<span id="ch6ticket15">            price = 10.0;</span>
+<span id="ch6ticket16">        <span class="key">else</span></span>
+<span id="ch6ticket17">            price = 8.0;</span>
+<span id="ch6ticket18">    <span class="tok">}</span></span>
+<span id="ch6ticket19">    <span class="key">else</span> <span class="tok">{</span></span>
+<span id="ch6ticket20">        <span class="key">if</span> <span class="tok">(</span>gamesAttended &lt; 11<span class="tok">)</span></span>
+<span id="ch6ticket21">            price = 8.0;</span>
+<span id="ch6ticket22">        <span class="key">else</span></span>
+<span id="ch6ticket23">            price = 6.0;</span>
+<span id="ch6ticket24">    <span class="tok">}</span></span>
+
+<span id="ch6ticket25">    document.getElementById<span class="tok">(</span><span class="lit">'priceDiv'</span><span class="tok">)</span>.innerHTML = price;</span>
+<span id="ch6ticket26"><span class="tok">}</span></span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+Age: <span id="ch6ticketInputAge">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="ageBox"</span> <span class="attr">size="3"</span>&gt;&lt;<span class="key">br</span>&gt;</span>  <span id="ch6ticketEnterAge" class="explain"></span>
+Number of games attended: <span id="ch6ticketInputGames">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="gamesBox"</span> <span class="attr">size="3"</span>&gt;&lt;<span class="key">br</span>&gt;</span>  <span id="ch6ticketEnterGames" class="explain"></span>
+<span id="ch6ticketButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">ticketPrice</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Ticket Price&lt;/<span class="key">button</span>&gt;</span>  <span id="ch6ticketClick" class="explain"></span>
+<span id="ch6ticketDiv">&lt;<span class="key">div</span> <span class="attr">id="priceDiv"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>  <span id="ch6ticketDisplay" class="explain"></span>
+&lt;/<span class="key">body</span>&gt;
+<span id="ch6ticketEnd">&lt;/<span class="key">html</span>&gt;</span></pre>
+<button type="button" id="ch6ticketRun" title="Run" onclick="act.runClick(&#39;ch6ticket&#39;)">►</button>
+<button type="button" id="ch6ticketStep" title="Step" onclick="act.stepClick(&#39;ch6ticket&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch6TicketProg&#39;)"><b>⇗</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>age</th> <th>gamesAttended</th> <th>price</th></tr>
+</thead><tbody>
+	<tr><th id="ch6ticketAge">38</th>
+		<th id="ch6ticketGames">6</th>
+		<th id="ch6ticketPrice"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page077">77</div>
+<p>Sometimes nested <code>if</code> statements can be a little tricky as
+shown in the following example which has two <code>if</code> statements
+but only one <code>else</code> statement. According to the rules of
+JavaScript, an <code>else</code> statement is paired with only one
+<code>if</code> statement. This means that in the example code below, if
+the first condition (x&nbsp;&lt;&nbsp;2) is true and the second
+condition (y&nbsp;&gt;&nbsp;8) is false, the computer will not change
+<var>message</var> to either “Hello” or
+“Goodbye”. In that situation, the computer will display
+“Wave”.</p>
+
+<h4>Example 9</h4>
+<pre><span id="ch6tricky1">    let message = 'Wave';</span>
+<span id="ch6tricky2">    if (x &lt; 2) {</span>
+<span id="ch6tricky3">        if (y &gt; 8) {</span>
+<span id="ch6tricky4">            message = 'Hello';</span>
+<span id="ch6tricky5">        }</span>
+<span id="ch6tricky6">    }</span>
+<span id="ch6tricky7">    else {</span>
+<span id="ch6tricky8">        message = 'Goodbye';</span>
+<span id="ch6tricky9">    }</span>
+<span id="ch6tricky10">    document.getElementById('output').innerHTML = message;</span></pre>
+<span id="ch6trickyEnd"></span>
+<button type="button" id="ch6trickyRun" title="Run" onclick="act.runClick(&#39;ch6tricky&#39;)">►</button>
+<button type="button" id="ch6trickyStep" title="Step" onclick="act.stepClick(&#39;ch6tricky&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>x</th> <th>y</th> <th>message</th></tr>
+</thead><tbody>
+	<tr><th id="ch6trickyX">0</th>
+		<th id="ch6trickyY">6</th>
+		<th id="ch6trickyMsg"></th></tr>
+</tbody></table>
+
+<p>Figures&nbsp;6-12, 6-13, and 6-14 show the order in which the computer
+will execute the statements from example&nbsp;13. Figure&nbsp;6-12 shows
+that when <var>x</var> is less than 2 and <var>y</var> is greater than
+8, the computer will change <var>message</var> to “Hello”.
+Figure&nbsp;6-13 shows that when <var>x</var> is not less than 2, the
+computer will change <var>message</var> to “Goodbye”.
+Figure&nbsp;6-14 shows that when <var>x</var> is less than 2 and
+<var>y</var> is not greater than 8, the computer will not change
+<var>message</var> to either “Hello” or
+“Goodbye”. In that situation, <var>message</var> will remain
+“Wave” and the computer will display “Wave”.</p>
+
+<div class="figCode right" id="figUnmatchedA" style="width:32em">
+<img src="./Chapter 6. Selection_files/unmatchedIf1.gif" alt="Code with two if statements and only one else block." title="Code with two if statements and only one else block.">
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>x</th> <th>y</th> <th>message</th></tr>
+</thead><tbody>
+	<tr><th>1</th> <th>9</th> <th><del>"Wave"</del></th></tr>
+	<tr><th class="empty" colspan="2"></th> <th>"Hello"</th></tr>
+</tbody></table>
+<div><b>Figure 6-12:</b> When <var>x</var> is less than 2 and
+<var>y</var> is greater than 8, the computer will change
+<var>message</var> to “Hello”.</div>
+</div>
+<div class="clear"></div>
+
+<div class="pagenum" id="page078">78</div>
+<div class="figCode right" id="figUnmatchedB" style="width:32em">
+<img src="./Chapter 6. Selection_files/unmatchedIf2.gif" alt="Code with two if statements and only one else block." title="Code with two if statements and only one else block.">
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>x</th> <th>y</th> <th>message</th></tr>
+</thead><tbody>
+	<tr><th>7</th> <th>9</th> <th><del>"Wave"</del></th></tr>
+	<tr><th class="empty" colspan="2"></th> <th>"Goodbye"</th></tr>
+</tbody></table>
+<div><b>Figure 6-13:</b> When <var>x</var> is not less than 2, the
+computer will execute the code in the matching else block which will
+change <var>message</var> to “Goodbye”.</div>
+</div>
+<div class="clear"></div>
+
+<div class="figCode right" id="figUnmatchedC" style="width:32em">
+<img src="./Chapter 6. Selection_files/unmatchedIf3.gif" alt="Code with two if statements and only one else block." title="Code with two if statements and only one else block.">
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th>x</th> <th>y</th> <th>message</th></tr>
+</thead><tbody>
+	<tr><th>1</th> <th>5</th> <th>"Wave"</th></tr>
+</tbody></table>
+<div><b>Figure 6-14:</b> When <var>x</var> is less than 2 and
+<var>y</var> is not greater than 8, the computer will not execute the
+code in the else block because the else block is paired with the first
+<code>if</code> statement and the comparison in the first
+<code>if</code> statement is true. This means that in this situation the
+computer will not change <var>message</var> to “Hello” or
+“Goodbye” but will leave <var>message</var> as
+“Wave”.</div>
+</div>
+<div class="clear"></div>
+
+<div class="pagenum" id="page079">79</div>
+<h3 id="ch6mistakes">Common Mistakes</h3>
+<h4>Forgetting parentheses around the condition</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>if x &lt; 7 {
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>if (x &lt; 7) {
+}</pre></div>
+</div>
+
+<h4>Using assignment instead of comparison</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>if (age = 18) {
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>if (age == 18) {
+}</pre></div>
+</div>
+
+<h4>Placing a semicolon at the end of an <code>if</code> statement</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>if (growth &gt; 500); {
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>if (growth &gt; 500) {
+}</pre></div>
+</div>
+
+<h4>Placing a semicolon at the end of an else statement</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>if (growth &gt; 500) {
+}
+else; {
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>if (growth &gt; 500) {
+}
+else {
+}</pre></div>
+</div>
+
+<h4>Forgetting braces when there is more than one statement inside an if
+statement</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>if (bal &gt; 500)
+    let intr = bal * 0.03;
+    bal += intr;</pre></div>
+	<div><h5>Correct</h5>
+<pre>if (bal &gt; 500) {
+    let intr = bal * 0.03;
+    bal += intr;
+}</pre></div>
+</div>
+
+<h4>Adding a condition to an else statement</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>if (gender == 'F') {
+}
+else (gender == 'M') {
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>if (gender == 'F') {
+}
+else {
+}</pre></div>
+</div>
+
+<h4>Unnecessary Comparisons</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>if (age &lt; 18) {
+}
+else if (age &gt;= 18) {
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>if (age &lt; 18) {
+}
+else {
+}</pre></div>
+</div>
+
+<div class="pagenum" id="page080">80</div>
+<h3 id="ch6summary">Chapter Summary</h3>
+<ul>
+	<li>Selection is a control structure that allows the computer to
+	execute one group of statements and skip another group of
+	statements.</li>
+	<li>An <code>if</code> statement is a selection statement that
+	begins with the JavaScript keyword <code>if</code>.</li>
+	<li>An <code>if</code> statement must have a condition in
+	parentheses. The parentheses contain code to compare two
+	values.</li>
+	<li>There are six comparison operators in JavaScript: equal to (==),
+	not equal to (!=), less than (&lt;), less than or equal to (&lt;=),
+	greater than (&gt;), greater than or equal to (&gt;=).</li>
+	<li>A <code>switch</code> statement is a selection statement that
+	begins with the JavaScript keyword <code>switch</code> and can be
+	used instead of a long set of <code>if … else if …
+	else</code> statements.</li>
+</ul>
+
+<h3 id="ch6revQues">Review Questions</h3>
+<ol class="revQues">
+	<li>Write an <code>if</code> statement to determine if the value in
+	the variable <var>age</var> is greater than 12.</li>
+
+	<li>Write an <code>if</code> statement to check if the value in the
+	variable <var>x</var> is not equal to the value in the variable
+	<var>y</var>.</li>
+
+	<li>Write an <code>if</code> statement that displays “go
+	south” if the value in the variable <var>temperature</var>
+	is less than 32, and displays “enjoy” otherwise.</li>
+
+	<li>Write an <code>if</code> statement that displays “replace
+	tires” if the value in the variable <var>depth</var>
+	is less than 0.16, and displays “enjoy” otherwise.</li>
+
+	<li>The following <code>if</code> statement contains an error.
+	Rewrite it so that it is correct. Assume the variable <var>age</var>
+	already exists and holds a valid number.
+	<pre>if age &lt; 8 {</pre></li>
+
+	<li>The following <code>if</code> statement contains an error.
+	Rewrite it so that it is correct. Assume the variable <var>age</var>
+	already exists and holds a valid number.
+	<pre>if (age = 21) {</pre></li>
+
+	<li>The following <code>if</code> statement contains an error.
+	Rewrite it so that it is correct. Assume the variable <var>age</var>
+	already exists and holds a valid number.
+	<pre>if (age &gt;= 30); {</pre></li>
+
+	<li>The following <code>if</code> statement contains an error.
+	Rewrite it so that it is correct. Assume the variable <var>age</var>
+	already exists and holds a valid number.
+	<pre>if (age =&lt; 55) {</pre></li>
+
+	<li>
+<div class="pagenum" id="page081">81</div>
+	Given the following JavaScript code, what will the computer
+	output for the user to see?
+<pre>let x = 1, y = 7;
+let message = "Welcome";
+if (x &lt; 2) {
+    if (y &gt; 10) {
+        message = "Hello";
+    }
+}
+else {
+    message = "Goodbye";
+}
+alert(message);</pre></li>
+
+	<li>Given the following JavaScript code, what will the computer
+	output for the user to see?
+<pre>let x = 1, y = 7;
+let message = "Welcome";
+if (x &lt; 2) {
+    if (y &gt; 10) {
+        message = "Hello";
+    }
+    else {
+        message = "Goodbye";
+    }
+}
+alert(message);</pre></li>
+</ol>
+
+<h3 id="ch6progs">Programming Assignments</h3>
+<ol class="progs">
+	<li>Write a defining table and then a program that computes and
+	outputs the absolute difference between two numbers entered by a
+	user. In other words, your program should always show the
+	difference as a positive number. Examples:
+	<table class="list"><thead>
+		<tr><th colspan="2">Numbers</th> <th>Output</th></tr>
+	</thead><tbody>
+		<tr class="number"><th>6</th> <th>8</th> <th>2</th></tr>
+		<tr class="number"><th>8</th> <th>6</th> <th>2</th></tr>
+		<tr class="number"><th>−3</th> <th>5</th> <th>8</th></tr>
+		<tr class="number"><th>5</th> <th>−3</th> <th>8</th></tr>
+		<tr class="number"><th>−7</th> <th>−4</th> <th>3</th></tr>
+		<tr class="number"><th>−4</th> <th>−7</th> <th>3</th></tr>
+	</tbody></table></li>
+
+	<li><p>Write a defining table and a program that helps a user choose
+	the correct foot wear for the day’s weather. The following
+	table shows the weather types the user may enter and what your
+	program should output.</p>
+	<table class="list"><thead>
+		<tr><th>Weather</th> <th>Foot Wear</th></tr>
+	</thead><tbody>
+		<tr><td>hot</td> <td>sandals</td></tr>
+		<tr><td>rain</td> <td>galoshes</td></tr>
+		<tr><td>snow</td> <td>boots</td></tr>
+	</tbody></table>
+
+	<p>If the user enters any other weather type, your program
+	should output “shoes”.</p></li>
+
+	<li>
+<div class="pagenum" id="page082">82</div>
+	<div>Write a defining table and then a program that reads from the
+	keyboard a student’s name and number of completed university
+	credits and then outputs the student’s name and year in school
+	according to this table.</div>
+	<br>
+	<table class="list"><thead>
+		<tr><th style="width:15em">If the number of credits is greater than or equal to</th>
+			<th style="width:11em">And the number of credits is less than</th>
+			<th style="width:8em">Then the year in school is</th></tr>
+	</thead><tbody>
+		<tr><th class="center">0</th>
+			<th class="center">30</th>
+			<th>freshman</th></tr>
+		<tr><th class="center">30</th>
+			<th class="center">60</th>
+			<th>sophomore</th></tr>
+		<tr><th class="center">60</th>
+			<th class="center">90</th>
+			<th>junior</th></tr>
+		<tr><th class="center">90</th>
+			<th class="center">∞</th>
+			<th>senior</th></tr>
+	</tbody></table></li>
+
+	<li><p>A bank will not loan money to a homebuyer unless the
+	homebuyer pays for part of the house at the time of purchase. This
+	initial payment is called a <dfn>down payment</dfn> and is based on
+	the cost of the home. The Bank of Ririe calculates down payments
+	according to this schedule:</p>
+
+	<table class="list"><thead>
+		<tr><th colspan="3">Cost of House</th> <th style="width:2em"></th>
+			<th>Down Payment</th></tr>
+	</thead><tbody>
+		<tr><th class="number">$0</th> <th>–</th>
+			<th class="number">$49,999.99</th> <th></th>
+			<th class="number">5% * cost</th></tr>
+		<tr><th class="number">$50,000</th> <th>–</th>
+			<th class="number">$99,999.99</th> <th></th>
+			<th class="number">$2,000 + 10% * (cost − $50,000)</th></tr>
+		<tr><th class="number">$100,000</th> <th>–</th>
+			<th class="number">$199,999.99</th> <th></th>
+			<th class="number">$7,500 + 20% * (cost − $100,000)</th></tr>
+		<tr><th class="number">$200,000</th> <th>–</th>
+			<th class="center">∞</th> <th></th>
+			<th class="number">$27,500 + 25% * (cost − $200,000)</th></tr>
+	</tbody></table>
+
+	<p>For example a house that costs $126,900 would have a down payment of
+	<span class="expr">7,500 + 20% * (126,900 − 100,000) = $12,880</span>.
+	Write a defining table and a program that gets the cost of a house
+	from a user and calculates and outputs the down payment based on the
+	Bank of Ririe’s schedule.</p></li>
+
+	<li><p>A university library that loans books to students, faculty,
+	and the public has a written policy that determines how long someone
+	may borrow a book before it is due. This table shows the criteria
+	and length of time that someone is allowed to borrow a book.</p>
+	<table class="list"><thead>
+		<tr><th>Patron<br>Status</th>
+			<th>Number of<br>Overdue Books<br>in the Last Year</th>
+			<th>Loan<br>Duration<br>(weeks)</th></tr>
+	</thead><tbody>
+		<tr><th rowspan="3">student</th>
+			<th class="center">0</th>
+			<th class="number">6</th></tr>
+		<tr>
+			<th class="center">fewer than 3</th>
+			<th class="number">4</th></tr>
+		<tr>
+			<th class="center">3 or more</th>
+			<th class="number">2</th></tr>
+		<tr><th rowspan="3">faculty</th>
+			<th class="center">0</th>
+			<th class="number">16</th></tr>
+		<tr>
+			<th class="center">fewer than 3</th>
+			<th class="number">12</th></tr>
+		<tr>
+			<th class="center">3 or more</th>
+			<th class="number">8</th></tr>
+		<tr><th rowspan="3">other</th>
+			<th class="center">0</th>
+			<th class="number">4</th></tr>
+		<tr>
+			<th class="center">fewer than 3</th>
+			<th class="number">3</th></tr>
+		<tr>
+			<th class="center">3 or more</th>
+			<th class="number">2</th></tr>
+	</tbody></table>
+	<p>Write a defining table and a JavaScript program that determines
+	how long a person may borrow a book. Your program must allow a
+	librarian to enter a person’s status: “student”,
+	“faculty”, or “other” and how many books the
+	person has kept past the due date in the last year.</p></li>
+
+	<li>
+<div class="pagenum" id="page083">83</div>
+	<div class="figRight" id="figQuiz" style="width:20em">
+	<img src="./Chapter 6. Selection_files/mathQuiz.png" alt="The user interface for a program to quiz children on arithmetic" title="The user interface for a program to quiz children on arithmetic">
+	<div><b>Figure 6-15:</b> The user interface for a program to quiz
+	children on arithmetic.</div>
+	</div>
+	Write a defining table and a program to quiz a child on simple
+	arithmetic. The program should allow a child to enter two numbers
+	and an arithmetic operator (+, −, *, or /) and the
+	child’s answer to the problem. The program should compute the
+	correct answer and compare it to the child’s answer and output
+	“Correct! Good job.” or “Incorrect. Try
+	again!” The user interface for your program should look
+	similar to <a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/selection.htm#figQuiz">figure&nbsp;6-15</a>.
+	</li>
+
+	<li id="ch6roman" class="clear">
+	Roman numerals are still used today to display a year on the
+	cornerstone of buildings. Write a defining table and then a program
+	to convert a four digit decimal number into Roman numerals. The
+	Roman number system has the digits
+	<table class="list"><thead>
+		<tr><th>Roman</th> <th>Arabic</th></tr>
+	</thead><tbody>
+		<tr><th class="center">I</th> <th class="number">1</th></tr>
+		<tr><th class="center">V</th> <th class="number">5</th></tr>
+		<tr><th class="center">X</th> <th class="number">10</th></tr>
+		<tr><th class="center">L</th> <th class="number">50</th></tr>
+		<tr><th class="center">C</th> <th class="number">100</th></tr>
+		<tr><th class="center">D</th> <th class="number">500</th></tr>
+		<tr><th class="center">M</th> <th class="number">1000</th></tr>
+	</tbody></table>
+	The rules for writing Roman numerals are
+	<ol>
+		<li>Thousands, hundreds, tens, and ones are written
+		separately.</li>
+		<li>Thousands can be no larger than 3000 and are written as M,
+		MM, or MMM, meaning 1000, 2000, or 3000 respectively.</li>
+		<li>The numbers 100 to 900 are written as C, CC, CCC, CD, D, DC,
+		DCC, DCCC, CM</li>
+		<li>The numbers 10 to 90 are written similarly, except X, L, and
+		C are used: X, XX, XXX, XL, L, LX, LXX, LXXX, XC</li>
+		<li>The numbers 1 to 9 are written similarly, except I, V, and X
+		are used: I, II, III, IV, V, VI, VII, VIII, IX</li>
+	</ol>
+	As an example, 1987 is MCMLXXXVII (<span class="expr">1000 = M</span>,
+	<span class="expr">900 = CM</span>, <span class="expr">80 = LXXX</span>,
+	and <span class="expr">7 = VII</span>).</li>
+</ol>
+
+<p class="fine">Copyright © 2017 by Rex A. Barzee.&nbsp; All rights
+reserved.&nbsp; Except as permitted under the Copyright Act of 1976, no
+part of this publication may be reproduced, stored in a retrieval
+system, or transmitted, in any form or by any means, electronic,
+mechanical, photocopying, recording, or otherwise, without the prior
+written permission of the author.</p>
+
+<p class="fine">The author and publisher of this book have used their
+best efforts in preparing this book, and the information contained in
+this book is believed to be reliable.&nbsp; These efforts include the
+development, research, and testing of the theories and computer programs
+in this book to determine their correctness.&nbsp; However, because of
+the possibility of human or mechanical error, the author and publisher
+make no warranty of any kind, expressed or implied, with regard to
+these programs or the documentation or information contained in this
+book.&nbsp; The author and publisher shall not be liable in any event
+for incidental or consequential damages in connection with or arising
+out of the furnishing, performance, or use of these programs.</p>
+</div>
+
+</body></html>

@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/arrays.htm -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Rex A. Barzee">
+<title>Chapter 10. Arrays</title>
+<link rel="stylesheet" type="text/css" href="./Chapter 10. Arrays_files/ebook.css">
+<script src="./Chapter 10. Arrays_files/interact.js.download"></script>
+<script src="./Chapter 10. Arrays_files/arrays.js.download"></script>
+</head>
+
+<body id="ch10arrays" onload="arr.prepare()"><div>
+<h2>Chapter 10. Arrays</h2>
+<div class="pagenum" id="page157">157</div>
+
+<p>An <dfn id="ch10array">array</dfn> is a collection of variables where
+each variable has the same data type, for example, an array of integers
+or an array of Student objects. Each variable in an array is called an
+<dfn id="ch10element">element</dfn> and has a unique
+<dfn id="ch10index">index</dfn>, also called the
+<dfn id="ch10subscript">subscript</dfn>, which denotes that element’s
+location within the array. One advantage of using arrays is that all the
+elements within an array can be declared, created, or passed to a
+function as a whole. However, each element may still be accessed
+individually by using the element’s index.
+<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/arrays.htm#figArray">Figure&nbsp;10-1</a> shows a representation of an
+array with 10 elements. Notice that each element has a unique index, and
+in JavaScript, indexes are always non-negative integers with 0 as the
+first index.</p>
+
+<div class="figRight" id="figArray" style="width:30em">
+<table class="check right"><tbody>
+	<tr><th class="label right">elements</th>
+		<th></th> <th></th> <th></th> <th></th> <th></th>
+		<th></th> <th></th> <th></th> <th></th> <th></th></tr>
+	<tr><th class="label right">indexes</th>
+		<th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="index">[4]</th> <th class="index">[5]</th>
+		<th class="index">[6]</th> <th class="index">[7]</th>
+		<th class="index">[8]</th> <th class="index">[9]</th></tr>
+	<tr><th class="empty"></th>
+		<th class="index" colspan="10">← array length is 10 →</th></tr>
+</tbody></table>
+<div><b>Figure 10-1:</b> A representation of an array showing the
+elements and indexes.</div>
+</div>
+
+<h3 id="ch10outcomes">Chapter Outcomes</h3>
+<p>By the end of this chapter, you will be able to:</p>
+<ul>
+	<li>Declare, create, and populate an array.</li>
+	<li>Write code to access a single value within an array.</li>
+	<li>Write a loop to process every element in an array.</li>
+	<li>Write code to sort and search an array.</li>
+	<li>Use the methods in the <code>Array</code> object to process
+	arrays.</li>
+</ul>
+
+<h3 id="ch10decl">Declaring an Array</h3>
+<p>Just like a variable must be declared before it can be used in a
+program, an array must also be declared. To declare an array in
+JavaScript, a programmer writes the keyword <code>var</code> or the
+keyword <code>let</code> followed by the array’s name, exactly the
+same as declaring a variable.</p>
+
+<h4>Template</h4>
+<pre class="template">    let <var>arrayName</var>;</pre>
+
+<h4>Example 1</h4>
+<pre>    let data;
+    let scores;</pre>
+
+<div class="pagenum" id="page158">158</div>
+<h3 id="ch10create">Creating an Array</h3>
+<p>Declaring an array in JavaScript does not cause the computer to
+reserve space for the elements of the array. To do this, a
+programmer must also create the array. All objects, including
+arrays, are created in JavaScript using the keyword
+<code id="ch10new">new</code>.</p>
+
+<h4>Template</h4>
+<pre class="template">    <var>arrayName</var> = new Array(<var>size</var>);</pre>
+
+<h4>Example 2</h4>
+<pre>    // Create an array that holds 6 elements.
+    data = new Array(6);</pre>
+<table class="check right"><thead>
+	<tr><th class="array" colspan="6">data</th></tr>
+</thead><tbody>
+    <tr><th></th> <th></th> <th></th> <th></th> <th></th> <th></th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="index">[4]</th> <th class="index">[5]</th></tr>
+</tbody></table>
+
+<p>The code in the previous example causes the computer to reserve space
+for an array named <code>data</code> that holds six elements with
+indexes numbered from 0 to 5 inclusive. It is possible to combine the
+array declaration and creation into a single statement as shown in the
+next example.</p>
+
+<h4>Example 3</h4>
+<pre>    // Declare and create an array that holds 25 elements.
+    let scores = new Array(25);</pre>
+<table class="check right"><thead>
+	<tr><th class="array" colspan="6">scores</th></tr>
+</thead><tbody>
+    <tr><th></th> <th></th>
+		<th></th> <th class="empty">…</th>
+		<th></th> <th></th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="empty"></th>
+		<th class="index">[23]</th> <th class="index">[24]</th></tr>
+</tbody></table>
+
+<p>The code in the previous example causes the computer to declare and
+create an array named <code>scores</code> that holds 25 elements
+numbered from 0 to 24 inclusive. It is also possible to ask the user for
+a length and create an array with the exact length specified by the
+user.</p>
+
+<h4>Example 4</h4>
+<pre>    // Get a length from the user and declare and create an array
+    // that holds the number of elements specified by the user.
+    let len = parseInt(document.getElementById('len').value);
+    let prices = new Array(len);</pre>
+<table class="check right"><thead>
+	<tr><th>len</th> <th></th>
+		<th class="array" colspan="8">prices</th></tr>
+</thead><tbody>
+    <tr><th>8</th> <th class="empty"></th>
+		<th></th> <th></th> <th></th> <th></th>
+		<th></th> <th></th> <th></th> <th></th></tr>
+	<tr><th class="empty"></th> <th class="empty"></th>
+		<th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="index">[4]</th> <th class="index">[5]</th>
+		<th class="index">[6]</th> <th class="index">[7]</th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page159">159</div>
+<p>It is also possible to declare, create, and initialize the elements
+in an array in a single JavaScript statement.</p>
+
+<h4>Template</h4>
+<pre class="template">    let <var>arrayName</var> = [ <span class="opt"><var>value0</var>, <var>value1</var>, … <var>valueN</var></span> ];</pre>
+
+<h4>Example 5</h4>
+<pre>    let measures = [ 4.7, -3, 2.1, 0, 7.2 ];</pre>
+<table class="check right"><thead>
+	<tr><th class="array" colspan="5">samples</th></tr>
+</thead><tbody>
+    <tr><th>4.7</th> <th>−3</th> <th>2.1</th> <th>0</th> <th>7.2</th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="index">[4]</th></tr>
+</tbody></table>
+
+<h3 id="ch10length">Array Length</h3>
+<p>All arrays in JavaScript automatically have an attribute named
+<code>length</code>, which is the number of elements contained in the
+array.</p>
+
+<h4>Template</h4>
+<pre class="template">    <var>arrayName</var>.length</pre>
+
+<h4>Example 6</h4>
+<pre>    let data = new Array(8);
+    let sizes = [ 4.7, 5.8, 2.1, 3.9, 7.2 ];
+    document.getElementById('div1').innerHTML = <b>data.length;</b>   // displays 8
+    document.getElementById('div2').innerHTML = <b>sizes.length;</b>  // displays 5</pre>
+
+<h3 id="ch10deref">Accessing an Element</h3>
+<p>To access a single element within an array, either to read or to
+write the element’s value, simply write the name of the array
+followed by the index of the element in brackets. In JavaScript, an
+index is always a non-negative integer, the first index is always 0, and
+the last index is always one less than the length of an array
+(<var>arrayName</var>.length − 1). An index is never a fractional
+number because it doesn’t make sense to ask what is stored in an
+array at a fractional index, for example 3.8. There is a value stored at
+index 3 and a value stored at index 4 but nothing stored at index
+3.8.</p>
+
+<h4>Template</h4>
+<pre class="template">    <var>arrayName</var>[<var>index</var>]</pre>
+
+<h4>Example 7</h4>
+<pre>    let data = new Array(6);
+    <b>data[0]</b> = -4.3;
+    <b>data[1]</b> = parseFloat(document.getElementById('input1').value);
+    ⋮
+    document.getElementById('output').innerHTML = <b>data[4]</b>;
+    ⋮
+    if (<b>data[5]</b> &gt; 6.3) {
+        document.getElementById('error').innerHTML =
+                'Data value is too high!';
+    }</pre>
+
+<div class="pagenum" id="page160">160</div>
+<h3 id="ch10fill">Filling an Array</h3>
+<p>It is often desirable to have the computer initialize all the
+elements in an array to some value (usually zero). We do this by
+writing a statement that assigns a value to one element in the array,
+and then put that assignment statement inside a loop. If the array
+has <var>n</var> elements in it, then the loop causes the computer to
+repeat the assignment statement <var>n</var> times, once for each
+element in the array.</p>
+
+<p>Example&nbsp;8 contains a function that fills an array with some
+value <var>x</var>. Of course, in order for a computer to execute the
+code in the function, a programmer must write code to call the function,
+similar to this code:</p>
+<pre>    let list = new Array(80);
+    fill(list, 7);</pre>
+<p>which creates an array with 80 elements and calls the
+<code>fill</code> function to store the number 7 in each element of the
+array.</p>
+
+<h4 id="ch10exFill">Example 8</h4>
+<pre>// Fills the specified array with the value x.
+<span id="ch10fill1">function fill(list, x) {</span>
+    // For each index in the array named list,
+    for (<span id="ch10fill2a">let i = 0;</span>  <span id="ch10fill2b">i &lt; list.length;</span>  <span id="ch10fill2c">i++</span>) {
+        // store the value in x in the array.
+<span id="ch10fill3">        list[i] = x;</span>
+<span id="ch10fill4">    }</span>
+<span id="ch10fill5">}</span></pre>
+<span id="ch10fillEnd"></span>
+<button type="button" id="ch10fillRun" title="Run" onclick="act.runClick(&#39;ch10fill&#39;)">►</button>
+<button type="button" id="ch10fillStep" title="Step" onclick="act.stepClick(&#39;ch10fill&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="7">Desk Check</th></tr>
+	<tr><th class="array" colspan="4">list</th>
+		<th class="empty"></th>
+		<th>x</th> <th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch10fillList0"></th>
+		<th id="ch10fillList1"></th>
+		<th id="ch10fillList2"></th>
+		<th id="ch10fillList3"></th>
+		<th class="empty"></th>
+		<th id="ch10fillX">8.3</th>
+		<th id="ch10fillI"></th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="empty"></th> <th class="empty"></th> <th></th></tr>
+	<tr><th class="empty" colspan="6" rowspan="3"></th>
+		<th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page161">161</div>
+<h3 id="ch10ramp">Filling an Array with a Ramp</h3>
+<div class="figRight" id="figRamp">
+<img src="./Chapter 10. Arrays_files/ramp.gif" alt="A plot of constantly increasing values forming a ramp" title="A plot of constantly increasing values forming a ramp">
+<div><b>Figure 10-2:</b> A plot of constantly increasing values forming
+a ramp.</div>
+</div>
+
+<p>Within programs that perform image processing, a computer uses an
+array as a <dfn>palette</dfn> or <dfn>look up table</dfn>. To get the
+color value of a pixel, the computer reads the value of the pixel stored
+in the image and then looks up that value in the palette. Then the
+computer displays the color from the palette at the corresponding pixel
+location on the monitor. Often the palette must be initialized to
+contain values that are constantly increasing, for example:&nbsp;
+<span class="expr">0, 1, 2, 3…</span>&nbsp; This is known as a
+ramp because if you plotted the values in the array, you would see a
+sloping line or ramp, constantly increasing to the right as shown in
+<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/arrays.htm#figRamp">Figure&nbsp;10-2</a>.</p>
+
+<p>Here is a code example showing how to initialize an array to an
+increasing ramp.</p>
+
+<h4 id="ch10exRamp">Example 9</h4>
+<pre>// Fills the specified array with constantly increasing
+// values from 0 to list.length - 1, inclusive.
+<span id="ch10ramp1">function ramp(list) {</span>
+    // For each index in the array named list,
+    for (<span id="ch10ramp2a">let i = 0;</span>  <span id="ch10ramp2b">i &lt; list.length;</span>  <span id="ch10ramp2c">i++</span>) {
+        // store the value in i in the array.
+<span id="ch10ramp3">        list[i] = i;</span>
+<span id="ch10ramp4">    }</span>
+<span id="ch10ramp5">}</span></pre>
+<span id="ch10rampEnd"></span>
+<button type="button" id="ch10rampRun" title="Run" onclick="act.runClick(&#39;ch10ramp&#39;)">►</button>
+<button type="button" id="ch10rampStep" title="Step" onclick="act.stepClick(&#39;ch10ramp&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="7">Desk Check</th></tr>
+	<tr><th class="array" colspan="5">list</th>
+		<th class="empty"></th> <th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch10rampList0"></th>
+		<th id="ch10rampList1"></th>
+		<th id="ch10rampList2"></th>
+		<th id="ch10rampList3"></th>
+		<th id="ch10rampList4"></th>
+		<th class="empty"></th>
+		<th id="ch10rampI"></th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="index">[4]</th>
+		<th class="empty"></th> <th></th></tr>
+	<tr><th class="empty" colspan="6" rowspan="4"></th>
+		<th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page162">162</div>
+<div class="figRight" id="figRevRamp">
+<img src="./Chapter 10. Arrays_files/revRamp.gif" alt="A plot of constantly decreasing values forming a reverse ramp" title="A plot of constantly decreasing values forming a reverse ramp">
+<div><b>Figure 10-3:</b> A plot of constantly decreasing values forming
+a reverse ramp.</div>
+</div>
+
+<p>Occasionally we want to initialize an array to hold constantly
+decreasing values such as:
+<span class="expr">15, 14, 13 … 0</span>. This is known as
+a reverse ramp because if you plotted the values in the array, you would
+see a sloping line or ramp, constantly decreasing to the right as shown
+in <a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/arrays.htm#figRevRamp">Figure&nbsp;10-3</a>. Example code to
+initialize an array to a reverse ramp is shown in the next example.</p>
+
+<h4>Example 10</h4>
+<pre>// Fills the specified array with constantly decreasing
+// values from list.length - 1 to 0, inclusive.
+<span id="ch10revRamp1">function reverseRamp(list) {</span>
+<span id="ch10revRamp2">    let high = list.length - 1;</span>
+    for (<span id="ch10revRamp3a">let i = 0;</span> <span id="ch10revRamp3b">i &lt; list.length;</span> <span id="ch10revRamp3c">i++</span>) {
+<span id="ch10revRamp4">        list[i] = high - i;</span>
+<span id="ch10revRamp5">    }</span>
+<span id="ch10revRamp6">}</span></pre>
+<span id="ch10revRampEnd"></span>
+<button type="button" id="ch10revRampRun" title="Run" onclick="act.runClick(&#39;ch10revRamp&#39;)">►</button>
+<button type="button" id="ch10revRampStep" title="Step" onclick="act.stepClick(&#39;ch10revRamp&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="8">Desk Check</th></tr>
+	<tr><th class="array" colspan="5">list</th>
+		<th class="empty"></th>
+		<th>high</th> <th>i</th></tr>
+</thead><tbody>
+	<tr><th id="ch10revRampList0"></th>
+		<th id="ch10revRampList1"></th>
+		<th id="ch10revRampList2"></th>
+		<th id="ch10revRampList3"></th>
+		<th id="ch10revRampList4"></th>
+		<th class="empty"></th>
+		<th id="ch10revRampHigh"></th>
+		<th id="ch10revRampI"></th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="index">[4]</th> <th class="empty"></th>
+		<th class="empty"></th> <th></th></tr>
+	<tr><th class="empty" colspan="7" rowspan="4"></th> <th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page163">163</div>
+<h3 id="ch10reverse">Reversing an Array</h3>
+<p>Reversing the order of the elements in an array is not commonly used
+in computer programs. However, it is an interesting operation and
+understanding it helps students to understand more commonly used array
+operations. One way to reverse the elements in an array is to use
+two index variables, one index starts at the beginning of the array, and
+the other starts at the end of the array. Then write a loop that
+repeats <span class="expr"><var>n</var> / 2</span> times where
+<var>n</var> is the number of elements in the array. Each time
+through the loop, the computer switches one element in the left half of
+the array with one element in the right half.</p>
+
+<h4>Example 11</h4>
+<pre>// Reverses the contents of the specified array.
+<span id="ch10reverse1">function reverse(list) {</span>
+<span id="ch10reverse2">    let left = 0;</span>
+<span id="ch10reverse3">    let right = list.length - 1;</span>
+
+<span id="ch10reverse4">    while (left &lt; right) {</span>
+        // Exchange two elements.
+<span id="ch10reverse5">        let swap = list[left];</span>
+<span id="ch10reverse6">        list[left] = list[right];</span>
+<span id="ch10reverse7">        list[right] = swap;</span>
+
+        // Move the indexes toward the center.
+<span id="ch10reverse8">        left++;</span>
+<span id="ch10reverse9">        right--;</span>
+<span id="ch10reverse10">    }</span>
+<span id="ch10reverse11">}</span></pre>
+<span id="ch10reverseEnd"></span>
+<button type="button" id="ch10reverseRun" title="Run" onclick="act.runClick(&#39;ch10reverse&#39;)">►</button>
+<button type="button" id="ch10reverseStep" title="Step" onclick="act.stepClick(&#39;ch10reverse&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="9">Desk Check</th></tr>
+	<tr><th class="array" colspan="5">list</th>
+		<th class="empty"></th>
+		<th>left</th> <th>right</th> <th>swap</th></tr>
+</thead><tbody>
+	<tr id="ch10reverseList">
+		<th rowspan="2" id="ch10reverseList0">3.4<br></th>
+		<th rowspan="2" id="ch10reverseList1">−2<br></th>
+		<th rowspan="2" id="ch10reverseList2">5<br></th>
+		<th rowspan="2" id="ch10reverseList3">7<br></th>
+		<th rowspan="2" id="ch10reverseList4">12<br></th>
+		<th class="empty" rowspan="2"></th>
+		<th id="ch10reverseLeft"></th>
+		<th id="ch10reverseRight"></th>
+		<th id="ch10reverseSwap"></th></tr>
+	<tr><th></th> <th></th> <th></th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="index">[4]</th> <th class="empty"></th>
+		<th></th> <th></th> <th class="empty"></th></tr>
+</tbody></table>
+
+<h3 id="ch10sum">Summing the Values in an Array</h3>
+<p>Within a program, we often have a series of numbers stored in an
+array, and the program needs to calculate the sum of those
+numbers. This is easily done by writing a function with a variable
+to hold the sum and a loop that adds each value in an array to that
+variable.</p>
+
+<h4>Example 12</h4>
+<pre>// Returns the sum of the values stored in an array.
+<span id="ch10sum1">function sum(list) {</span>
+<span id="ch10sum2">    let s = 0;</span>
+    for (<span id="ch10sum3a">let i = 0;</span>  <span id="ch10sum3b">i &lt; list.length;</span>  <span id="ch10sum3c">i++</span>) {
+<span id="ch10sum4">        s += list[i];</span>
+<span id="ch10sum5">    }</span>
+<span id="ch10sum6">    return s;</span>
+<span id="ch10sum7">}</span></pre>
+<span id="ch10sumEnd"></span>
+<button type="button" id="ch10sumRun" title="Run" onclick="act.runClick(&#39;ch10sum&#39;)">►</button>
+<button type="button" id="ch10sumStep" title="Step" onclick="act.stepClick(&#39;ch10sum&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="9">Desk Check</th></tr>
+	<tr><th class="array" colspan="5">list</th>
+		<th class="empty"></th>
+		<th>i</th> <th>s</th> <th>return</th></tr>
+</thead><tbody>
+	<tr id="ch10sumList"><th id="ch10sumList0">3.4</th>
+		<th id="ch10sumList1">−2</th>
+		<th id="ch10sumList2">5</th>
+		<th id="ch10sumList3">7</th>
+		<th id="ch10sumList4">12</th>
+		<th class="empty"></th>
+		<th id="ch10sumI" class="empty"></th>
+		<th id="ch10sumS"></th> <th></th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="index">[4]</th>
+		<th class="empty"></th> <th></th> <th></th>
+		<th class="empty" rowspan="5"></th></tr>
+	<tr><th class="empty" colspan="6" rowspan="5"></th>
+		<th></th> <th></th></tr>
+	<tr><th></th> <th></th></tr>
+	<tr><th></th> <th></th></tr>
+	<tr><th></th> <th></th></tr>
+	<tr><th></th> <th class="empty"></th> <th class="empty"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page164">164</div>
+<h3 id="ch10linear">Finding a Value (Linear Search)</h3>
+<p>Very often a computer program must determine if a certain value is
+stored in an array or not and if stored in the array, then return the
+value’s location. The value to be found is called the
+<var>key</var>. If the array is not too large (perhaps less than
+100 elements), finding the key can be easily done using a linear
+search. A linear search is done by comparing each element in the
+array with the key until the key is found in the array or the end of the
+array is reached.</p>
+
+<p>The advantage of a linear search is that it is simple and easy to
+code. The disadvantage is that it is too slow if the array has
+many elements in it. When the array has many elements in it, it is
+probably faster to sort the array and keep it sorted and to use a binary
+search to find the key within the array.</p>
+
+<p>JavaScript code to perform a linear search is shown below. In
+the example, if the key is found in the array, the search function
+returns the index of the location within the array where the key was
+found. If the key is not found, the search function returns
+−1.</p>
+
+<h4>Example 13</h4>
+<pre>// If key is in list, returns the first index where
+// key is located within list; otherwise returns -1.
+<span id="ch10linear1">function linearSearch(list, key) {</span>
+    for (<span id="ch10linear2a">let i = 0;</span> <span id="ch10linear2b">i &lt; list.length;</span> <span id="ch10linear2c">i++</span>) {
+<span id="ch10linear3">        if (list[i] == key) {</span>
+<span id="ch10linear4">            return i;</span>
+<span id="ch10linear5">        }</span>
+<span id="ch10linear6">    }</span>
+<span id="ch10linear7">    return -1;</span>
+<span id="ch10linear8">}</span></pre>
+<span id="ch10linearEnd"></span>
+<button type="button" id="ch10linearRun" title="Run" onclick="act.runClick(&#39;ch10linear&#39;)">►</button>
+<button type="button" id="ch10linearStep" title="Step" onclick="act.stepClick(&#39;ch10linear&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="9">Desk Check</th></tr>
+	<tr><th class="array" colspan="5">list</th>
+		<th class="empty"></th>
+		<th>key</th> <th>i</th> <th>return</th></tr>
+</thead><tbody>
+	<tr id="ch10linearList"><th id="ch10linearList0">28.1</th>
+		<th id="ch10linearList1">20</th>
+		<th id="ch10linearList2">23.6</th>
+		<th id="ch10linearList3">0</th>
+		<th id="ch10linearList4">15</th>
+		<th class="empty"></th>
+		<th id="ch10linearKey">23.6</th>
+		<th id="ch10linearI"></th>
+		<th id="ch10linearIndex"></th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="index">[4]</th> <th class="empty"></th>
+		<th class="empty"></th> <th></th>
+		<th class="empty"></th></tr>
+	<tr><th class="empty" colspan="7"></th> <th></th>
+		<th class="empty"></th></tr>
+</tbody></table>
+
+<h3 id="ch10parallel">Parallel Arrays</h3>
+<p>Parallel arrays are two or more arrays that contain corresponding
+values. For example, an array of student IDs and an array of
+corresponding student names are parallel arrays. Consider this student
+data.</p>
+
+<table class="list"><thead>
+	<tr><th>Student ID</th> <th>Student Name</th></tr>
+</thead><tbody>
+	<tr><th>07-153-4276</th> <th>Felix</th></tr>
+	<tr><th>34-513-3186</th> <th>Jonathan</th></tr>
+	<tr><th>26-430-0198</th> <th>Grace</th></tr>
+</tbody></table>
+
+<p>We could store this data in a program in two parallel arrays like
+this.</p>
+
+<pre>let studentIDs = [ '07-153-4276', '34-513-3186', '26-430-0198' ];
+let studentNames = [ 'Felix', 'Jonathan', 'Grace' ];</pre>
+
+<div class="pagenum" id="page165">165</div>
+<p>The arrays are parallel because the order for both arrays is the
+same. In other words, Felix’s ID is stored at index 0 in the
+<code>studentIDs</code> array, and his name is stored also at index 0 in
+the <code>studentNames</code> array. Jonathan’s ID is stored at
+index 1 and his name is stored at index 1, and so on. Here is a
+JavaScript program that reads a student ID from a text field and finds
+and outputs the corresponding student name. This program uses the two
+parallel arrays given above.</p>
+
+<h4>Example 14</h4>
+<pre class="hilite" id="ch10parallelProg1"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Student ID to Name&lt;/<span class="key">title</span>&gt;
+&lt;<span class="key">script</span>&gt;
+<span class="comm">// The values in these parallel arrays can be hard coded into a</span>
+<span class="comm">// program, or even better, they can be read from a file or database.</span>
+<span class="glob decl" data-name="studentIDs" title="global variable"><span class="key">let</span> studentIDs</span> = <span class="tok">[</span> <span class="lit">'07-153-4276'</span>, <span class="lit">'34-513-3186'</span>, <span class="lit">'26-430-0198'</span> <span class="tok">]</span>;
+<span class="glob decl" data-name="studentNames" title="global variable"><span class="key">let</span> studentNames</span> = <span class="tok">[</span> <span class="lit">'Felix'</span>, <span class="lit">'Jonathan'</span>, <span class="lit">'Grace'</span> <span class="tok">]</span>;
+
+<span class="comm">/* Input: a student's ID
+ * Processing: find the student's name
+ * Output: the student's name
+ */</span>
+<span class="head decl" data-name="findName" title="function header"><span class="key">function</span> <span class="func">findName</span><span class="tok">(</span><span class="tok">)</span></span> <span class="tok">{</span>
+    <span class="comm">// Get the student's ID.</span>
+    <span class="loc decl" data-name="studID" title="local variable"><span class="key">let</span> studID</span> = document.getElementById<span class="tok">(</span><span class="lit">'<span class="id" data-name="studID2" title="id">studID</span>'</span><span class="tok">)</span>.value;
+
+    <span class="comm">// Use linear search to find the student's ID.</span>
+    <span class="loc decl" data-name="index" title="local variable"><span class="key">let</span> index</span> = <span class="call" data-name="linearSearch" title="function call"><span class="func">linearSearch</span><span class="tok">(</span><span class="glob" data-name="studentIDs" title="global variable">studentIDs</span>, <span class="loc" data-name="studID" title="local variable">studID</span><span class="tok">)</span></span>;
+
+    <span class="loc decl" data-name="name" title="local variable"><span class="key">let</span> name</span>;
+    <span class="key">if</span> <span class="tok">(</span><span class="loc" data-name="index" title="local variable">index</span> == -1<span class="tok">)</span> <span class="tok">{</span>
+        <span class="comm">// The student ID that the user entered</span>
+        <span class="comm">// is not stored in the studentIDs array.</span>
+        <span class="loc" data-name="name" title="local variable">name</span> = <span class="lit">'No such student ID'</span>;
+    <span class="tok">}</span>
+    <span class="key">else</span> <span class="tok">{</span>
+        <span class="comm">// Get the student's name.</span>
+        <span class="loc" data-name="name" title="local variable">name</span> = <span class="glob" data-name="studentNames" title="global variable">studentNames</span><span class="tok">[</span><span class="loc" data-name="index" title="local variable">index</span><span class="tok">]</span>;
+    <span class="tok">}</span>
+
+    <span class="comm">// Display the student's name for the user to see.</span>
+    document.getElementById<span class="tok">(</span><span class="lit">'<span class="id" data-name="output" title="id">output</span>'</span><span class="tok">)</span>.innerHTML = <span class="loc" data-name="name" title="local variable">name</span>;
+<span class="tok">}</span></pre>
+
+<table class="check right"><thead>
+	<tr><th colspan="3">Desk Check</th></tr>
+	<tr><th class="array" colspan="3">studentIDs</th></tr>
+</thead><tbody>
+	<tr><th>'07-153-4276'</th> <th>'34-513-3186'</th> <th>'26-430-0198'</th></tr>
+	<tr><th class="index">[0]</th>
+		<th class="index">[1]</th>
+		<th class="index">[2]</th></tr>
+</tbody></table>
+<br>
+<table class="check right"><thead>
+	<tr><th class="array" colspan="3">studentNames</th></tr>
+</thead><tbody>
+	<tr><th>'Felix'</th> <th>'Jonathan'</th> <th>'Grace'</th></tr>
+	<tr><th class="index">[0]</th>
+		<th class="index">[1]</th>
+		<th class="index">[2]</th></tr>
+</tbody></table>
+<br>
+<table class="check right"><thead>
+	<tr><th>studID</th> <th>index</th> <th style="width:6em">name</th></tr>
+</thead><tbody>
+	<tr><th id="ch10paraID">'34-513-3186'</th>
+		<th id="ch10paraIndex"></th>
+		<th id="ch10paraName"></th></tr>
+</tbody></table>
+<br>
+
+<div class="pagenum" id="page166">166</div>
+<pre class="hilite" id="ch10parallelProg2"><span class="comm">// If key is in list, returns the first index where</span>
+<span class="comm">// key is located within list; otherwise returns -1.</span>
+<span class="head decl" data-name="linearSearch" title="function header"><span class="key">function</span> <span class="func">linearSearch</span><span class="tok">(</span><span class="param decl" data-name="list" title="parameter (local variable)">list</span>, <span class="param decl" data-name="key" title="parameter (local variable)">key</span><span class="tok">)</span></span> <span class="tok">{</span>
+    <span class="loc decl" data-name="index2" title="local variable"><span class="key">let</span> index</span> = -1;
+    <span class="key">for</span> <span class="tok">(</span><span class="loc decl" data-name="i" title="local variable"><span class="key">let</span> i</span> = 0;  <span class="loc" data-name="i" title="local variable">i</span> &lt; <span class="param" data-name="list" title="parameter (local variable)">list</span>.length;  <span class="loc" data-name="i" title="local variable">i</span>++<span class="tok">)</span> <span class="tok">{</span>
+        <span class="key">if</span> <span class="tok">(</span><span class="param" data-name="list" title="parameter (local variable)">list</span><span class="tok">[</span><span class="loc" data-name="i" title="local variable">i</span><span class="tok">]</span> == <span class="param" data-name="key" title="parameter (local variable)">key</span><span class="tok">)</span> <span class="tok">{</span>
+            <span class="loc" data-name="index2" title="local variable">index</span> = <span class="loc" data-name="i" title="local variable">i</span>;
+            <span class="key">break</span>;
+        <span class="tok">}</span>
+    <span class="tok">}</span>
+    <span class="key">return</span> <span class="loc" data-name="index2" title="local variable">index</span>;
+<span class="tok">}</span></pre>
+<table class="check right"><thead>
+	<tr><th style="width:6em">key</th> <th>i</th> <th>index</th></tr>
+</thead><tbody>
+	<tr><th id="ch10paraKey"></th>
+		<th id="ch10paraI"></th>
+		<th id="ch10paraIdx"></th></tr>
+	<tr><th class="empty"></th>
+		<th></th>
+		<th></th></tr>
+</tbody></table>
+
+<pre class="hilite" id="ch10parallelProg3">&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+Student ID: &lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr id decl" data-name="studID2" title="id">id="studID"</span>&gt;
+&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="call" data-name="findName" title="function call"><span class="func">findName</span><span class="tok">(</span><span class="tok">)</span></span>"</span>&gt;Name&lt;/<span class="key">button</span>&gt;
+&lt;<span class="key">div</span> <span class="attr id decl" data-name="output" title="id">id="output"</span>&gt;&lt;/<span class="key">div</span>&gt;
+&lt;/<span class="key">body</span>&gt;
+&lt;/<span class="key">html</span>&gt;</pre>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch10parallelProg1&#39;, &#39;ch10parallelProg2&#39;, &#39;ch10parallelProg3&#39;)"><b>⇗</b></button>
+
+<h3 id="ch10range">Finding a Range</h3>
+<p>Sometimes a computer program has a list of numerical ranges and must
+find the range that contains some value. Examples of this type of
+computing problem include:</p>
+
+<ul>
+	<li>determining a person’s income tax rate from a list of
+	income ranges and graduated tax rates</li>
+	<li>determining a customer’s discount rate from a list of
+	purchase ranges and discount rates</li>
+	<li>determining a salesperson’s commission from a list of
+	sales ranges and commission rates</li>
+	<li>determining a student’s letter grade from a list of score
+	ranges and letter grades</li>
+</ul>
+
+<p>For example, a company may offer discounts to its customers where the
+discount rate is based on the amount purchased according to this
+table.</p>
+
+<table class="list"><thead>
+	<tr><th>If the purchase<br>amount is greater<br>than or equal to</th>
+		<th>And the<br>purchase amount<br>is less than</th>
+		<th>Then the<br>discount<br>rate is</th></tr>
+</thead><tbody>
+	<tr class="center"><th>0</th> <th>$300</th> <th>0%</th></tr>
+	<tr class="center"><th>$300</th> <th>$600</th> <th>2.0%</th></tr>
+	<tr class="center"><th>$600</th> <th>$1000</th> <th>2.5%</th></tr>
+	<tr class="center"><th>$1000</th> <th>∞</th> <th>3.0%</th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page167">167</div>
+<p>A beginning programmer will often code a JavaScript solution to this
+problem like this:</p>
+
+<h4>Example 15</h4>
+<pre>// Computes and returns a discounted purchase amount.
+<span id="ch10rangeB1">function getDiscountedAmount(purchase) {</span>
+<span id="ch10rangeB2">    let rate;</span>
+<span id="ch10rangeB3">    if (purchase &lt; 300) {</span>
+<span id="ch10rangeB4">        rate = 0;</span>
+<span id="ch10rangeB5">    }</span>
+<span id="ch10rangeB6">    else if (purchase &lt; 600) {</span>
+<span id="ch10rangeB7">        rate = 0.02;</span>
+<span id="ch10rangeB8">    }</span>
+<span id="ch10rangeB9">    else if (purchase &lt; 1000) {</span>
+<span id="ch10rangeB10">        rate = 0.025;</span>
+<span id="ch10rangeB11">    }</span>
+<span id="ch10rangeB12">    else {</span>
+<span id="ch10rangeB13">        rate = 0.03;</span>
+<span id="ch10rangeB14">    }</span>
+<span id="ch10rangeB15">    let discount = purchase * rate;</span>
+<span id="ch10rangeB16">    return purchase - discount;</span>
+<span id="ch10rangeB17">}</span></pre>
+<span id="ch10rangeBEnd"></span>
+<button type="button" id="ch10rangeBRun" title="Run" onclick="act.runClick(&#39;ch10rangeB&#39;)">►</button>
+<button type="button" id="ch10rangeBStep" title="Step" onclick="act.stepClick(&#39;ch10rangeB&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="4">Desk Check</th></tr>
+	<tr><th>purchase</th> <th>rate</th>
+		<th>discount</th> <th>return</th></tr>
+</thead><tbody>
+	<tr><th id="ch10rangeBPurch">$708.00</th>
+		<th id="ch10rangeBRate"></th>
+		<th id="ch10rangeBDisc"></th>
+		<th id="ch10rangeBReturn"></th></tr>
+</tbody></table>
+
+<p>The problem with this solution is that if the company changes the
+purchase amount ranges or the discount rates, then a programmer must
+change the corresponding code. An improved solution is to remove the
+ranges and rates from the code and place them in a file or database so
+that the computer can read them into two parallel arrays when it runs
+the program. Then the programmer must write a simple linear search
+method to find the correct range and the corresponding discount rate as
+shown in the next example.</p>
+
+<div class="pagenum" id="page168">168</div>
+<h4>Example 16</h4>
+<pre>// The values in these parallel arrays can be
+// hard coded into a program, or even better,
+// they can be read from a file or database.
+let limits = [ 300, 600, 1000 ];
+let rates = [ 0, 0.02, 0.025, 0.03 ];
+
+// Computes and returns a discounted purchase amount.
+<span id="ch10rangeC1">function getDiscountedAmount(purchase) {</span>
+
+    // Find the purchase range.
+    for (<span id="ch10rangeC2a">let i = 0;</span> <span id="ch10rangeC2b">i &lt; limits.length;</span> <span id="ch10rangeC2c">i++</span>) {
+<span id="ch10rangeC3">        if (purchase &lt; limits[i]) {</span>
+<span id="ch10rangeC4">            break;</span>
+<span id="ch10rangeC5">        }</span>
+<span id="ch10rangeC6">    }</span>
+
+    // Get the discount rate that
+    // corresponds to the purchase range.
+<span id="ch10rangeC7">    let rate = rates[i];</span>
+
+    // Compute the discount amount and discounted price.
+<span id="ch10rangeC8">    let discount = purchase * rate;</span>
+<span id="ch10rangeC9">    return purchase - discount;</span>
+<span id="ch10rangeC10">}</span></pre>
+<span id="ch10rangeCEnd"></span>
+<button type="button" id="ch10rangeCRun" title="Run" onclick="act.runClick(&#39;ch10rangeC&#39;)">►</button>
+<button type="button" id="ch10rangeCStep" title="Step" onclick="act.stepClick(&#39;ch10rangeC&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="8">Desk Check</th></tr>
+	<tr><th class="array" colspan="3">limits</th>
+		<th class="empty"></th>
+		<th class="array" colspan="4">rates</th></tr>
+</thead><tbody>
+	<tr><th>300</th> <th>600</th> <th>1000</th>
+		<th class="empty"></th>
+		<th>0</th> <th>0.02</th> <th>0.025</th> <th>0.03</th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="empty"></th>
+		<th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th></tr>
+</tbody></table><br>
+<table class="check right"><thead>
+	<tr><th>purchase</th> <th>i</th>
+		<th>rate</th> <th>discount</th> <th>return</th></tr>
+</thead><tbody>
+	<tr><th id="ch10rangeCPurch">$708.00</th>
+		<th id="ch10rangeCI"></th>
+		<th id="ch10rangeCRate"></th>
+		<th id="ch10rangeCDisc"></th>
+		<th id="ch10rangeCReturn"></th></tr>
+	<tr><th class="empty" rowspan="2"></th> <th></th>
+		<th class="empty" colspan="3" rowspan="2"></th></tr>
+	<tr><th></th></tr>
+</tbody></table>
+
+<p>The next code example is a complete program that includes the
+<code>getDiscountedAmount</code> function from the previous example.</p>
+
+<div class="pagenum" id="page169">169</div>
+<h4>Example 17</h4>
+<pre class="hilite" id="ch10rangeDProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Compute Total&lt;/<span class="key">title</span>&gt;
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: The subtotal for a customer's purchases
+ * Processing: Compute a discounted amount and sales tax and add
+ *     them together to get the total amount that the customer owes.
+ * Output: The total that the customer owes.
+ */</span>
+<span id="ch10rangeD1"><span class="key">function</span> <span class="func">computeTotal</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span></span>
+    <span class="comm">// Get the subtotal from the user.</span>
+<span id="ch10rangeD2">    <span class="key">let</span> subtotal = parseFloat<span class="tok">(</span>document.getElementById<span class="tok">(</span><span class="lit">'subtotal'</span><span class="tok">)</span>.value<span class="tok">)</span>;</span>
+
+    <span class="comm">// Compute the customer's total.</span>
+    <span id="ch10rangeD3a"><span class="key">let</span> discounted =</span> <span id="ch10rangeD3b"><span class="func">getDiscountedAmount</span><span class="tok">(</span>subtotal<span class="tok">)</span>;</span>
+    <span id="ch10rangeD4a"><span class="key">let</span> tax =</span> <span id="ch10rangeD4b"><span class="func">getSalesTax</span><span class="tok">(</span>discounted<span class="tok">)</span>;</span>
+    <span id="ch10rangeD5"><span class="key">let</span> total = discounted + tax;</span>
+
+    <span class="comm">// Display the total for the customer to see.</span>
+<span id="ch10rangeD6">    document.getElementById<span class="tok">(</span><span class="lit">'total'</span><span class="tok">)</span>.innerHTML = total;</span>
+<span id="ch10rangeD7"><span class="tok">}</span></span>
+
+
+<span class="comm">// The values in these parallel arrays can be</span>
+<span class="comm">// hard coded into your program, or even better,</span>
+<span class="comm">// they can be read from a file or database.</span>
+<span class="key">let</span> limits = <span class="tok">[</span> 300, 600, 1000 <span class="tok">]</span>;
+<span class="key">let</span> rates = <span class="tok">[</span> 0, 0.02, 0.025, 0.03 <span class="tok">]</span>;
+
+<span class="comm">// Computes and returns a discounted purchase amount.</span>
+<span id="ch10rangeD11"><span class="key">function</span> <span class="func">getDiscountedAmount</span><span class="tok">(</span>purchase<span class="tok">)</span> <span class="tok">{</span></span>
+    <span class="comm">// Find the purchase range.</span>
+    <span class="key">for</span> <span class="tok">(</span><span id="ch10rangeD12a"><span class="key">let</span> i = 0;</span>  <span id="ch10rangeD12b">i &lt; limits.length;</span>  <span id="ch10rangeD12c">i++</span><span class="tok">)</span> <span class="tok">{</span>
+<span id="ch10rangeD13">        <span class="key">if</span> <span class="tok">(</span>purchase &lt; limits<span class="tok">[</span>i<span class="tok">]</span><span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch10rangeD14">            <span class="key">break</span>;</span>
+<span id="ch10rangeD15">        <span class="tok">}</span></span>
+<span id="ch10rangeD16">    <span class="tok">}</span></span>
+
+    <span class="comm">// Get the discount rate that</span>
+    <span class="comm">// corresponds to the purchase range.</span>
+<span id="ch10rangeD17">    <span class="key">let</span> rate = rates<span class="tok">[</span>i<span class="tok">]</span>;</span>
+
+    <span class="comm">// Compute the discount amount and round it to pennies.</span>
+<span id="ch10rangeD18">    <span class="key">let</span> discount = purchase * rate;</span>
+    <span id="ch10rangeD19a">discount =</span> <span id="ch10rangeD19b"><span class="func">roundToPlaces</span><span class="tok">(</span>discount, 2<span class="tok">)</span>;</span>
+
+    <span class="comm">// Compute and return the discounted price.</span>
+<span id="ch10rangeD20">    <span class="key">return</span> purchase - discount;</span>
+<span id="ch10rangeD21"><span class="tok">}</span></span>
+</pre>
+<div class="pagenum" id="page170">170</div>
+<pre class="hilite" id="ch10rangeDProg2"><span class="comm">// Computes and returns the sales tax for a purchase amount.</span>
+<span id="ch10rangeD31"><span class="key">function</span> <span class="func">getSalesTax</span><span class="tok">(</span>purchase<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch10rangeD32">    <span class="key">let</span> taxRate = 0.06;</span>
+<span id="ch10rangeD33">    <span class="key">let</span> tax = purchase * taxRate;</span>
+    <span id="ch10rangeD34a">tax =</span> <span id="ch10rangeD34b"><span class="func">roundToPlaces</span><span class="tok">(</span>tax, 2<span class="tok">)</span>;</span>
+<span id="ch10rangeD35">    <span class="key">return</span> tax;</span>
+<span id="ch10rangeD36"><span class="tok">}</span></span>
+
+
+<span class="comm">// Rounds x to digits places after the decimal.</span>
+<span id="ch10rangeD41"><span class="key">function</span> <span class="func">roundToPlaces</span><span class="tok">(</span>x, digits<span class="tok">)</span> <span class="tok">{</span></span>
+<span id="ch10rangeD42">    <span class="key">let</span> multiplier = Math.pow<span class="tok">(</span>10, digits<span class="tok">)</span>;</span>
+<span id="ch10rangeD43">    <span class="key">let</span> rounded = Math.round<span class="tok">(</span>x * multiplier<span class="tok">)</span> / multiplier;</span>
+<span id="ch10rangeD44">    <span class="key">return</span> rounded;</span>
+<span id="ch10rangeD45"><span class="tok">}</span></span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+&lt;<span class="key">h2</span>&gt;Compute Total&lt;/<span class="key">h2</span>&gt;                             <span id="ch10rangeDEnter" class="explain"></span>
+Subtotal <span id="ch10rangeDInput">&lt;<span class="key">input</span> <span class="attr">type="text"</span> <span class="attr">id="subtotal"</span> <span class="attr">size="5"</span>&gt;</span>&lt;<span class="key">br</span>&gt;    <span id="ch10rangeDClick" class="explain"></span>
+<span id="ch10rangeDButton">&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">computeTotal</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Total&lt;/<span class="key">button</span>&gt;</span>
+<span id="ch10rangeDDiv">&lt;<span class="key">div</span> <span class="attr">id="total"</span>&gt;&lt;/<span class="key">div</span>&gt;</span>
+&lt;/<span class="key">body</span>&gt;       <span id="ch10rangeDDisplay" class="explain"></span>
+&lt;/<span class="key">html</span>&gt;</pre>
+<span id="ch10rangeDEnd"></span>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch10rangeDProg&#39;, &#39;ch10rangeDProg2&#39;)"><b>⇗</b></button>
+
+<h3 id="ch10binary">Finding a Value (Binary Search)</h3>
+<p>If the elements in an array are sorted, then the computer can use a
+faster algorithm called <dfn>binary search</dfn> to find an element
+within that array. The binary search algorithm works by comparing the
+key to the middle most element in the array. If the key is greater than
+the middle most element, then the search is repeated in the last half of
+the array. If the key is less than the middle most element, then the
+search is repeated in the first half of the array. Of course, if the key
+is equal to the middle most element, then the key has been found and the
+search is done. This process of comparing the key to the middle most
+element of the current interval is repeated until the key is found or
+the interval has shrunk to only one element. If that one element is not
+the same as the key, then the key is not present in the array, and the
+function below returns a negative value.</p>
+
+<div class="pagenum" id="page171">171</div>
+<h4>Example 18</h4>
+<pre>// If key is in list, returns any index where key is
+// located within list; otherwise returns -insertPoint - 1.
+// Assumes list is already sorted.
+<span id="ch10binary1">function binarySearch(list, key) {</span>
+<span id="ch10binary2">    let left = 0;</span>
+<span id="ch10binary3">    let right = list.length - 1;</span>
+<span id="ch10binary4">    while (left &lt;= right) {</span>
+        // Compute the index of the middle of the current interval.
+<span id="ch10binary5">        let mid = left + ((right - left) &gt;&gt;&gt; 1);</span>
+
+        // Compare the value in the middle of the interval to the key.
+<span id="ch10binary6">        let cmp = key - list[mid];</span>
+<span id="ch10binary7">        if (cmp &gt; 0) {</span>
+<span id="ch10binary8">            left = mid + 1;</span>
+<span id="ch10binary9">        }</span>
+<span id="ch10binary10">        else if (cmp &lt; 0) {</span>
+<span id="ch10binary11">            right = mid - 1;</span>
+<span id="ch10binary12">        }</span>
+<span id="ch10binary13">        else {</span>
+<span id="ch10binary14">            return mid;</span>
+<span id="ch10binary15">        }</span>
+<span id="ch10binary16">    }</span>
+
+    // key is not present in list, but if it
+    // were, it would be stored at location left.
+<span id="ch10binary17">    return -(left + 1);</span>
+<span id="ch10binary18">}</span></pre>
+<span id="ch10binaryEnd"></span>
+<button type="button" id="ch10binaryRun" title="Run" onclick="act.runClick(&#39;ch10binary&#39;)">►</button>
+<button type="button" id="ch10binaryStep" title="Step" onclick="act.stepClick(&#39;ch10binary&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="14">Desk Check</th></tr>
+	<tr><th class="array" colspan="14">list</th></tr>
+</thead><tbody>
+	<tr id="ch10binaryList"><th id="ch10binaryList0">−2.1</th>
+		<th id="ch10binaryList1">−1</th>
+		<th id="ch10binaryList2">3.9</th>
+		<th id="ch10binaryList3">6.2</th>
+		<th id="ch10binaryList4">7.1</th>
+		<th id="ch10binaryList5">9.7</th>
+		<th id="ch10binaryList6">10</th>
+		<th id="ch10binaryList7">12</th>
+		<th id="ch10binaryList8">13.1</th>
+		<th id="ch10binaryList9">15.6</th>
+		<th id="ch10binaryList10">18</th>
+		<th id="ch10binaryList11">19</th>
+		<th id="ch10binaryList12">20.1</th>
+		<th id="ch10binaryList13">24.5</th></tr>
+	<tr class="index"><th>[0]</th> <th>[1]</th>
+		<th>[2]</th> <th>[3]</th>
+		<th>[4]</th> <th>[5]</th>
+		<th>[6]</th> <th>[7]</th>
+		<th>[8]</th> <th>[9]</th>
+		<th>[10]</th> <th>[11]</th>
+		<th>[12]</th> <th>[13]</th></tr>
+</tbody></table>
+<br>
+<table class="check right"><thead>
+	<tr><th>key</th> <th>left</th> <th>right</th>
+		<th>mid</th> <th>cmp</th> <th>return</th></tr>
+</thead><tbody>
+	<tr><th id="ch10binaryKey">15.6</th>
+		<th id="ch10binaryLeft"></th>
+		<th id="ch10binaryRight"></th>
+		<th id="ch10binaryMid"></th>
+		<th id="ch10binaryCmp"></th>
+		<th id="ch10binaryReturn"></th></tr>
+	<tr><th class="empty" rowspan="3"></th> <th></th> <th class="block"></th>
+		<th></th> <th></th> <th class="empty" rowspan="3"></th></tr>
+	<tr><th class="block"></th> <th></th> <th></th> <th></th></tr>
+	<tr><th></th> <th class="block"></th> <th></th> <th></th></tr>
+</tbody></table>
+
+<p>If the key is not present in the array, the return value of the
+binary search function above is <code>-insertPoint - 1</code>. In
+other words, if the key is not present in the array, the index where key
+should be inserted can be found using this code:</p>
+
+<pre>    let index = binarySearch(list, key);
+    if (index &lt; 0) {
+        let insertPoint = -index - 1;
+    }</pre>
+
+<div class="pagenum" id="page172">172</div>
+<p>In the <code>binarySearch</code> code above, the statement that
+computes <var>mid</var> needs some explanation. Here is the statement:</p>
+
+<pre>    mid = left + ((right - left) &gt;&gt;&gt; 1);</pre>
+
+<p>The right shift operator (&gt;&gt;&gt;) shifts all the bits in an
+integer to the right which is the same as using integer division to
+divide a <em>non-negative</em> integer by a power of two. However,
+the right shift operator executes faster than division. To help us
+understand the statement, we can rewrite it by replacing
+<code>&gt;&gt;&gt; 1</code> with <code>/ 2</code>.</p>
+
+<pre>    mid = left + Math.floor((right - left) / 2);</pre>
+
+<p>Notice that this statement uses the <code>Math.floor</code> function
+to truncate (not round) the result of the division. Also, notice
+that if this were an algebraic expression, it could be simplified to</p>
+
+<pre>    mid = Math.floor((left + right) / 2);</pre>
+
+<p>which is easier to understand. From this simplified formula, we
+see that the midpoint is simply the left index plus the right index
+divided in half. However, because of number overflow, if we use
+the simplified formula in the code, it may not work for very large
+arrays, and so we must use the more complex formula.</p>
+
+<div class="pagenum" id="page173">173</div>
+<h3 id="ch10methods">Array Methods</h3>
+<p>JavaScript includes several useful methods that you can use to
+manipulate the contents of arrays. Many of these methods are listed in
+the next table. When calling these methods, a programmer must write the
+name of the array in front of the method name as shown in this
+template.</p>
+
+<h4>Template</h4>
+<pre class="template">    <var>arrayName</var>.<var>methodName</var>(<span class="opt"><var>arg1</var>, <var>arg2</var>, … <var>argN</var></span>);</pre>
+
+<table class="reference"><thead>
+	<tr><th colspan="2">Array Methods</th></tr>
+	<tr><th scope="col">Method</th>
+		<th scope="col">Description</th></tr>
+</thead><tbody>
+	<tr><th><code>a.concat(item1<span class="opt">, item2, …</span>)</code></th>
+		<th>Returns a new array composed of the original array and the
+		argument arrays or values.</th></tr>
+	<tr><th><code>a.every(func<span class="opt">, thisArg</span>)</code></th>
+		<th>Returns true if a test function returns true for every
+		element in an array.</th></tr>
+	<tr><th><code>a.filter(func<span class="opt">, thisArg</span>)</code></th>
+		<th>Returns a new array that contains all elements that passed a
+		test function.</th></tr>
+	<tr><th><code>a.forEach(func<span class="opt">, thisArg</span>)</code></th>
+		<th>Calls a function once for each element in an array.</th></tr>
+	<tr><th><code>a.indexOf(toFind<span class="opt">, start</span>)</code></th>
+		<th>Returns the index within the array <var>a</var> of the
+		first occurrence of the element <var>toFind</var>, or −1
+		if not found.</th></tr>
+	<tr><th><code>a.join(<span class="opt">separator</span>)</code></th>
+		<th>Joins all elements of an array into a string.</th></tr>
+	<tr><th><code>a.lastIndexOf(toFind<span class="opt">, start</span>)</code></th>
+		<th>Returns the index within the array <var>a</var> of the
+		last occurrence of the element <var>toFind</var>, or −1 if
+		not found.</th></tr>
+	<tr><th><code>a.map(func<span class="opt">, thisArg</span>)</code></th>
+		<th>
+		Returns a new array that contains the results of calling a
+		function on every element in an array.</th></tr>
+	<tr><th><code>a.pop()</code></th>
+		<th>Removes and returns the last element from an array.</th></tr>
+	<tr><th><code>a.push(item1<span class="opt">, item2, …</span>)</code></th>
+		<th>Adds one or more elements to the end of an array.</th></tr>
+	<tr><th><code>a.reduce(func<span class="opt">, thisArg</span>)</code></th>
+		<th>Returns an accumulated value produced by calling a function
+		on every element in an array.</th></tr>
+	<tr><th><code>a.reverse()</code></th>
+		<th>Reverses the elements in an array.</th></tr>
+	<tr><th><code>a.shift()</code></th>
+		<th>Removes and returns the first element from an array.</th></tr>
+	<tr><th><code>a.slice(<span class="opt">start, end</span>)</code></th>
+		<th>Returns a new array that is a copy of elements between
+		[<var>start</var>, <var>end</var>).</th></tr>
+	<tr><th><code>a.some(func<span class="opt">, thisArg</span>)</code></th>
+		<th>Returns true if a test function returns true for at least
+		one element in an array.</th></tr>
+	<tr><th><code>a.sort(<span class="opt">compareFunc</span>)</code></th>
+		<th>Sorts the elements of an array in place.</th></tr>
+	<tr><th><code>a.toString()</code></th>
+		<th>Returns a string representing an array.</th></tr>
+	<tr><th><code>a.splice(start, count<span class="opt">, item1, item2, …</span>)</code></th>
+		<th>Removes and adds elements to an array.</th></tr>
+	<tr><th><code>a.unshift(item1<span class="opt">, item2, …</span>)</code></th>
+		<th>Adds one or more elements to the beginning of an array.</th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page174">174</div>
+<h3 id="ch10sort">Sorting an Array</h3>
+<p>The best way to sort an array is to use the sort functionality
+provided by the programming language you are using because that built-in
+sorting functionality has been optimized and tested. JavaScript includes
+built-in sort functionality, which is in the <code>Array</code> object.
+Shown below is JavaScript code to sort an array using the built-in
+functionality.</p>
+
+<pre>    let vegetables = [ "Radish", "Carrot", "Tomato", "Pea" ];
+    vegetables.sort();</pre>
+
+<p>If you wish to sort elements in a different order than the one
+provided by the JavaScript language, then you must write a comparison
+function and pass that function as a parameter to the sort function.
+This next JavaScript example shows how to sort text strings in
+descending order.</p>
+
+<h4>Example 19</h4>
+<pre>/* Compares two values, s1 and s2 and returns -1
+ * if s1 should come before s2, 1 if s1 should come
+ * after s2, and 0 if the two values are equal. */
+function descend(s1, s2) {
+    if (s1 &gt; s2)
+        return -1;
+    if (s1 &lt; s2)
+        return 1;
+    return 0;
+}
+
+let vegetables = [ "Radish", "Carrot", "Tomato", "Pea" ];
+vegetables.sort(descend);</pre>
+
+<div class="figRight" id="figSortText" style="width:20em">
+<img src="./Chapter 10. Arrays_files/sortText.png" alt="A JavaScript program that reads a list of text items, sorts the
+	list, and outputs the sorted list" title="A JavaScript program that reads a list of text items, sorts the
+	list, and outputs the sorted list">
+<div><b>Figure 10-4:</b> A JavaScript program that reads a list of text
+items, sorts the list, and outputs the sorted list.</div>
+</div>
+<p>The next example is a complete program that gets a list of text items
+from a user, sorts the list, and outputs the sorted list. This program
+allows a user to enter a list in a text area instead of a text field. A
+text area is essentially a text field with multiple rows. This program
+uses the built-in <code>split</code> function to split the string that
+the user enters into an array. This program also uses the built-in
+<code>sort</code> function to sort the array of text items and the
+built-in <code>join</code> function to join the sorted array into a
+string. The running program is shown in
+<a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/arrays.htm#figSortText">Figure&nbsp;10-4</a>.</p>
+
+<h4>Example 20</h4>
+<div class="pagenum" id="page175">175</div>
+<pre class="hilite" id="ch10sortListProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">meta</span> name="author" <span class="attr">content="Rex Barzee"</span>&gt;
+&lt;<span class="key">title</span>&gt;Sort Text&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+/* Input: A list of text items, each item on a separate line.
+ * Processing:
+ *     Split the text items into an array.
+ *     Sort the array.
+ *     Join the array into a string.
+ * Output: The sorted list of text items
+ */
+<span class="key">function</span> <span class="func">process</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span>
+    <span class="comm">// Get the text entered by the user.</span>
+    <span class="key">let</span> text = document.getElementById<span class="tok">(</span><span class="lit">'input'</span><span class="tok">)</span>.value;
+
+    <span class="comm">// Split the text at each new</span>
+    <span class="comm">// line into an array of strings.</span>
+    <span class="key">let</span> list = text.split<span class="tok">(</span><span class="lit">'<span class="tok">\</span>n'</span><span class="tok">)</span>;
+
+    <span class="comm">// Sort the array of strings.</span>
+    list.sort<span class="tok">(</span><span class="tok">)</span>;
+
+    <span class="comm">// Join the sorted array into a string</span>
+    <span class="comm">// of text separated by newline characters.</span>
+    <span class="key">let</span> output = list.join<span class="tok">(</span><span class="lit">'<span class="tok">\</span>n'</span><span class="tok">)</span>;
+
+    <span class="comm">// Display the string <span class="key">for</span> the user to see.</span>
+    document.getElementById<span class="tok">(</span><span class="lit">'output'</span><span class="tok">)</span>.value = output;
+<span class="tok">}</span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+&lt;<span class="key">textarea</span> <span class="attr">id="input"</span> <span class="attr">rows="16"</span> <span class="attr">cols="20"</span>&gt;&lt;/<span class="key">textarea</span>&gt;
+&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">process</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Sort&lt;/<span class="key">button</span>&gt;
+&lt;<span class="key">textarea</span> <span class="attr">id="output"</span> <span class="attr">rows="16"</span> <span class="attr">cols="20"</span>&gt;&lt;/<span class="key">textarea</span>&gt;
+&lt;/<span class="key">body</span>&gt;
+&lt;/<span class="key">html</span>&gt;</pre>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch10sortListProg&#39;)"><b>⇗</b></button>
+
+<div class="pagenum" id="page176">176</div>
+<h3 id="ch10sortNumbers">Sorting Numbers</h3>
+<p>By default, the built-in sort function in JavaScript sorts arrays
+lexicographically which essentially means alphabetically. This causes
+problems if you wish to sort an array of numbers. For example, this code
+will sort the <var>numbers</var> array in a surprising way.</p>
+
+<pre>    let numbers = [ 7, 10, 8, 16, 3, 35 ];
+
+    // WARNING: this will sort the numbers array
+    // lexicographically and not numerically.
+    numbers.sort();</pre>
+
+<p>In the previous code, after the computer calls the sort function, the
+values in the <var>numbers</var> array will be
+<code>[10, 16, 3, 35, 7, 8]</code>. By default the built-in JavaScript
+sort function places 10 and 16 before 3, 7, and 8 because 10 and 16
+begin with 1 and lexicographically 1 comes before 3, 7, and 8. To force
+JavaScript to sort an array according to its numeric values, we have to
+pass a comparison function into the sort function.</p>
+
+<h4>Example 21</h4>
+<pre class="hilite" id="ch10sortProg"><span class="doc">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span class="key">html</span> <span class="attr">lang="en-us"</span>&gt;
+&lt;<span class="key">head</span>&gt;
+&lt;<span class="key">meta</span> <span class="attr">charset="utf-8"</span>&gt;
+&lt;<span class="key">title</span>&gt;Compound Interest&lt;/<span class="key">title</span>&gt;
+
+&lt;<span class="key">script</span>&gt;
+<span class="comm">/* Input: No user input
+ * Processing: Test the built-in JavaScript sort function
+ * Output: The contents of an array before it is
+ *     sorted, and the contents after it is sorted.
+ */</span>
+<span class="key">function</span> <span class="func">testSort</span><span class="tok">(</span><span class="tok">)</span> <span class="tok">{</span>
+    <span class="key">let</span> numbers = <span class="tok">[</span> 7, 10, 8, 16, 3, 35 <span class="tok">]</span>;
+    document.getElementById<span class="tok">(</span><span class="lit">'output'</span><span class="tok">)</span>.innerHTML = numbers + <span class="lit">'&lt;br&gt;'</span>;
+    numbers.sort<span class="tok">(</span><span class="func">compareNumbers</span><span class="tok">)</span>;
+    document.getElementById<span class="tok">(</span><span class="lit">'output'</span><span class="tok">)</span>.innerHTML += numbers;
+<span class="tok">}</span>
+
+<span class="comm">// Compares two numbers by subtracting the second
+// from the first which will return a negative
+// number if the first number should be placed
+// before the second, a zero if the two numbers
+// are equal, and a positive number if the first
+// number should be placed after the second.</span>
+<span class="key">function</span> <span class="func">compareNumbers</span><span class="tok">(</span>x, y<span class="tok">)</span> <span class="tok">{</span>
+    <span class="key">return</span> x - y;
+<span class="tok">}</span>
+&lt;/<span class="key">script</span>&gt;
+&lt;/<span class="key">head</span>&gt;
+
+&lt;<span class="key">body</span>&gt;
+&lt;<span class="key">button</span> <span class="attr">type="button"</span> <span class="attr">onclick="<span class="func">testSort</span><span class="tok">(</span><span class="tok">)</span>"</span>&gt;Sort an Array&lt;/<span class="key">button</span>&gt;
+&lt;<span class="key">div</span> <span class="attr">id="output"</span>&gt;&lt;/<span class="key">div</span>&gt;
+&lt;/<span class="key">body</span>&gt;
+&lt;/<span class="key">html</span>&gt;</pre>
+<button type="button" title="Launch" onclick="act.launch(&#39;ch10sortProg&#39;)"><b>⇗</b></button>
+
+<div class="pagenum" id="page177">177</div>
+<p>You might be wondering how a sort function works. There are many
+different, well known sort algorithms (selection, exchange, insertion,
+heap, quick, etc.). They all work by repeatedly comparing elements in an
+array to other elements in the array and simply moving the elements
+around within the array. Shown below is JavaScript code to sort an array
+using the insertion sort algorithm. Insertion sort is a simple and
+reasonably fast algorithm, although it is usually not as fast as the
+quick sort algorithm.</p>
+
+<h4>Example 22</h4>
+<pre>// Sorts the contents of the specified array in
+// ascending order using the insertion sort algorithm.
+<span id="ch10sort1">function sort(list) {</span>
+<span id="ch10sort2">    let first = 0;</span>
+<span id="ch10sort3">    let last = list.length - 1;</span>
+    for (<span id="ch10sort4a">let i = last - 1;</span>  <span id="ch10sort4b">i &gt;= first;</span>  <span id="ch10sort4c">i--</span>) {
+<span id="ch10sort5">        let swap = list[i];</span>
+        for (<span id="ch10sort6a">let j = i + 1;</span>  <span id="ch10sort6b">j &lt;= last;</span>  <span id="ch10sort6c">j++</span>) {
+<span id="ch10sort7">            if (swap &lt;= list[j]) {</span>
+<span id="ch10sort8">                break;</span>
+<span id="ch10sort9">            }</span>
+<span id="ch10sort10">            list[j - 1] = list[j];</span>
+<span id="ch10sort11">        }</span>
+<span id="ch10sort12">        list[j - 1] = swap;</span>
+<span id="ch10sort13">    }</span>
+<span id="ch10sort14">}</span></pre>
+<span id="ch10sortEnd"></span>
+<button type="button" id="ch10sortRun" title="Run" onclick="act.runClick(&#39;ch10sort&#39;)">►</button>
+<button type="button" id="ch10sortStep" title="Step" onclick="act.stepClick(&#39;ch10sort&#39;)"><b>|</b>►<b>|</b></button>
+<button type="button" title="Slower" onclick="act.slowerClick()"><b>&lt;&lt;</b></button>
+<button type="button" title="Faster" onclick="act.fasterClick()"><b>&gt;&gt;</b></button>
+<table class="check right"><thead>
+	<tr><th colspan="11">Desk Check</th></tr>
+	<tr><th class="array" colspan="5">list</th>
+		<th class="empty"></th>
+		<th>first</th> <th>i</th> <th>swap</th> <th>j</th> <th>last</th></tr>
+</thead><tbody>
+	<tr id="ch10sortList"><th id="ch10sortList0">6</th>
+		<th id="ch10sortList1">−8</th>
+		<th id="ch10sortList2">9</th>
+		<th id="ch10sortList3">7</th>
+		<th id="ch10sortList4">0</th>
+		<th class="empty"></th>
+		<th id="ch10sortFirst"></th>
+		<th id="ch10sortI"></th>
+		<th id="ch10sortSwap"></th>
+		<th id="ch10sortJ"></th>
+		<th id="ch10sortLast"></th></tr>
+	<tr><th>6</th> <th>−8</th> <th>9</th> <th></th> <th></th>
+		<th class="empty"></th>
+		<th class="empty" colspan="3"></th>
+		<th></th> <th class="empty"></th></tr>
+	<tr><th class="empty" colspan="5"></th>
+		<th class="empty"></th>
+		<th class="empty"></th> <th></th> <th></th> <th></th>
+		<th class="empty"></th></tr>
+	<tr><th>6</th> <th>−8</th> <th></th> <th></th> <th></th>
+		<th class="empty"></th>
+		<th class="empty" colspan="3"></th> <th></th>
+		<th class="empty"></th></tr>
+	<tr><th class="empty" colspan="5"></th>
+		<th class="empty"></th>
+		<th class="empty" colspan="3"></th> <th></th>
+		<th class="empty"></th></tr>
+	<tr><th class="empty" colspan="5"></th>
+		<th class="empty"></th>
+		<th class="empty"></th> <th></th> <th></th> <th></th>
+		<th class="empty"></th></tr>
+	<tr><th>6</th> <th></th> <th>0</th> <th>7</th> <th>9</th>
+		<th class="empty"></th>
+		<th class="empty" colspan="5"></th></tr>
+	<tr><th class="empty" colspan="5"></th>
+		<th class="empty"></th>
+		<th class="empty"></th> <th></th> <th></th> <th></th>
+		<th class="empty"></th></tr>
+	<tr><th></th> <th></th> <th></th> <th>7</th> <th>9</th>
+		<th class="empty"></th>
+		<th class="empty" colspan="3"></th> <th></th>
+		<th class="empty"></th></tr>
+	<tr><th class="index">[0]</th> <th class="index">[1]</th>
+		<th class="index">[2]</th> <th class="index">[3]</th>
+		<th class="index">[4]</th>
+		<th class="empty"></th>
+		<th class="empty" colspan="3"></th> <th></th>
+		<th class="empty"></th></tr>
+	<tr><th class="empty" colspan="5"></th>
+		<th class="empty"></th>
+		<th class="empty"></th>
+		<th></th> <th class="empty" colspan="3"></th></tr>
+</tbody></table>
+
+<div class="pagenum" id="page178">178</div>
+<h3 id="ch10mistakes">Common Mistakes</h3>
+<h4>Forgetting that the first index in a JavaScript array is always 0</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>for (let i = 1; i &lt; a.length; i++) {
+    a[i] = 0;
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>for (let i = 0; i &lt; a.length; i++) {
+    a[i] = 0;
+}</pre></div>
+</div>
+
+<h4>Going beyond the end of an array</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>for (let i = 0; i &lt;= a.length; i++) {
+    a[i] = 0;
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>for (let i = 0; i &lt; a.length; i++) {
+    a[i] = 0;
+}</pre></div>
+</div>
+
+<h4>Confusing an index with the value stored at an index</h4>
+<div class="mistake">
+	<div><h5>Incorrect</h5>
+<pre>let sum = 0;
+for (let i = 0; i &lt; a.length; i++) {
+    // Wrong! i is the index. This code ignores the
+    // values that are stored in the array and simply
+    // adds the indexes of the array which are the
+    // integers 0, 1, 2, … (a.length - 1)
+    sum += i;
+}</pre></div>
+	<div><h5>Correct</h5>
+<pre>let sum = 0;
+for (let i = 0; i &lt; a.length; i++) {
+    // Right. a[i] is the value stored at index i.
+    // This code adds the values that are stored
+    // in the array.
+    sum += a[i];
+}</pre></div>
+</div>
+
+<div class="pagenum" id="page179">179</div>
+<h3 id="ch10summary">Chapter Summary</h3>
+<ul>
+	<li>An array is a collection of variables. Each variable in an array
+	is called an element and has a unique index which denotes that
+	element’s location within the array</li>
+	<li>To declare an array, use the keyword <code>let</code>.</li>
+	<li>To create an array which will reserve space in main memory for
+	the elements of the array, write code that uses the keywords
+	<code>new</code> and <code>Array</code>, like this template:
+<pre class="template">    <var>arrayName</var> = new Array(<var>size</var>);</pre></li>
+	<li>To create and populate an array with known values write code
+	that uses square brackets ([ and ]) like this template:
+<pre class="template">    <var>arrayName</var> = [ <span class="opt"><var>value0</var>, <var>value1</var>, … <var>valueN</var></span> ];</pre>
+	</li>
+	<li>All arrays in JavaScript automatically have an attribute named
+	<code>length</code>, which is the number of elements contained in the
+	array.</li>
+	<li>To access a single element within an array either to read or
+	write the element’s value, use bracket notation:
+<pre class="template">    <var>arrayName</var>[<var>index</var>]</pre></li>
+	<li>The first index in a JavaScript array is always 0.</li>
+	<li>The last index in a JavaScript array is always the length of the
+	array minus 1 or in other words:
+<pre class="template">    let lastIndex = <var>arrayName</var>.length - 1;</pre></li>
+	<li>To process all the elements in an array, a programmer will
+	usually write a loop that counts from zero to the length of the
+	array similar to this:
+<pre class="template">    for (let i = 0;  i &lt; <var>arrayName</var>.length;  i++) {
+        // Process each element of array using i as the index.
+    }</pre></li>
+	<li>JavaScript includes many built-in methods that process arrays,
+	including: <code>concat</code>, <code>indexOf</code>,
+	<code>join</code>, <code>lastIndexOf</code>, <code>pop</code>,
+	<code>push</code>, <code>reverse</code>, <code>shift</code>, and
+	<code>sort</code>.</li>
+</ul>
+
+<div class="pagenum" id="page180">180</div>
+<h3 id="ch10revQues">Review Questions</h3>
+<ol class="revQues">
+	<li>The following JavaScript statement creates an array with how
+	many elements?
+	<pre>let list = new Array(5);</pre></li>
+
+	<li>Given the following JavaScript statement, what is the index of
+	the first element in the array named <code>stuff</code>?
+	<pre>let stuff = [ 13, -1.8, 20, 6.3 ];</pre></li>
+
+	<li>Given the following JavaScript statement, what is the index of
+	the last element in the array named <code>stuff</code>?
+	<pre>let stuff = [ 13, -1.8, 20, 6.3 ];</pre></li>
+
+	<li>Given the following JavaScript statement, what is the value of
+	the last element in the array named <code>stuff</code>?
+	<pre>let stuff = [ 13, -1.8, 20, 6.3 ];</pre></li>
+
+	<li>Given the following array what is the value of s[3] - s[1]?
+	<pre>let s = [ 4, -1, 0, 5, 9, 1, 2, 4 ];</pre></li>
+
+	<li>Write JavaScript code to declare and create an array named
+	<code>altitudes</code> that has 75 elements.</li>
+
+	<li>Write JavaScript code to store the number 72.6 in an array named
+	<code>altitudes</code> at index 3.</li>
+
+	<li>Write JavaScript code to call the <code>fill</code> function as
+	given in <a href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/arrays.htm#ch10exFill">example&nbsp;8</a> of this chapter
+	and pass an array named <code>altitudes</code> to the
+	<code>fill</code> function.</li>
+
+	<li>Write JavaScript code to declare and create an array named
+	<code>samples</code> that holds these values:
+	<span class="expr">72, -3, 59, 0, 16</span>.</li>
+
+	<li>Write code to output (display to the user) the value stored at
+	index 1 in the <code>samples</code> array. Hint: one way to display
+	something to a user is to call the <code>alert</code> function.
+	Another way is to use <code>document.getElementById</code> to put
+	something in a div.</li>
+</ol>
+
+<div class="pagenum" id="page181">181</div>
+<h3 id="ch10progs">Programming Assignments</h3>
+<ol class="progs">
+	<li><p>Write a function that creates and returns an array that
+	contains the values: 1908, 5, 10. The function must have this
+	header:</p>
+<pre>    function mothersDay()</pre></li>
+
+	<li><p>Write a function that returns the sum of the first and last
+	values in an array. The function must have this header:</p>
+<pre>    function addEnds(list)</pre>
+	<p>For example, if the <code>addEnds</code> function were called
+	like this:</p>
+<pre>    let list = [ 17, 8, 9, 5, 20 ];
+    let value = addEnds(list);</pre>
+	<p>the <code>addEnds</code> function would return 37 because 17 and
+	20 are the first and last values stored in the array, and the sum of
+	17 and 20 is 37.</p></li>
+
+	<li><p>Write a function named <code>getMiddle</code> that returns
+	the value of the middle element in an array. If the array has an
+	even number of elements, then this function must return the average
+	of the two middle elements. The function must have this header:</p>
+<pre>    function getMiddle(list)</pre>
+	<p>For example, if the <code>getMiddle</code> function were called
+	like this:</p>
+<pre>    let list = [ 17, 8, 9, 5, 20 ];
+    let value = getMiddle(list);</pre>
+	<p>the <code>getMiddle</code> function would return 9 because 9 is
+	stored in the middle of the array. If the <code>getMiddle</code>
+	function were called like this:</p>
+<pre>    let list = [ 12, 4, 8, 15, 17, 5, 20, 11 ];
+    let value = getMiddle(list);</pre>
+	<p>the <code>getMiddle</code> function would return 16 because 15
+	and 17 are stored in the middle of the array, and the average of 15
+	and 17 is 16.</p></li>
+
+	<li><p>Write a function named <code>countEvens</code> that counts
+	and returns the number of even integers in an array. The function
+	must have this header:</p>
+<pre>    function countEvens(list)</pre>
+	<p>For example, if the <code>countEvens</code> function were called
+	like this:</p>
+<pre>    let list = [ 17, 8, 9, 5, 20 ];
+    let count = countEvens(list);</pre>
+	<p>the <code>countEvens</code> function would return 2 because 8 and
+	20 are even integers.</p></li>
+
+	<li>
+<div class="pagenum" id="page182">182</div>
+		<p>Write a function to multiply each element in an array by some
+	value and to return the products in an array. The function must have
+	this header:</p>
+<pre>    function multiply(list, multiplier)</pre>
+	<p>For example, if the <code>multiply</code> function were called
+	like this:</p>
+<pre>    let list = [ 17, 8, 9, 5, 20 ];
+    let products = multiply(list, 3);</pre>
+	<p>the <code>multiply</code> function would return an array with
+	these values:</p>
+<pre>    [ 51, 24, 27, 15, 60 ]</pre></li>
+
+	<li><p>Write a function to rotate the elements in an array to the
+	left. In other words, the function must move each element from its
+	location to the location immediately to the left, and then move the
+	first value from its location to the last location (not necessarily
+	in that order). The function must have this header:</p>
+	<pre>    function rotateLeft(list)</pre>
+	<p>For example, if the <code>rotateLeft</code> function were called
+	like this:</p>
+<pre>    let list = [ 17, 8, 9, 5, 20 ];
+    rotateLeft(list);</pre>
+	<p>The <code>rotateLeft</code> function would change the
+	<code>list</code> array to be
+	<code>[ 8, 9, 5, 20, 17 ]</code>.</p></li>
+
+	<li><p>Write a function to rotate the elements in an array to the
+	right. In other words, the function must move each element from its
+	location to the location immediately to the right, and then move the
+	last value from its location to the first location (not necessarily
+	in that order). The function must have this header:</p>
+	<pre>    function rotateRight(list)</pre>
+	<p>For example, if the <code>rotateRight</code> function were called
+	like this:</p>
+<pre>    let list = [ 17, 8, 9, 5, 20 ];
+    rotateRight(list);</pre>
+	<p>The <code>rotateRight</code> function would change the
+	<code>list</code> array to be
+	<code>[ 20, 17, 8, 9, 5 ]</code>.</p></li>
+
+	<li><p>In the card game named <dfn>golf</dfn>, each player tries to
+	collect cards with the lowest value. The game is usually played with
+	a deck of cards that has four suits: spades, hearts, diamonds, and
+	clubs. Each suit has 13 cards: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack,
+	Queen, and King. At the end of the game, each player calculates his
+	score by adding the value of the cards that he holds in his hand.
+	The value of the numbered cards is the same as their number.
+	However, the value of a Jack, Queen, or King is 10. In some versions
+	of the game, each player has four cards in his hand. In other
+	versions each player has six or eight cards in his hand.</p>
+
+	<p>Write a function named <code>golfScore</code> that takes one
+	parameter: an array named <code>hand</code>. This function must
+	compute and return the score for the cards by adding the values of
+	all the cards in <code>hand</code>. For example, if
+	<code>hand</code> were this array:
+	<code>[5, 2, "King", 3, 1, "Queen"]</code>, the
+	<code>golfScore</code> function would return 31.</p></li>
+
+	<li>
+<div class="pagenum" id="page183">183</div>
+	<p>Write an HTML document with a button and a div. The
+	<code>onclick</code> attribute of the button must call a function
+	named <code>crazyStory()</code> with no arguments. The div must have
+	an <code>id</code> of <code>'output'</code>. Write these five
+	functions in the head of the document, all in the same script
+	tag:</p>
+<pre>    function chooseNoun()
+    function chooseVerb()
+    function chooseAdjective()
+    function chooseAdverb()
+    function chooseInteger()</pre>
+	<p>The first four functions must each contain an array with at least
+	ten words. The <code>chooseNoun</code> function must contain an
+	array with at least ten nouns. The <code>chooseVerb</code> function
+	must contain an array with at least ten verbs, and so on. When one
+	of these four functions is called, the function must randomly choose
+	one of the words in its array and return that word. Hint: write code
+	similar to <a target="_blank" href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/functions.htm#ch9random">example&nbsp;8</a> of
+	Chapter&nbsp;9 to get a pseudo random index between 0 and the length
+	of the array of words, in other words in this range [0,
+	<var>length</var>). Then write code to return the word that is
+	stored in the array at that index.</p>
+	<p>The last function, <code>chooseInteger</code> must return a pseudo
+	random integer between 1 and 99, inclusive. Finally add this
+	function to the same <code>script</code> tag as the other five
+	functions.</p>
+<pre>function crazyStory() {
+    let story = "The man comes "
+        + chooseVerb() + "ing a horse. The horse is "
+        + chooseAdverb() + " " + chooseAdjective()
+        + " and has no " + chooseNoun()
+        + ". The saddle is " + chooseAdjective()
+        + ", and the stirrups don't match. His clothing"
+        + " is strange. He wears " + chooseInteger()
+        + " hats and a " + chooseAdjective()
+        + " shirt. One " + chooseNoun()
+        + " of his pants is torn off to the knee. His sword is "
+        + chooseAdjective() + " and has a broken hilt and "
+        + chooseVerb() + "s from the bottom of the "
+        + chooseNoun() + ".";
+    document.getElementById('output').innerHTML = story;
+}</pre></li>
+
+	<li>
+<div class="pagenum" id="page184">184</div>
+    <div><i>The Twelve Days of Christmas</i> is an English Christmas
+    carol that lists a series of gifts given on each of the twelve days
+    of Christmas. In the song, the gifts are listed cumulatively. This
+    means on day one, the song lists the gift for day one. On day two,
+    the song lists the gifts for day two and day one. On day three, the
+    song lists the gifts for days three, two, and one and so on. These
+    are the gifts for each of the twelve days:</div>
+	<table class="list"><thead>
+		<tr><th>Day</th> <th>Gift</th></tr>
+	</thead><tbody>
+		<tr><th class="right">1</th> <th>a partridge in a pear tree</th></tr>
+		<tr><th class="right">2</th> <th>two turtle doves</th></tr>
+		<tr><th class="right">3</th> <th>three French hens</th></tr>
+		<tr><th class="right">4</th> <th>four calling birds</th></tr>
+		<tr><th class="right">5</th> <th>five golden rings</th></tr>
+		<tr><th class="right">6</th> <th>six geese a laying</th></tr>
+		<tr><th class="right">7</th> <th>seven swans a swimming</th></tr>
+		<tr><th class="right">8</th> <th>eight maids a milking</th></tr>
+		<tr><th class="right">9</th> <th>nine ladies dancing</th></tr>
+		<tr><th class="right">10</th> <th>ten lords a leaping</th></tr>
+		<tr><th class="right">11</th> <th>eleven pipers piping</th></tr>
+		<tr><th class="right">12</th> <th>twelve drummers drumming</th></tr>
+	</tbody></table>
+    <p>Write a program that allows a user to enter an integer between 1
+    and 12, inclusive and that displays the corresponding lyrics from
+    <i>The Twelve Days of Christmas</i>. For example, if a user entered
+    1, your program should output:</p>
+	<blockquote>“On the first day of Christmas, my true love gave to me:
+	a partridge in a pear tree.”</blockquote>
+	<p>If the user entered 4, your program should output:</p>
+	<blockquote>“On the fourth day of Christmas, my true love gave to me:
+	four calling birds, three French hens, two turtle doves, and a
+	partridge in a pear tree.”</blockquote>
+	<p>Hint: create an array that contains the ordinal numbers: first,
+	second, third… and another array that contains the gifts. Use
+	those arrays, a loop, and string concatenation to build a string
+	that contains the lyrics.</p></li>
+
+	<li class="clear">
+<div class="pagenum" id="page185">185</div>
+	<div class="figRight" id="figSortNum" style="width:19em">
+	<img src="./Chapter 10. Arrays_files/sortNumbers.png" alt="A JavaScript program that reads a list of numbers and outputs
+	the list sorted numerically" title="A JavaScript program that reads a list of numbers and outputs
+	the list sorted numerically">
+	<!-- <div><b>Figure 10-5:</b> A JavaScript program that reads a list
+	of numbers and outputs the list sorted numerically.</div> -->
+    </div>
+	Write an HTML document with two text areas and a button. Write a
+	JavaScript program that will
+	<ol>
+		<li>read all the text from the first text area,</li>
+		<li>split the text into numbers in an array,</li>
+		<li>sort the array numerically, and</li>
+		<li>display the sorted numbers in the second text area.</li>
+	</ol></li>
+
+	<li class="clear">
+	<div class="figRight" id="figDups" style="width:27em">
+	<img src="./Chapter 10. Arrays_files/removeDups.png" alt="A JavaScript program that reads a list of names and outputs the
+	list with no names duplicated" title="A JavaScript program that reads a list of names and outputs the
+	list with no names duplicated">
+	<!-- <div><b>Figure 10-6:</b> A JavaScript program that reads a list
+	of names and outputs the list with no names duplicated.</div> -->
+	</div>
+	Write a JavaScript program that allows a user to enter a list of
+	names in a text area. When the user clicks a button, the program
+	should output the list of names without any duplicated names. In
+	other words, the program should output each name once only. Hint:
+	The program should read the names from the left text area and store
+	them in an array. Then it should sort the array, remove the
+	duplicate names from the array, and display the names in the right
+	text area.</li>
+
+	<li id="ch10rook" class="clear">
+<div class="pagenum" id="page186">186</div>
+	Here is an array that holds a representation of all the cards in a
+	deck Rook cards.
+<pre>let cards = [
+    "Green 1", "Green 2", "Green 3", "Green 4", "Green 5",
+    "Green 6", "Green 7", "Green 8", "Green 9", "Green 10",
+    "Green 11", "Green 12", "Green 13", "Green 14",
+    "Yellow 1", "Yellow 2", "Yellow 3", "Yellow 4", "Yellow 5",
+    "Yellow 6", "Yellow 7", "Yellow 8", "Yellow 9", "Yellow 10",
+    "Yellow 11", "Yellow 12", "Yellow 13", "Yellow 14",
+    "Black 1", "Black 2", "Black 3", "Black 4", "Black 5",
+    "Black 6", "Black 7", "Black 8", "Black 9", "Black 10",
+    "Black 11", "Black 12", "Black 13", "Black 14",
+    "Red 1", "Red 2", "Red 3", "Red 4", "Red 5",
+    "Red 6", "Red 7", "Red 8", "Red 9", "Red 10",
+    "Red 11", "Red 12", "Red 13", "Red 14", "Rook Bird"
+];</pre>
+	<div class="figRight" id="figShuffle" style="width:16em">
+	<img src="./Chapter 10. Arrays_files/shuffle.png" alt="A JavaScript program that shuffles a list of cards" title="A JavaScript program that shuffles a list of cards">
+	</div>
+	Read about the
+	<a target="_blank" href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a>
+	algorithm at wikipedia.org. Then write a JavaScript program that
+	will shuffle the strings in the cards array and display the shuffled
+	cards in a text area. Hint: find the “modern algorithm”
+	that is shown about one fourth of the way down in the Wikipedia
+	article. Translate this “modern algorithm” into
+	JavaScript code.</li>
+
+	<li id="ch10roman" class="clear">
+	Write a function that uses an array and no <code>if</code>
+	statements to solve the Arabic number to Roman numerals
+	<a target="_blank" href="https://content.byui.edu/file/6145049a-a5ad-413d-86e8-7d784f34e23b/1/textbook.zip/selection.htm#ch6roman">programming assignment</a> as given
+	in chapter&nbsp;6.</li>
+</ol>
+
+<p class="fine">Copyright © 2017 by Rex A. Barzee.&nbsp; All rights
+reserved.&nbsp; Except as permitted under the Copyright Act of 1976, no
+part of this publication may be reproduced, stored in a retrieval
+system, or transmitted, in any form or by any means, electronic,
+mechanical, photocopying, recording, or otherwise, without the prior
+written permission of the author.</p>
+
+<p class="fine">The author and publisher of this book have used their
+best efforts in preparing this book, and the information contained in
+this book is believed to be reliable.&nbsp; These efforts include the
+development, research, and testing of the theories and computer programs
+in this book to determine their correctness.&nbsp; However, because of
+the possibility of human or mechanical error, the author and publisher
+make no warranty of any kind, expressed or implied, with regard to
+these programs or the documentation or information contained in this
+book.&nbsp; The author and publisher shall not be liable in any event
+for incidental or consequential damages in connection with or arising
+out of the furnishing, performance, or use of these programs.</p>
+</div>
+
+</body></html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>Five times table</title>
+        <script>
+            /**
+            * Input: none
+            * Processing: create code to display output
+            * Output: display a times table of 5 multiplied by 1-12
+            */
+            function fiveTimes(){
+                let outputElement = document.getElementById("outputDiv");
+                outputElement.innerHTML = "";
+
+                total = ""
+                sum = 0
+                text ="";
+                
+                for(let i = 1; i < 13; i++){
+                    total = "5 x " + i
+                    sum = 5 * i 
+                    text += total + " = " + sum + "<br>"
+                   
+                    
+                }
+                
+                document.getElementById("outputDiv").innerHTML = text;
+                
+
+            }
+
+            
+
+        </script>
+
+    </head>
+    <body>
+       
+        
+        <button type="button" onclick =fiveTimes() >Generate 5 times table</button>
+        <div id=outputDiv>
+           
+        </div>
+        
+    </body>
+</html>

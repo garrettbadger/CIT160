@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>Arrays</title>
+    <script>
+
+        /* Defining Table
+        * Input: no user input
+        * Processing: Test the addEnds and getMiddle functions by calling them.
+        *Output: The values returned from the addEnds and getMiddle functions.
+        */
+        function test() {
+            let list1 = [17, 8, 9, 5, 20];
+            let list2 = [12, 4, 8, 15, 17, 5, 20, 11];
+
+            // Test the addEnds function by calling it two times.
+            let sum1 = addEnds(list1);
+            let sum2 = addEnds(list2);
+
+            // Test the getMiddle function by calling it two times.
+            let mid1 = getMiddle(list1);
+            let mid2 = getMiddle(list2);
+
+            // Build a string to display to the user.
+            let output =
+                sum1 + '<br>' +
+                sum2 + '<br>' +
+                mid1 + '<br>' +
+                mid2;
+
+            // Display the output string for the user to see.
+            document.getElementById('outputDiv').innerHTML = output;
+        }
+        /* Defining Table
+        * Input: no user input
+        * Processing: adds the first element and last element from the array together
+        *Output: returns the sum 
+        */
+        function addEnds(list) {
+            let lastIndex = list[list.length - 1];
+            let total = list[0] + lastIndex;
+            return total;
+        }
+        /* Defining Table
+        * Input: no user input
+        * Processing: finds the middle value of the array
+        *Output: returns the value
+        */
+        function getMiddle(list) {
+            let length = list.length - 1;
+            let middle = length / 2;
+            if (length % 2 == 0)
+
+                return list[middle];
+            else (length % 2 != 0)
+            let bottom = Math.floor(middle);
+            let top = Math.ceil(middle);
+            return (list[bottom] + list[top]) / 2;
+
+
+
+        }
+
+
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <button type="button" onclick="test()">Array tests</button>
+    <div id="outputDiv">
+
+    </div>
+
+</body>
+
+</html>
